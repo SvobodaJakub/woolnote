@@ -36,6 +36,7 @@ A.k.a. questions nobody asks that I pulled out of my colored hat :)
     * you are in control of the data,
     * backup archive with previous note database versions, 
     * simple markup language allowing the creation of ad-hoc mixed checklists and notes with simple formatting, 
+    * use of a markup language to insert lists and textboxes into an ordinary plaintext text area is much faster and smoother than the feature-rich text areas that some other note-taking apps use,
     * import&export including a rudimentary ability to handle conflicts,
     * no user tracking (well, if you don't use cloud storage for import&export),
     * individual notes can be shared over the local network as read-only to other people who don't have login,
