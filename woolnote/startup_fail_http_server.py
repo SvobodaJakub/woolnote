@@ -2,35 +2,40 @@
 # Copyright (c) 2017, Jakub Svoboda.
 
 # TODO: docstring for the file
-import urllib
 from http.server import BaseHTTPRequestHandler
-import sys
-import traceback
 import ssl
 
-from woolnote import util
-from woolnote import html_constants
-
-import argparse
 from http.server import HTTPServer
 import os
 
 from woolnote import config
-from woolnote.woolnote_config import WoolnoteConfig
 from woolnote import util
-from woolnote.task_store import Task, TaskStore
-from woolnote.ui_backend import UIBackend
-from woolnote.web_ui import WebUI
 from woolnote.web_ui_req_handler import get_WebInterfaceHandlerLocal
-from woolnote.ui_auth import WoolnoteUIAuth
+
 
 def get_WebInterfaceHandlerLocal(message, list_of_messages):
-    # TODO: docstring
+    """
+    Returns the class for the web request handler which has access to data in the arguments. (Because the class is
+    then used in such a way that it's not possible to pass additional arguments to its __init__().)
+    Args:
+        message (str): Error message to display.
+        list_of_messages (list[str]): Additional error messages to display.
+
+    Returns:
+        type: class WebInterfaceHandlerLocal(BaseHTTPRequestHandler) that holds the arguments in its scope
+    """
     class WebInterfaceHandlerLocal(BaseHTTPRequestHandler):
-        # TODO: docstring
+        """
+        Simple handler that displays a static page with the defined list of error messages (taken from captured scope).
+        """
 
         def helper_generate_page_contents(self):
-            # TODO: docstring
+            """
+            Generates contents for the static error page. Doesn't process any additional user data.
+
+            Returns:
+                str: The generated page.
+            """
             ss = util.sanitize_singleline_string_for_html
             sanitized_message = ss(message)
             sanitized_list_of_messages = [ss(x) for x in list_of_messages]
@@ -42,7 +47,12 @@ def get_WebInterfaceHandlerLocal(message, list_of_messages):
             return page_content
 
         def req_handler(self):
-            # TODO: docstring
+            """
+            Handles requests to content. There is only one page, so it is very simple.
+
+            Returns:
+                None:
+            """
             page_content = self.helper_generate_page_contents()
             try:
                 self.wfile.write(page_content.encode("utf-8"))
@@ -52,18 +62,15 @@ def get_WebInterfaceHandlerLocal(message, list_of_messages):
             return
 
         def do_GET(self):
-            # TODO: docstring
             self.do_HEAD()
             self.req_handler()
             return
 
         def do_POST(self):
-            # TODO: docstring
             self.do_HEAD()
             self.req_handler()
 
         def do_HEAD(self):
-            # TODO: docstring
             '''
             Handle a HEAD request.
             '''
@@ -75,6 +82,12 @@ def get_WebInterfaceHandlerLocal(message, list_of_messages):
 
 
 def serve_error_message_forever():
+    """
+    Starts a stripped down version of http request handler that serves a single page with a list of errors from
+    config.py and blocks forever.
+
+    Returns: None
+    """
 
     WebInterfaceHandlerLocal = get_WebInterfaceHandlerLocal("Read README.txt to set up woolnote.", config.DISPLAY_STARTUP_HELP_LIST_OF_MESSAGES)  # TODO
 

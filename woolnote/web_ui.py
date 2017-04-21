@@ -4,15 +4,12 @@
 # TODO: docstring for the file
 # TODO: think about moving functionality to backend
 
-import urllib
-import re
 import hashlib
 
 from woolnote import util
 from woolnote import config
 from woolnote import html_page_templates
-from woolnote import html_constants
-from woolnote.task_store import Task, TaskStore, PLAIN, MARKUP
+from woolnote.task_store import Task
 
 
 # Web UI frontend

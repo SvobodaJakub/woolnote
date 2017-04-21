@@ -8,7 +8,6 @@ import sys
 import traceback
 import ssl
 
-from woolnote import config
 from woolnote import util
 from woolnote import html_constants
 

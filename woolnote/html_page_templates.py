@@ -2,16 +2,12 @@
 # Copyright (c) 2017, Jakub Svoboda.
 
 # TODO: docstring for the file
-import urllib
 import hashlib
 import os
 
 
 from woolnote import util
-from woolnote import html_constants
-from woolnote.task_store import PLAIN, MARKUP
 from woolnote import html_page_templates_pres
-from collections import namedtuple
 from woolnote import config
 
 
@@ -19,29 +15,28 @@ from woolnote import config
 def folder_tag_etc_list(action_name, req_elem_name, elem_list=None, elem_dict=None, sort_elem_list=False,
                                       sorted_tuple_list=None, small_text=False, alt_task_store_name=None,
                                       red_bold_text=False):
-    # TODO docstring update
-    # """
-    # Generates a list of links to actions based on a list of elements leading to these actions.
-    # If a dictionary instead of a list is supplied, the generated requests contain the values of the keys
-    # while the user-visible strings in the links are the dictionary keys.
-    # If both elem_list and elem_dict are provided, the elem_list is iterated over (instead of elem_dict.keys()),
-    # so that it is possible to define the order.
-    # If sorted_tuple_list is provided, elem_list, elem_dict, and sort_elem_list are ignored.
-    #
-    # Args:
-    #     action_name (str): value for the "action" request key
-    #     req_elem_name (str): the key name for the request (value is the individual element)
-    #     elem_list (Union[List[str], None]): list of elements (tag names, folder names, ...) for which to generate links
-    #     elem_dict (Union[None, Dict[str, str]]): dict where keys are the names of elements to display in the links (tag names, ...) and values are the requests to use in the link address
-    #     sort_elem_list (bool): whether to sort the user-visible elements (tags, folders, ...)
-    #     sorted_tuple_list (Union[None, List[Tuple[str, str]]]): sorted tuples (display_elem_name, request_value) for the individual elements
-    #     small_text (bool): whether to display the user-visible links as small text
-    #     alt_task_store_name (Union[None, str]): if not None, it is added to the links so that the links point to the right task store
-    #     red_bold_text (bool): If True, the text is bold and red
-    #
-    # Returns:
-    #     str: snippet of HTML links
-    # """
+    """
+    Generates a list of links to actions based on a list of elements leading to these actions.
+    If a dictionary instead of a list is supplied, the generated requests contain the values of the keys
+    while the user-visible strings in the links are the dictionary keys.
+    If both elem_list and elem_dict are provided, the elem_list is iterated over (instead of elem_dict.keys()),
+    so that it is possible to define the order.
+    If sorted_tuple_list is provided, elem_list, elem_dict, and sort_elem_list are ignored.
+
+    Args:
+        action_name (str): value for the "action" request key
+        req_elem_name (str): the key name for the request (value is the individual element)
+        elem_list (Union[List[str], None]): list of elements (tag names, folder names, ...) for which to generate links
+        elem_dict (Union[None, Dict[str, str]]): dict where keys are the names of elements to display in the links (tag names, ...) and values are the requests to use in the link address
+        sort_elem_list (bool): whether to sort the user-visible elements (tags, folders, ...)
+        sorted_tuple_list (Union[None, List[Tuple[str, str]]]): sorted tuples (display_elem_name, request_value) for the individual elements
+        small_text (bool): whether to display the user-visible links as small text
+        alt_task_store_name (Union[None, str]): if not None, it is added to the links so that the links point to the right task store
+        red_bold_text (bool): If True, the text is bold and red
+
+    Returns:
+        List[woolnote.html_page_templates_pres.FormattedLinkData]: list of objects that return html links
+    """
     ss = util.sanitize_singleline_string_for_html
     elem_list_data_for_html_fragment_list = []
 
@@ -78,7 +73,6 @@ def folder_tag_etc_list(action_name, req_elem_name, elem_list=None, elem_dict=No
 
 def generate_note_reminder_link_list_html_fragment(list_taskid, used_task_store, overdue=False,
                                                    alt_task_store_name=None, dismiss_reminder_action=False):
-    # TODO update docstring
     """
     Generates a list of links to notes that have a due date set. If overdue=False, then only the notes that
     are NOT overdue are displayed. If overdue=True, then only the notes that ARE overdue are displayed.
@@ -92,7 +86,7 @@ def generate_note_reminder_link_list_html_fragment(list_taskid, used_task_store,
         dismiss_reminder_action (bool): If True, the generated link is colorful and bold and leads to the action dismiss_reminder_and_display_note
 
     Returns:
-        Union[None, str]: Lines with HTML links to the notes.
+        List[woolnote.html_page_templates_pres.FormattedLinkData]: list of objects that return html links
     """
     reminder_set = set()
     current_date = util.current_timestamp()
@@ -138,10 +132,21 @@ def generate_note_reminder_link_list_html_fragment(list_taskid, used_task_store,
 
 def page_edit_note_template(task_store, task, self_sess_action_auth,
                             editing_mode_existing_note=False, history_back_id=None, page_header_list_of_warnings=None):
-    # TODO: docstring
-    """Template for note editing - for creating a new note or editing an existing one.
-       editing_mode_existing_note - False = editing mode for a new note, True = editing mode for an existing note
-        (this controls which request the save button generates and which links are displayed)
+    """
+    Template for note editing - for creating a new note or editing an existing one.
+    editing_mode_existing_note - False = editing mode for a new note, True = editing mode for an existing note
+    (this controls which request the save button generates and which links are displayed)
+
+    Args:
+        task_store (woolnote.task_store.TaskStore):
+        task (woolnote.task_store.Task):
+        self_sess_action_auth (str):
+        editing_mode_existing_note (bool): false == editing mode for a new note, true == editing mode for an existing note
+        history_back_id (str):
+        page_header_list_of_warnings (Union[None, None, None]):
+
+    Returns:
+        Union[str, None]:
     """
 
     if editing_mode_existing_note:
@@ -174,8 +179,29 @@ def page_list_notes_template(list_taskid_desc, title=None, primary_task_store=No
                              page_header_optional_link_button_name=None,
                              page_header_optional_link_button_request_dict=None,
                              page_header_optional_list_of_warnings=None):
-    # TODO docstring
-    # highlight_in_notes is a list
+    """
+    Template for note list. The given list of taskids must be matchable with the given task store. Both the reference
+    to the task store and the name of the task store must be given (internal details and hardcoded task store names,
+    search the code for more info).
+
+    Args:
+        list_taskid_desc (List[str]): notes are listed in the order of taskids
+        title (str):
+        primary_task_store (woolnote.task_store.TaskStore): Always give the reference to the primary task store.
+        alt_task_store (Union[None, woolnote.task_store.TaskStore]): If the notes should be listed from a different task store (e.g. trash), give the reference to it, otherwise None.
+        alt_task_store_name (Union[None, str]): If alt_task_store==None, set this also to None; otherwise specify the internal hardcoded task store name (e.g. task_store_trash).
+        highlight_in_notes (Union[None, List[str]]): text to highlight in the notes listed on this page (after a note is opened)
+        history_back_id (str): string returned by woolnote.web_ui.save_history()
+        virtual_folders (Dict[str, str]): woolnote.woolnote_config.virtual_folders
+        page_header_first_text (str):
+        page_header_optional_small_second_text (Union[str, None]):
+        page_header_optional_link_button_name (Union[str, None]):
+        page_header_optional_link_button_request_dict (Union[None, Dict[str, str]]):
+        page_header_optional_list_of_warnings (Union[List[str], None]):
+
+    Returns:
+        str:
+    """
 
     page = html_page_templates_pres.PageListData()
     page.page_title = title
@@ -262,7 +288,17 @@ def page_list_notes_template(list_taskid_desc, title=None, primary_task_store=No
 
 
 def unauth_page_display_note_public_template(tainted_task_id, tainted_task_pubauthid, task_store):
-    # TODO: docstring
+    """
+    Displays a given task if the given parameters are correct. Meant to display a read-only note (so that the user
+     can share a link that works without login). Extreme caution necessary.
+    Args:
+        tainted_task_id (str):
+        tainted_task_pubauthid (str):
+        task_store (woolnote.task_store.TaskStore):
+
+    Returns:
+        str:
+    """
 
     if tainted_task_id is None:
         raise Exception("task_id==None")
@@ -295,7 +331,21 @@ def unauth_page_display_note_public_template(tainted_task_id, tainted_task_pubau
 def page_display_note_template(task_id, task, page_header_optional_list_of_warnings=None,
                                alt_task_store_name=None, highlight_in_text=None, history_back_id=None,
                                self_sess_action_auth=None):
-    # TODO: docstring
+    """
+    Template for displaying a single note.
+
+    Args:
+        task_id (str):
+        task (woolnote.task_store.Task):
+        page_header_optional_list_of_warnings (Union[None, str]):
+        alt_task_store_name (Union[None, str]): If task is not from the primary store, specify the internal hardcoded task store name (e.g. task_store_trash).
+        highlight_in_text (Union[None, list[str]]): text to highlight in the note (list of strings to highlight)
+        history_back_id (Union[None, str]): string returned by woolnote.web_ui.save_history()
+        self_sess_action_auth (str): woolnote.web_ui.WebUI.sess_action_auth
+
+    Returns:
+        str:
+    """
 
     page = html_page_templates_pres.PageDisplayNoteData()
 
@@ -321,7 +371,18 @@ def page_display_note_template(task_id, task, page_header_optional_list_of_warni
 
 def page_note_list_multiple_select_template(tasks_to_delete=None, task_store=None,
                                    history_back_id=None, self_sess_action_auth=None):
-    # TODO: docstring
+    """
+    Shows a page with a list of tasks to manipulate.
+
+    Args:
+        tasks_to_delete (List[woolnote.task_store.Task]):
+        task_store (woolnote.task_store.TaskStore):
+        history_back_id (Union[None, str]): string returned by woolnote.web_ui.save_history()
+        self_sess_action_auth (str): woolnote.web_ui.WebUI.sess_action_auth
+
+    Returns:
+        str:
+    """
 
 
     task_details_to_delete = []
@@ -350,7 +411,18 @@ def page_note_list_multiple_select_template(tasks_to_delete=None, task_store=Non
 
 
 def page_delete_notes_template(tasks_to_delete=None, history_back_id=None, self_sess_action_auth=None):
-    # TODO: docstring
+    """
+    Template for a page with a list of tasks to delete. Upon confirmation, these tasks will be moved from task_store into
+    task_store_trash (hardcoded).
+
+    Args:
+        tasks_to_delete (List[woolnote.task_store.Task]):
+        history_back_id (Union[None, str]): string returned by woolnote.web_ui.save_history()
+        self_sess_action_auth (str): woolnote.web_ui.WebUI.sess_action_auth
+
+    Returns:
+        str:
+    """
 
 
     page = html_page_templates_pres.PageDeleteNotesData()
@@ -375,7 +447,17 @@ def page_delete_notes_template(tasks_to_delete=None, history_back_id=None, self_
     return page.to_html()
 
 def page_export_prompt_template(nonce, history_back_id=None, self_sess_action_auth=None):
-    # TODO: docstring
+    """
+    Template for a page with a button to export tasks.
+
+    Args:
+        nonce (str): string returned by woolnote.web_ui.create_new_nonce()
+        history_back_id (Union[None, str]): string returned by woolnote.web_ui.save_history()
+        self_sess_action_auth (str): woolnote.web_ui.WebUI.sess_action_auth
+
+    Returns:
+        str:
+    """
 
     page = html_page_templates_pres.PageExportPromptData()
     page.nonce = nonce
@@ -385,7 +467,17 @@ def page_export_prompt_template(nonce, history_back_id=None, self_sess_action_au
     return page.to_html()
 
 def page_import_prompt_template(nonce, history_back_id=None, self_sess_action_auth=None):
-    # TODO: docstring
+    """
+    Template for a page with a button to import tasks.
+
+    Args:
+        nonce (str): string returned by woolnote.web_ui.create_new_nonce()
+        history_back_id (Union[None, str]): string returned by woolnote.web_ui.save_history()
+        self_sess_action_auth (str): woolnote.web_ui.WebUI.sess_action_auth
+
+    Returns:
+        str:
+    """
 
     page = html_page_templates_pres.PageImportPromptData()
     page.nonce = nonce

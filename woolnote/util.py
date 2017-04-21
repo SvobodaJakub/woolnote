@@ -7,7 +7,6 @@ import html
 import time
 import os
 import hashlib
-import urllib
 
 from woolnote import config
 
@@ -629,6 +628,7 @@ def multiline_markup_checkbox_mapping(markup, plain, edit_chkbox_state=False, ch
     #    edit_chkbox_state - if false, it returns html with html checkboxes, if true, it takes chkbox_on_list and makes those checked and the rest unchecked and returns the modified plain text
     # """
     # TODO: better docstring
+    # TODO: this code is too crazy, think about how to do it differently
     if chkbox_on_list is None:
         chkbox_on_list = []
 
