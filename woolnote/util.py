@@ -47,6 +47,14 @@ class Search_AST_Node:
 
 def search_expression_tokenizer(filter_expression):
     # TODO: docstring
+    """
+
+    Args:
+        filter_expression (str):
+
+    Returns:
+        List[Tuple[str, str]]:
+    """
     dbgprint("dbg search_expression_tokenizer start")
     dbgprint("filter string: " + repr(filter_expression) + " " + str(type(filter_expression)))
     # valid queries:
@@ -184,6 +192,14 @@ def search_expression_tokenizer(filter_expression):
 
 def search_expression_build_ast(tokens):
     # TODO: docstring
+    """
+
+    Args:
+        tokens (List[Tuple[str, str]]):
+
+    Returns:
+        woolnote.util.Search_AST_Node:
+    """
     # recognized types of tokens:
     # SEARCH_STRING - sets the current token type and content
     # CTRL_SEQ_CLOSING - moves the current position pointer up by parents to the first matching opening token
@@ -279,6 +295,17 @@ def search_expression_build_ast(tokens):
 def search_expression_execute_ast_node(ast_node, task_store, search_type=None, fulltext_search_strings=None):
     # TODO: docstring
     # TODO doscstring about fulltext_search_strings changing the return value
+    """
+
+    Args:
+        ast_node (woolnote.util.Search_AST_Node):
+        task_store (woolnote.task_store.TaskStore):
+        search_type (Union[None, str]):
+        fulltext_search_strings (List):
+
+    Returns:
+        List[str]:
+    """
     # fulltext_search_strings is None or list. if it is list, then all fulltext search strings will be appended to it
     # works correctly only on EXEC_ROOT for end user
     # recognized types of tokens:
@@ -343,24 +370,47 @@ def search_expression_execute_ast_node(ast_node, task_store, search_type=None, f
 
 def current_timestamp():
     # TODO: docstring
+    """
+
+    Returns:
+        str:
+    """
     curr_date = str(time.strftime("%Y-%m-%d %H:%M:%S"))
     return curr_date
 
 
 def create_id_task():
     # TODO: docstring
+    """
+
+    Returns:
+        str:
+    """
     """Creates a random ID consisting of 64 [01-9A-F] symbols."""
     return "{:064X}".format(random.randrange(16 ** 64))
 
 
 def generate_one_time_pwd():
     # TODO: docstring
-    """Creates a random password with [01-9A-F] symbols and 8 characters for one-time passwords."""
+    """
+
+    Returns:
+        str:
+    """
+    #"""Creates a random password with [01-9A-F] symbols and 8 characters for one-time passwords."""
     return "{:8x}".format(random.randrange(16 ** 8))
 
 
 def sanitize_singleline_string_for_tasksave(unsafe):
     # TODO: docstring
+    """
+
+    Args:
+        unsafe (str):
+
+    Returns:
+        str:
+    """
     # TODO: can this be broken by other unicode newline characters?
     new = unsafe.replace("\n", "")
     new = new.replace("\r", "")
@@ -370,6 +420,14 @@ def sanitize_singleline_string_for_tasksave(unsafe):
 
 def sanitize_singleline_string_for_html(unsafe):
     # TODO: docstring
+    """
+
+    Args:
+        unsafe (Union[str, List[str]]):
+
+    Returns:
+        Union[str, None]:
+    """
     # http://php.net/htmlspecialchars
     # http://stackoverflow.com/questions/1061697/whats-the-easiest-way-to-escape-html-in-python
     # http://stackoverflow.com/questions/3096948/escape-html-in-python
@@ -382,12 +440,28 @@ def sanitize_singleline_string_for_html(unsafe):
 
 def sanitize_multiline_string_for_textarea_html(unsafe):
     # TODO: docstring
+    """
+
+    Args:
+        unsafe (str):
+
+    Returns:
+        str:
+    """
     new = html.escape(unsafe)
     return new
 
 
 def convert_multiline_plain_string_into_safe_html(unsafe):
     # TODO: docstring
+    """
+
+    Args:
+        unsafe (str):
+
+    Returns:
+        str:
+    """
     new = unsafe.replace("\r", "")
     new = html.escape(new)
     new = new.replace("\n", "<br>\n")
@@ -396,11 +470,27 @@ def convert_multiline_plain_string_into_safe_html(unsafe):
 
 def task_body_save_fix_newlines(plain):
     # TODO: docstring
+    """
+
+    Args:
+        plain (str):
+
+    Returns:
+        str:
+    """
     return plain.replace("\r", "")
 
 def task_body_save_fix_multiline_markup_bullet_lists(plain):
     # TODO: docstring
-    """Replicates last used bullet list/task list style on the immediately following non-empty lines (so that the user has easier input). Prepends and appends at least 4 newlines if there are less than 4 newlines on the beginning/end."""
+    """
+
+    Args:
+        plain (str):
+
+    Returns:
+        str:
+    """
+    #"""Replicates last used bullet list/task list style on the immediately following non-empty lines (so that the user has easier input). Prepends and appends at least 4 newlines if there are less than 4 newlines on the beginning/end."""
     lines = plain.replace("\r", "").split("\n")
     newlines = []
     style = None
@@ -451,12 +541,28 @@ def task_body_save_fix_multiline_markup_bullet_lists(plain):
 
 def convert_multiline_markup_string_into_safe_html(unsafe):
     # TODO: docstring
+    """
+
+    Args:
+        unsafe (str):
+
+    Returns:
+        str:
+    """
 
     # stackoverflow.com/questions/13938975/how-to-remove-indentation-from-an-unordered-list-item
     OPENING_UL_TAG = """<ul style=" margin: 0;  padding-left: 1.2em; " >"""
 
     def str_bold(s):
         # TODO: docstring
+        """
+
+        Args:
+            s (str):
+
+        Returns:
+            str:
+        """
         inside_tag = False
         split_s = s.split("**")
         if len(split_s) % 2 == 0:
@@ -474,6 +580,14 @@ def convert_multiline_markup_string_into_safe_html(unsafe):
 
     def str_ita(s):
         # TODO: docstring
+        """
+
+        Args:
+            s (str):
+
+        Returns:
+            str:
+        """
         inside_tag = False
         split_s = s.split("***")
         if len(split_s) % 2 == 0:
@@ -491,6 +605,14 @@ def convert_multiline_markup_string_into_safe_html(unsafe):
 
     def str_itabold(s):
         # TODO: docstring
+        """
+
+        Args:
+            s (str):
+
+        Returns:
+            str:
+        """
         inside_tag = False
         split_s = s.split("****")
         if len(split_s) % 2 == 0:
@@ -508,6 +630,14 @@ def convert_multiline_markup_string_into_safe_html(unsafe):
 
     def str_und(s):
         # TODO: docstring
+        """
+
+        Args:
+            s (str):
+
+        Returns:
+            str:
+        """
         inside_tag = False
         split_s = s.split("__")
         if len(split_s) % 2 == 0:
@@ -525,6 +655,14 @@ def convert_multiline_markup_string_into_safe_html(unsafe):
 
     def str_strike(s):
         # TODO: docstring
+        """
+
+        Args:
+            s (str):
+
+        Returns:
+            str:
+        """
         inside_tag = False
         split_s = s.split("---")
         if len(split_s) % 2 == 0:
@@ -542,6 +680,14 @@ def convert_multiline_markup_string_into_safe_html(unsafe):
 
     def str_markup(s):
         # TODO: docstring
+        """
+
+        Args:
+            s (str):
+
+        Returns:
+            str:
+        """
         s = str_itabold(s)
         s = str_ita(s)
         s = str_bold(s)
@@ -577,6 +723,14 @@ def convert_multiline_markup_string_into_safe_html(unsafe):
 
     def line_bullet(s):
         # TODO: docstring
+        """
+
+        Args:
+            s (str):
+
+        Returns:
+            str:
+        """
         if s.startswith("* "):
             rest = s[2:]
             safe = line_ahref(rest)
@@ -598,6 +752,14 @@ def convert_multiline_markup_string_into_safe_html(unsafe):
 
     def multiline_deduplicate_ul(s):
         # TODO: docstring
+        """
+
+        Args:
+            s (str):
+
+        Returns:
+            str:
+        """
         new = s.replace("</ul><br>\n" + OPENING_UL_TAG, "\n")  # join neighboring lists
         new = new.replace("</ul><br>\n", "</ul>\n")  # do not put <br> after the end of a list
         new = new.replace("</ul>\n" + OPENING_UL_TAG, "\n")  # join neighboring lists (without <br>)
@@ -623,6 +785,18 @@ def convert_multiline_markup_string_into_safe_html(unsafe):
 def multiline_markup_checkbox_mapping(markup, plain, edit_chkbox_state=False, chkbox_on_list=None,
                                       disabled_checkboxes=False):
     # TODO: docstring
+    """
+
+    Args:
+        markup (str):
+        plain (str):
+        edit_chkbox_state (bool):
+        chkbox_on_list (Union[None, List[str], None, None]):
+        disabled_checkboxes (bool):
+
+    Returns:
+        str:
+    """
     # """markup - the html-converted sanitized markup text
     #    plain - the plaintext source of the markup text
     #    edit_chkbox_state - if false, it returns html with html checkboxes, if true, it takes chkbox_on_list and makes those checked and the rest unchecked and returns the modified plain text
@@ -733,7 +907,16 @@ def multiline_markup_checkbox_mapping(markup, plain, edit_chkbox_state=False, ch
 
 def convert_multiline_string_into_safe_html_short_snippet(unsafe, len):
     # TODO: docstring
-    """Any markup is ignored, the output is just plain text and unicode "return" symbols."""
+    """
+
+    Args:
+        unsafe (str):
+        len (int):
+
+    Returns:
+        str:
+    """
+    #"""Any markup is ignored, the output is just plain text and unicode "return" symbols."""
     new = unsafe.strip().replace("\n",
                                  "↵")  # http://stackoverflow.com/questions/18927672/newline-symbol-unicode-character
     new = new.replace("\r", "")
@@ -755,7 +938,16 @@ def convert_multiline_string_into_safe_html_short_snippet(unsafe, len):
 
 def safe_string_compare(string1, string2):
     # TODO: docstring
-    """Safe comparison to avoid timing attacks"""
+    """
+
+    Args:
+        string1 (str):
+        string2 (str):
+
+    Returns:
+        bool:
+    """
+    #"""Safe comparison to avoid timing attacks"""
     # hashing&salting so that string comparison doesn't easily allow timing attacks
     random_string = create_id_task()
     hash1 = hashlib.sha256(repr(string1 + random_string).encode("utf-8")).hexdigest()
@@ -767,7 +959,17 @@ def safe_string_compare(string1, string2):
 
 def tasks_backup(task_store, task_store_trash, s=None):
     # TODO: docstring
-    """Creates a backup of the internal task database and trash. The optional s parameter allows appending a string to the file names of the backup."""
+    """
+
+    Args:
+        task_store (woolnote.task_store.TaskStore):
+        task_store_trash (woolnote.task_store.TaskStore):
+        s (Union[None, None, None, str, None, None, None, None, None, None, None, None, None]):
+
+    Returns:
+        None:
+    """
+    #"""Creates a backup of the internal task database and trash. The optional s parameter allows appending a string to the file names of the backup."""
     timestamp = current_timestamp().replace(":", "-").replace(" ", "_")
     if s is not None:
         timestamp += "_" + str(s)

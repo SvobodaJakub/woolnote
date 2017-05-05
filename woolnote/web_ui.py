@@ -362,6 +362,7 @@ class WebUI():
 
         # TODO move to backend?
         task.due_date_reminder_dismissed = True
+        self.task_store.touch(task.taskid)
         self.task_store.task_store_save()
 
     def req_note_checkboxes_save(self):
@@ -498,7 +499,6 @@ class WebUI():
             self.error_msg_queue_list.append("Note manipulation not performed - cannot access required POST data.")
         else:
             self.ui_backend.notes_tagdel_permanent(task_id_list, tagdel)
-            self.task_store.task_store_save()
 
     def req_note_list_manipulate_tagadd(self):
         """
@@ -523,7 +523,6 @@ class WebUI():
             self.error_msg_queue_list.append("Note manipulation not performed - cannot access required POST data.")
         else:
             self.ui_backend.notes_tagadd_permanent(task_id_list, tagadd)
-            self.task_store.task_store_save()
 
     def req_note_list_manipulate_foldermove(self):
         """
@@ -548,7 +547,6 @@ class WebUI():
             self.error_msg_queue_list.append("Note manipulation not performed - cannot access required POST data.")
         else:
             self.ui_backend.notes_foldermove_permanent(task_id_list, foldermove)
-            self.task_store.task_store_save()
 
     def helper_get_task_or_default(self):
         """

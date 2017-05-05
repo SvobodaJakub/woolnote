@@ -3,6 +3,7 @@
 
 # TODO: docstring for the file
 import re
+import os
 from woolnote import util
 from woolnote import config
 
@@ -218,6 +219,8 @@ class TaskStore():
         self.export_lamport_clock = -1  # lamport clock at the last export (not just save, but the user-facing export functionality)
         self.last_import_lamport_clock = -1  # lamport clock at the last import (not just save, but the user-facing export functionality)
         self.filepath = filepath
+        self.taskids_touched_since_last_add_or_del = set()
+        self.taskids_touched_dict_cleared_since_last_save = False
 
     def serialize(self):
         """
@@ -243,7 +246,11 @@ class TaskStore():
     def task_store_save(self, alt_path=None):
         """
         Saves the serialized itself into the file configured in __init__(). This method has to be called manually,
-        the task store doesn't save its in-memory representation into the file automatically.
+        the task store doesn't save its in-memory representation into the file automatically. If no alternative path
+        is specified and if only a few tasks have been modified (without deleting or adding), it saves the changes
+        to a small differential file. If no alternative path is specified but the changes are more extensive,
+        the full file is saved and the differential file is emptied. If an alternative path is specified, no diff file
+        is used.
 
         Args:
             alt_path (Union[str, None]): Alternative path where to save.
@@ -251,11 +258,39 @@ class TaskStore():
         Returns:
             None:
         """
-        path = self.filepath
-        if alt_path is not None:
-            path = alt_path
-        with open(path, "w", encoding="utf-8") as stored_file:
-            stored_file.write(self.serialize())
+
+        path_diff = self.filepath + config.DIFFNEW_EXTENSION
+        if all([ alt_path is None,  # only if primary location
+                 not self.taskids_touched_dict_cleared_since_last_save,  # only if flush not necessary
+                 self.taskids_touched_since_last_add_or_del,  # only if something has been touched
+                 len(self.taskids_touched_since_last_add_or_del) in range(5),  # only if only a few has been touched
+                 ]) :
+            # no alternative path, saving to the primary location
+            # there is only a few tasks that have been modified, write them to a separate small file
+
+            diffupdate_store = TaskStore(None)
+            for taskid in self.taskids_touched_since_last_add_or_del:
+                task = self.store_dict_id[taskid]
+                diffupdate_store.add_deserialized(task)
+            with open(path_diff, "w", encoding="utf-8") as stored_file:
+                stored_file.write(diffupdate_store.serialize())
+
+        elif alt_path is None:
+            # no alternative path, saving to the primary location
+            # empty the separate small file and save everything to the main file
+
+            self.taskids_touched_since_last_add_or_del.clear()  # going to save the full file
+            self.taskids_touched_dict_cleared_since_last_save = False  # going to save the full file and begin with a clean slate again
+            with open(self.filepath, "w", encoding="utf-8") as stored_file:
+                stored_file.write(self.serialize())
+            with open(path_diff, "w", encoding="utf-8") as stored_file:
+                stored_file.write("")
+
+        else:
+            # alternative path, do not use differential files at all
+
+            with open(alt_path, "w", encoding="utf-8") as stored_file:
+                stored_file.write(self.serialize())
 
     def task_store_load(self, alt_path=None):
         """
@@ -268,10 +303,19 @@ class TaskStore():
         Returns:
             None:
         """
-        path = self.filepath
-        if alt_path is not None:
-            path = alt_path
-        with open(path, "r", encoding="utf-8") as stored_file:
+
+        def deserialize(destination_task_store, source_file, list_of_taskids_read=None):
+            """
+            Deserialize task store data from an input file and save it to a TaskStore instance.
+
+            Args:
+                destination_task_store (woolnote.task_store.TaskStore): where to store the deserialized data
+                source_file (_io.TextIOWrapper): where to read serialized data from
+                list_of_taskids_read (Union[None, List]): if not None, append deserialized taskid to this list
+
+            Returns:
+                None:
+            """
             task_strings = []
             inside_task = False
             inside_task_id_known = False
@@ -281,9 +325,9 @@ class TaskStore():
                 line_split = line.split(" ")
                 if not inside_task:
                     if line_split[0] == "EXPORT-LAMPORT-CLOCK":
-                        self.export_lamport_clock = int(line_split[1])
+                        destination_task_store.export_lamport_clock = int(line_split[1])
                     if line_split[0] == "LAST-IMPORT-LAMPORT-CLOCK":
-                        self.last_import_lamport_clock = int(line_split[1])
+                        destination_task_store.last_import_lamport_clock = int(line_split[1])
                     if line == "TASK-BEGIN":
                         inside_task = True
                 if inside_task:
@@ -299,8 +343,30 @@ class TaskStore():
                                 inside_task_id_known = False
                                 new_task = Task()
                                 new_task.deserialize("\n".join(task_strings))
-                                self.add_deserialized(new_task)
+                                destination_task_store.add_deserialized(new_task)
+                                if list_of_taskids_read is not None:
+                                    list_of_taskids_read.append(new_task.taskid)
                                 task_strings = []
+
+        self.taskids_touched_since_last_add_or_del.clear()  # loading different data, the old are going to be irrelevant
+        self.taskids_touched_dict_cleared_since_last_save = True  # this makes task_store_save() work properly - deletes the contents of the diff file
+
+        path = self.filepath
+        if alt_path is not None:
+            path = alt_path
+        with open(path, "r", encoding="utf-8") as stored_file:
+            deserialize(self, stored_file)
+
+        # TODO test this functionality!
+        path_diff = self.filepath + config.DIFFNEW_EXTENSION
+        if alt_path is None and os.path.isfile(path_diff):
+            # load is not from alternative path -> load differential file if it exists
+            with open(path_diff, "r", encoding="utf-8") as stored_file:
+                list_of_diff_taskids = []
+                deserialize(self, stored_file, list_of_diff_taskids)
+                self.taskids_touched_since_last_add_or_del.update(list_of_diff_taskids)
+                self.taskids_touched_dict_cleared_since_last_save = False  # loaded the previous state with some tasks in the diff file and this state can be further used
+
 
     def add_deserialized(self, task):
         """
@@ -314,6 +380,7 @@ class TaskStore():
         """
         self.store_dict_id[task.taskid] = task
         self.lamport_clock = max(self.lamport_clock, int(task.lamport_timestamp))
+        self.taskids_touched_since_last_add_or_del.clear()
 
     def update_lamport_clock(self, ext_clock):
         """
@@ -340,6 +407,8 @@ class TaskStore():
         self.store_dict_id[task.taskid] = task
         self.lamport_clock = 1 + max(self.lamport_clock, int(task.lamport_timestamp))
         task.lamport_timestamp = self.lamport_clock
+        self.taskids_touched_since_last_add_or_del.clear()
+        self.taskids_touched_dict_cleared_since_last_save = True
 
     def touch(self, taskid):
         """
@@ -354,6 +423,7 @@ class TaskStore():
         """
         self.lamport_clock = 1 + max(self.lamport_clock, int(self.store_dict_id[taskid].lamport_timestamp))
         self.store_dict_id[taskid].lamport_timestamp = self.lamport_clock
+        self.taskids_touched_since_last_add_or_del.add(taskid)
 
     def sort_taskid_list_descending_lamport_helper(self, taskid_list):
         """
@@ -398,6 +468,8 @@ class TaskStore():
         """
         self.lamport_clock += 1
         del (self.store_dict_id[taskid])
+        self.taskids_touched_since_last_add_or_del.clear()
+        self.taskids_touched_dict_cleared_since_last_save = True
 
     def get_folder_list(self):
         """

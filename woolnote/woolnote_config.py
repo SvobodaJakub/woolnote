@@ -78,16 +78,29 @@ arbitrary [ ] checkbox or checked [x] checkbox
         super().__init__()
         self.virtual_folders = {}
 
-    def save_default_config_note(self, task_store):
+    def save_default_config_note(self):
         # TODO: docstring
+        """
+
+        Returns:
+
+        """
         task = Task()
         task.name = self.CONFIG_TASK_NAME
         task.body = self.CONFIG_TASK_DEFAULT_BODY
         task_store.add(task)
 
     def read_from_config_note(self, task_store):
-        self.virtual_folders = {}
         # TODO: docstring
+        """
+
+        Args:
+            task_store (woolnote.task_store.TaskStore):
+
+        Returns:
+            None:
+        """
+        self.virtual_folders = {}
         contents = None
         list_taskid_unfiltered = task_store.sort_taskid_list_descending_lamport()
         for taskid in list_taskid_unfiltered:
@@ -95,7 +108,7 @@ arbitrary [ ] checkbox or checked [x] checkbox
             if task.name == self.CONFIG_TASK_NAME:
                 contents = task.body
         if contents is None:
-            self.save_default_config_note(task_store)
+            self.save_default_config_note()
             contents = self.CONFIG_TASK_DEFAULT_BODY
         if contents is not None:
             for line in contents.split("\n"):

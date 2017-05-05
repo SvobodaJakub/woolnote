@@ -57,6 +57,7 @@ __HELP_MSG_FRAGMENT = " or the working dir './'" if not THIS_IS_ANDROID else ""
 # * woolnote.zip - the task database for export/import zipped so that less data are transmitted
 # - TODO: autocreate files?
 
+DIFFNEW_EXTENSION = '.diffnew'  # appended to the path when accessing a differential database
 FILE_TASKS_DAT = 'tasks.dat'
 FILE_TASKS_TRASH_DAT = 'tasks_trash.dat'
 FILE_WOOLNOTE_DAT = 'woolnote.dat'
