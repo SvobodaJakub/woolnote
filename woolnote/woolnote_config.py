@@ -78,7 +78,7 @@ arbitrary [ ] checkbox or checked [x] checkbox
         super().__init__()
         self.virtual_folders = {}
 
-    def save_default_config_note(self):
+    def save_default_config_note(self, task_store):
         # TODO: docstring
         """
 
@@ -108,7 +108,7 @@ arbitrary [ ] checkbox or checked [x] checkbox
             if task.name == self.CONFIG_TASK_NAME:
                 contents = task.body
         if contents is None:
-            self.save_default_config_note()
+            self.save_default_config_note(task_store)
             contents = self.CONFIG_TASK_DEFAULT_BODY
         if contents is not None:
             for line in contents.split("\n"):
