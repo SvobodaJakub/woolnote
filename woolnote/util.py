@@ -453,18 +453,24 @@ def sanitize_multiline_string_for_textarea_html(unsafe):
 
 
 def convert_multiline_plain_string_into_safe_html(unsafe):
-    # TODO: docstring
     """
+    Converts multiline plain text into html that displays it the same way.
 
     Args:
-        unsafe (str):
+        unsafe (str): Multiline plain text.
 
     Returns:
-        str:
+        str: HTML representation
     """
     new = unsafe.replace("\r", "")
     new = html.escape(new)
-    new = new.replace("\n", "<br>\n")
+    new = new.replace(" ", "&nbsp;<wbr>")
+    new = new.replace("	", "&nbsp;&nbsp;&nbsp;&nbsp;<wbr>")  # replace tab with four spaces
+    new_lines = new.split("\n")
+    new_lines_2 = []
+    for line in new_lines:
+        new_lines_2.append("""<span style="white-space: pre-wrap; font-family: monospace;" >{}</span><br>""".format(line))
+    new = "\n".join(new_lines_2)
     return new
 
 
