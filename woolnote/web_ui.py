@@ -1,5 +1,5 @@
 # University of Illinois/NCSA Open Source License
-# Copyright (c) 2017, Jakub Svoboda.
+# Copyright (c) 2018, Jakub Svoboda.
 
 # TODO: docstring for the file
 # TODO: think about moving functionality to backend
@@ -10,6 +10,7 @@ from woolnote import util
 from woolnote import config
 from woolnote import html_page_templates
 from woolnote.task_store import Task
+from woolnote import tests
 
 
 # Web UI frontend
@@ -58,6 +59,7 @@ class WebUI():
         self.woolnote_config = woolnote_config
         self.ui_auth = ui_auth
 
+    @tests.integration_method("web_ui")
     def set_last_request(self, postdict, getdict):
         """
         To be used by the http request handler before calling any methods for a new request.
@@ -75,6 +77,7 @@ class WebUI():
         self.last_request_post_data_dict = postdict
         self.last_request_get_dict = getdict
 
+    @tests.integration_method("web_ui")
     def get_last_get_request_from_history_id(self, id):
         """
         To be used by the http request handler to go back in request history. Returns a dict of GET request keys and
@@ -90,6 +93,7 @@ class WebUI():
         # - to be used by the http request handler to go back in request history
         return self.last_history_dict_of_links[id].copy()
 
+    @tests.integration_method("web_ui")
     def save_history(self, req_keys_to_save, alt_task_store_name=None):
         """
         To be used by the other methods in this class - the methods that display a listing of notes, so that notes can go back to the same listing.
@@ -113,37 +117,40 @@ class WebUI():
             self.last_history_dict_of_links[history_id] = _lhgd
         return history_id
 
+    @tests.integration_method("web_ui")
     def helper_convert_msg_queue_list_to_list_for_output(self):
         """
-        Creates a new static list of warnings collected so far, empties the list, does all that in a cooperative multitasking-safe way.
+        Creates a new static list of warnings collected so far, empties the list.
 
         Returns:
             List[str]: List of warnings.
         """
         result = []
         if self.error_msg_queue_list:
-            # this order of reference shuffling ensures that a race condition doesn't result in lost messages
+            # this order of reference shuffling ensures that a race condition doesn't result in lost messages in the oddball case these variables are also edited in a different true thread
             msg_list = self.error_msg_queue_list
             self.error_msg_queue_list = []
             result = [str(x) for x in msg_list]
         return result
 
+    @tests.integration_method("web_ui")
     def helper_convert_msg_queue_note_to_list_for_output(self):
         """
-        Creates a new static list of warnings collected so far, empties the list, does all that in a cooperative multitasking-safe way.
+        Creates a new static list of warnings collected so far, empties the list.
 
         Returns:
             List[str]: List of warnings.
         """
         result = []
         if self.error_msg_queue_note:
-            # this order of reference shuffling ensures that a race condition doesn't result in lost messages
+            # this order of reference shuffling ensures that a race condition doesn't result in lost messages in the oddball case these variables are also edited in a different true thread
             msg_list = self.error_msg_queue_note
             self.error_msg_queue_note = []
             result = [str(x) for x in msg_list]
         return result
 
 
+    @tests.integration_method("web_ui")
     def helper_sessactionauth_is_wrong(self):
         """
         Gets the GET value sessactionauth and finds out whether it is wrong
@@ -156,6 +163,7 @@ class WebUI():
             util.dbgprint("sessactionauth is wrong - {}".format(self.last_request_get_dict["sessactionauth"][0]))
         return wrong
 
+    @tests.integration_method("web_ui")
     def helper_action_get_request_is_wrong(self, action_name):
         """
         Gets the GET value "action" and finds out whether it is wrong
@@ -170,6 +178,7 @@ class WebUI():
         wrong = not util.safe_string_compare(action_name, self.last_request_get_dict["action"][0])
         return wrong
 
+    @tests.integration_method("web_ui")
     def helper_action_post_request_is_wrong(self, action_name, dict_key=None):
         """
         Gets the POST value "action" and finds out whether it is wrong
@@ -191,6 +200,8 @@ class WebUI():
         except:
             return True
 
+
+    @tests.integration_method("web_ui")
     def helper_retrieve_last_request_get_dict_key_val_index_zero_or_return_none(self, key_name):
         """
         Returns either the first GET value of the specified key or (if it doesnt exist) None.
@@ -206,6 +217,25 @@ class WebUI():
         except:
             return None
 
+
+    @tests.integration_method("web_ui")
+    def helper_retrieve_last_request_post_dict_key_val_index_zero_or_return_none(self, key_name):
+        """
+        Returns either the first POST value of the specified key or (if it doesnt exist) None.
+
+        Args:
+            key_name (str): Key of the POST value.
+
+        Returns:
+            Union[str, None]: Either the first POST value of the specified key or (if it doesnt exist) None.
+        """
+        try:
+            return self.last_request_post_data_dict[key_name][0]
+        except:
+            return None
+
+
+    @tests.integration_method("web_ui")
     def create_new_nonce(self):
         """
         Creates a new nonce and sets how many tries are left (just one try). To be used for pages whose actions must not be repeated by reloading the page / resending the request.
@@ -218,12 +248,13 @@ class WebUI():
         self.nonce_action_auth_valid_uses = 1
         return self.nonce_action_auth
 
-    def check_one_time_pwd(self, user_supplied_nonce):
-        # TODO rename?
+    @tests.integration_method("web_ui")
+    def check_one_time_nonce(self, user_supplied_nonce):
         """
         Checks whether the supplied nonce is correct, only if tries are left.
         Nonce is disabled after 1st successful use.
         To be used for pages whose actions must not be repeated by reloading the page / resending the request.
+        The method's name is redundant, but clear (nonce == number used once).
 
         Args:
             user_supplied_nonce (str): The potentially wrong or malicious nonce the user provided. Decreases the number of tries left.
@@ -240,6 +271,7 @@ class WebUI():
             return False
         return False
 
+    @tests.integration_method("web_ui")
     def helper_get_alt_task_store_name(self):
         """
         Returns alt_task_store_name if present in the get data or None if not present.
@@ -249,6 +281,7 @@ class WebUI():
         """
         return self.helper_retrieve_last_request_get_dict_key_val_index_zero_or_return_none("alt_task_store_name")
 
+    @tests.integration_method("web_ui")
     def req_display_otp(self):
         """
         Puts a new generated one-time password to the self.error_msg_queue_list so that it is displayed.
@@ -261,6 +294,7 @@ class WebUI():
         if ret is not None:
             self.error_msg_queue_list.append(ret)
 
+    @tests.integration_method("web_ui")
     def helper_save_task_itself_from_req(self, task):
         """
         Reads data for a new/saved note from POST data, performs sanitization, and correctly saves the data to a note
@@ -290,6 +324,72 @@ class WebUI():
                                                          tainted_due_date=tainted_due_date,
                                                          tainted_formatting=tainted_formatting)
 
+
+    @tests.integration_method("web_ui")
+    def req_save_new_single_task_line(self):
+        """
+        Saves a new single task line from the GET and POST data above the specified single task line id.
+        (This functionality is useful for entering single lines into frequently used places in notes.)
+
+        Args:
+
+        Returns:
+            None:
+        """
+        if self.helper_action_get_request_is_wrong("req_save_new_single_task_line"):
+            self.error_msg_queue_note.append("Single note line has not been saved.")
+            return
+
+        if self.helper_action_post_request_is_wrong("req_save_new_single_task_line", "post_action"):
+            # this POST value is not present when the page is visited from history
+            # missing POST data and not doing this check would delete all checkboxes on the page
+            self.error_msg_queue_note.append("Single note line has not been saved - wrong request (page reload?).")
+            return
+
+        if self.helper_sessactionauth_is_wrong():
+            self.error_msg_queue_note.append("Single note line has not been saved - wrong session.")
+            return
+
+        single_note_line_id = util.sanitize_singleline_string_for_tasksave(self.last_request_post_data_dict["single_note_line_id"][0])
+        self.error_msg_queue_note.append("Saving one line under ID " + str(single_note_line_id))
+        single_note_line_text = ""
+        try:
+            single_note_line_text = util.sanitize_singleline_string_for_tasksave(self.last_request_post_data_dict["single_note_line_text"][0])
+            self.error_msg_queue_note.append("Saving one line: '{}'".format(str(single_note_line_text)))
+        except:
+            self.error_msg_queue_note.append("Not saving an empty line.")
+
+        single_note_line_prepend_minus_space = self.helper_retrieve_last_request_post_dict_key_val_index_zero_or_return_none("single_note_line_prepend_minus_space")
+
+        task_id = self.woolnote_config.single_note_line_id[single_note_line_id]
+        task = self.task_store.store_dict_id[task_id]
+
+        contents_new_list = []
+        contents_old = task.body
+        for line in contents_old.split("\n"):
+            if line.endswith(":#^#") and any((line.startswith("#^#:"), line.startswith("- #^#:"),
+                                              line.startswith("+ #^#:"), line.startswith("* #^#:"),
+                                              line.startswith("** #^#:"), line.startswith("*** #^#:"),
+                                              line.startswith("**** #^#:") )):
+                id = line.split("#^#:")[1].split(":#^#")[0]
+                if id == single_note_line_id:
+                    single_note_line_text_stripped = single_note_line_text.replace("\n", "").replace("\r", "").strip()
+                    if single_note_line_prepend_minus_space:
+                        single_note_line_text_stripped = "- " + single_note_line_text_stripped
+                    if single_note_line_text_stripped:
+                        contents_new_list.append(single_note_line_text_stripped)
+            contents_new_list.append(line)
+
+        self.ui_backend.helper_sanitize_task_body_before_save(task_to_be_updated=task,
+                                                              tainted_task_body="\n".join(contents_new_list))
+
+        self.ui_backend.save_edited_note(task)
+
+        self.last_request_get_dict["taskid"] = [
+            task.taskid]  # inject back so that the next rendered page can access it as if the note editing has been requested
+
+
+    @tests.integration_method("web_ui")
     def req_save_new_note(self):
         """
         Saves a new note from the GET and POST data.
@@ -309,10 +409,12 @@ class WebUI():
 
         self.helper_save_task_itself_from_req(task)
 
-        self.ui_backend.save_new_note_permanent(task)
+        self.ui_backend.save_new_note(task)
         self.last_request_get_dict["taskid"] = [
             task.taskid]  # inject back so that the next rendered page can access it as if the note always existed
 
+
+    @tests.integration_method("web_ui")
     def req_save_edited_note(self):
         """
         Saves a new version of an existing note from the GET and POST data.
@@ -343,8 +445,9 @@ class WebUI():
 
         self.helper_save_task_itself_from_req(task)
 
-        self.ui_backend.save_edited_note_permanent(task)
+        self.ui_backend.save_edited_note(task)
 
+    @tests.integration_method("web_ui")
     def req_note_dismiss_reminder(self):
         """
         Marks the note's reminder attribute as dismissed so that it won't show up again (until the attribute is set to
@@ -353,7 +456,7 @@ class WebUI():
         Returns:
             None:
         """
-        if self.helper_action_get_request_is_wrong("dismiss_reminder_and_display_note"):
+        if self.helper_action_get_request_is_wrong("req_dismiss_reminder_and_display_note"):
             self.error_msg_queue_note.append("Reminder has not been dismisses - application error?")
             return
 
@@ -365,6 +468,7 @@ class WebUI():
         self.task_store.touch(task.taskid)
         self.task_store.task_store_save()
 
+    @tests.integration_method("web_ui")
     def req_note_checkboxes_save(self):
         """
         Saves checkboxes for a note. Gets the required data from GET and POST. Has to get all checkboxes that are
@@ -402,10 +506,11 @@ class WebUI():
                                                                chkbox_on_list=post_data_keys)
 
         task.body = new_task_body
-        self.ui_backend.save_edited_note_permanent(task)
+        self.ui_backend.save_edited_note(task)
 
-    # TOOD rename? (remove "permanent")
-    def req_import_notes_permanent(self):
+
+    @tests.integration_method("web_ui")
+    def req_import_notes(self):
         """
         Imports notes (either by synchronization or by overwriting everything local). Doesn't save the result
         permanently until another operation calls task_store.task_store_save() (all data-changing operations do it and
@@ -415,7 +520,7 @@ class WebUI():
             None:
         """
 
-        if self.helper_action_get_request_is_wrong("req_import_notes_permanent"):
+        if self.helper_action_get_request_is_wrong("req_import_notes"):
             self.error_msg_queue_list.append("Import not performed.")
             return
 
@@ -424,17 +529,19 @@ class WebUI():
             return
 
         user_supplied_nonce = self.last_request_get_dict["nonceactionauth"][0]
-        if not self.check_one_time_pwd(user_supplied_nonce):
+        if not self.check_one_time_nonce(user_supplied_nonce):
             self.error_msg_queue_list.append("Import not performed - page expired.")
             return
 
         replace_local_request = "yes" == self.helper_retrieve_last_request_get_dict_key_val_index_zero_or_return_none("replace_local")
 
-        ret = self.ui_backend.import_notes_permanent(replace_local_request)
+        self.error_msg_queue_list.append("Imported changes are only saved once a next permanent action is performed (saving a note, saving note checkboxes, exporting notes, deleting a note). If you are unhappy with the import operation and want to revert the import, kill/quit the woolnote server immediately.")
+        ret = self.ui_backend.import_notes(replace_local_request)
         if ret is not None:
             self.error_msg_queue_list.append(ret)
 
-    def req_export_notes_permanent(self):
+    @tests.integration_method("web_ui")
+    def req_export_notes(self):
         """
         Exports notes to the configured path.
 
@@ -442,7 +549,7 @@ class WebUI():
             None:
         """
 
-        if self.helper_action_get_request_is_wrong("req_export_notes_permanent"):
+        if self.helper_action_get_request_is_wrong("req_export_notes"):
             self.error_msg_queue_list.append("Export not performed.")
             return
 
@@ -451,13 +558,14 @@ class WebUI():
             return
 
         user_supplied_nonce = self.last_request_get_dict["nonceactionauth"][0]
-        if not self.check_one_time_pwd(user_supplied_nonce):
+        if not self.check_one_time_nonce(user_supplied_nonce):
             self.error_msg_queue_list.append("Export not performed - page expired.")
             return
 
-        self.ui_backend.export_notes_permanent()
+        self.ui_backend.export_notes()
 
-    def req_delete_taskid_permanent(self):
+    @tests.integration_method("web_ui")
+    def req_delete_taskid(self):
         """
         Deletes the notes specified by the task ids from POST data. This is to be the final function to be called in
         the web ui in the process of deleting - this function doesn't ask for any confirmation.
@@ -465,7 +573,7 @@ class WebUI():
         Returns:
             None:
         """
-        if self.helper_action_get_request_is_wrong("req_delete_taskid_permanent"):
+        if self.helper_action_get_request_is_wrong("req_delete_taskid"):
             self.error_msg_queue_list.append("Note deletion not performed.")
             return
 
@@ -474,9 +582,9 @@ class WebUI():
             return
 
         task_id_list = self.last_request_post_data_dict["taskid"]
-        self.ui_backend.delete_taskid_permanent(task_id_list)
+        self.ui_backend.delete_taskid(task_id_list)
 
-    # TODO rename? (add "permanent") (also for other methods that call task_store.task_store_save())
+    @tests.integration_method("web_ui")
     def req_note_list_manipulate_tagdel(self):
         """
         Deletes the tag specified in POST data from notes having the task ids specified in POST data.
@@ -498,8 +606,9 @@ class WebUI():
         except:
             self.error_msg_queue_list.append("Note manipulation not performed - cannot access required POST data.")
         else:
-            self.ui_backend.notes_tagdel_permanent(task_id_list, tagdel)
+            self.ui_backend.notes_tagdel(task_id_list, tagdel)
 
+    @tests.integration_method("web_ui")
     def req_note_list_manipulate_tagadd(self):
         """
         Adds the tag specified in POST data to notes having the task ids specified in POST data.
@@ -522,8 +631,9 @@ class WebUI():
         except:
             self.error_msg_queue_list.append("Note manipulation not performed - cannot access required POST data.")
         else:
-            self.ui_backend.notes_tagadd_permanent(task_id_list, tagadd)
+            self.ui_backend.notes_tagadd(task_id_list, tagadd)
 
+    @tests.integration_method("web_ui")
     def req_note_list_manipulate_foldermove(self):
         """
         Changes the folder specified in POST data for notes having the task ids specified in POST data.
@@ -546,8 +656,9 @@ class WebUI():
         except:
             self.error_msg_queue_list.append("Note manipulation not performed - cannot access required POST data.")
         else:
-            self.ui_backend.notes_foldermove_permanent(task_id_list, foldermove)
+            self.ui_backend.notes_foldermove(task_id_list, foldermove)
 
+    @tests.integration_method("web_ui")
     def helper_get_task_or_default(self):
         """
         A helper function that either retrieves the requested task from the request or returns contents of a page
@@ -576,6 +687,7 @@ class WebUI():
         return True, task_id, task, ""
 
 
+    @tests.integration_method("web_ui")
     def page_edit_note(self):
         """
         Displays a note-editing page for an existing note whose task id is specified in GET data.
@@ -601,6 +713,7 @@ class WebUI():
 
         return page_body
 
+    @tests.integration_method("web_ui")
     def page_add_new_note(self):
         """
         Displays a note-editing page for a new (yet nonexistent) note.
@@ -618,6 +731,7 @@ class WebUI():
 
         return page_body
 
+    @tests.integration_method("web_ui")
     def unauth_page_display_note_public(self, tainted_task_id, tainted_task_pubauthid):
         """
         Displays a read-only note if the provided note-specific authentication tokens are right. This allows displaying
@@ -664,6 +778,7 @@ class WebUI():
 
             return page_body
 
+    @tests.integration_method("web_ui")
     def page_display_note(self):
         """
         Displays the note specified by task id in GET data. The page contains links to save checkboxes or to edit the
@@ -705,6 +820,7 @@ class WebUI():
 
         return page_body
 
+    @tests.integration_method("web_ui")
     def page_list_notes(self, no_history=False):
         """
         Displays a list of notes. The page contains links to existing folders, tags, virtual folders, other links, and
@@ -742,13 +858,16 @@ class WebUI():
             except:
                 page_header_small_text = "cannot get ssl cert sha256"
 
-        return html_page_templates.page_list_notes_template(list_taskid_desc=list_taskid_desc, title=title,
+        return html_page_templates.page_list_notes_template(list_taskid_desc=list_taskid_desc,
+                                        self_sess_action_auth=self.sess_action_auth, title=title,
                                         history_back_id=history_id, primary_task_store=self.task_store,
                                         virtual_folders=self.woolnote_config.virtual_folders,
+                                        single_task_line_ids=set(self.woolnote_config.single_note_line_id.keys()),
                                         page_header_first_text=page_header_first_text,
                                         page_header_optional_small_second_text=page_header_small_text,
                                         page_header_optional_list_of_warnings=page_header_list_of_warnings)
 
+    @tests.integration_method("web_ui")
     def page_list_trash(self):
         """
         Displays a list of notes in the trash. The page is otherwise very similar to page_list_notes().
@@ -769,15 +888,18 @@ class WebUI():
 
         history_id = self.save_history(["action"], alt_task_store_name=None)
 
-        return html_page_templates.page_list_notes_template(list_taskid_desc=list_taskid_desc, title=title,
+        return html_page_templates.page_list_notes_template(list_taskid_desc=list_taskid_desc,
+                                        self_sess_action_auth=self.sess_action_auth, title=title,
                                         primary_task_store=self.task_store, alt_task_store=self.task_store_trash,
                                         alt_task_store_name="task_store_trash", history_back_id=history_id,
                                         virtual_folders=self.woolnote_config.virtual_folders,
+                                        single_task_line_ids=set(self.woolnote_config.single_note_line_id.keys()),
                                         page_header_first_text=page_header_first_text,
                                         page_header_optional_link_button_name=page_header_link_button_name,
                                         page_header_optional_link_button_request_dict=page_header_link_request_dict,
                                         page_header_optional_list_of_warnings=page_header_list_of_warnings)
 
+    @tests.integration_method("web_ui")
     def page_search_notes(self):
         """
         Displays a list of notes matching the search_text provided in the GET data. The page is otherwise very similar
@@ -813,16 +935,19 @@ class WebUI():
         if self.error_msg_queue_list:
             page_header_list_of_warnings = self.helper_convert_msg_queue_list_to_list_for_output()
 
-        return html_page_templates.page_list_notes_template(list_taskid_desc=list_taskid_desc, title=title,
+        return html_page_templates.page_list_notes_template(list_taskid_desc=list_taskid_desc,
+                                        self_sess_action_auth=self.sess_action_auth, title=title,
                                         highlight_in_notes=highlight_list, primary_task_store=self.task_store,
                                         alt_task_store=alt_task_store, alt_task_store_name=alt_task_store_name,
                                         history_back_id=history_id,
                                         virtual_folders=self.woolnote_config.virtual_folders,
+                                        single_task_line_ids=set(self.woolnote_config.single_note_line_id.keys()),
                                         page_header_first_text=page_header_first_text,
                                         page_header_optional_link_button_name=page_header_link_button_name,
                                         page_header_optional_link_button_request_dict=page_header_link_request_dict,
                                         page_header_optional_list_of_warnings=page_header_list_of_warnings)
 
+    @tests.integration_method("web_ui")
     def page_list_folder(self):
         """
         Displays a list of notes in the folder specified in the GET data. The page is otherwise very similar
@@ -867,15 +992,18 @@ class WebUI():
         if self.error_msg_queue_list:
             page_header_list_of_warnings = self.helper_convert_msg_queue_list_to_list_for_output()
 
-        return html_page_templates.page_list_notes_template(list_taskid_desc=list_taskid_desc, title=title,
+        return html_page_templates.page_list_notes_template(list_taskid_desc=list_taskid_desc,
+                                        self_sess_action_auth=self.sess_action_auth, title=title,
                                         primary_task_store=self.task_store, alt_task_store=alt_task_store,
                                         alt_task_store_name=alt_task_store_name, history_back_id=history_id,
                                         virtual_folders=self.woolnote_config.virtual_folders,
+                                        single_task_line_ids=set(self.woolnote_config.single_note_line_id.keys()),
                                         page_header_first_text=page_header_first_text,
                                         page_header_optional_link_button_name=page_header_link_button_name,
                                         page_header_optional_link_button_request_dict=page_header_link_request_dict,
                                         page_header_optional_list_of_warnings=page_header_list_of_warnings)
 
+    @tests.integration_method("web_ui")
     def page_list_tag(self):
         """
         Displays a list of notes in the tag specified in the GET data. The page is otherwise very similar to
@@ -920,15 +1048,18 @@ class WebUI():
         if self.error_msg_queue_list:
             page_header_list_of_warnings = self.helper_convert_msg_queue_list_to_list_for_output()
 
-        return html_page_templates.page_list_notes_template(list_taskid_desc=list_taskid_desc, title=title,
+        return html_page_templates.page_list_notes_template(list_taskid_desc=list_taskid_desc,
+                                        self_sess_action_auth=self.sess_action_auth, title=title,
                                         primary_task_store=self.task_store, alt_task_store=alt_task_store,
                                         alt_task_store_name=alt_task_store_name, history_back_id=history_id,
                                         virtual_folders=self.woolnote_config.virtual_folders,
+                                        single_task_line_ids=set(self.woolnote_config.single_note_line_id.keys()),
                                         page_header_first_text=page_header_first_text,
                                         page_header_optional_link_button_name=page_header_link_button_name,
                                         page_header_optional_link_button_request_dict=page_header_link_request_dict,
                                         page_header_optional_list_of_warnings=page_header_list_of_warnings)
 
+    @tests.integration_method("web_ui")
     def page_note_list_multiple_select(self):
         """
         Displays a list of actions and list of selected notes on which the actions can be performed.
@@ -960,6 +1091,7 @@ class WebUI():
         )
         return page_body
 
+    @tests.integration_method("web_ui")
     def page_delete_notes(self):
         """
         Displays a list of notes to delete with a red button deleting them for good and a cancel button.
@@ -1001,6 +1133,7 @@ class WebUI():
 
         return page_body
 
+    @tests.integration_method("web_ui")
     def page_export_prompt(self):
         """
         Displays a question whether to export notes into the configured path.
@@ -1019,6 +1152,7 @@ class WebUI():
         )
         return page_body
 
+    @tests.integration_method("web_ui")
     def page_import_prompt(self):
         """
         Displays a question whether to import notes from the configured path. Two types of import are offered - sync

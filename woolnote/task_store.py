@@ -1,5 +1,5 @@
 # University of Illinois/NCSA Open Source License
-# Copyright (c) 2017, Jakub Svoboda.
+# Copyright (c) 2018, Jakub Svoboda.
 
 # TODO: docstring for the file
 import re
@@ -357,7 +357,6 @@ class TaskStore():
         with open(path, "r", encoding="utf-8") as stored_file:
             deserialize(self, stored_file)
 
-        # TODO test this functionality!
         path_diff = self.filepath + config.DIFFNEW_EXTENSION
         if alt_path is None and os.path.isfile(path_diff):
             # load is not from alternative path -> load differential file if it exists

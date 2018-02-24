@@ -1,5 +1,5 @@
 # University of Illinois/NCSA Open Source License
-# Copyright (c) 2017, Jakub Svoboda.
+# Copyright (c) 2018, Jakub Svoboda.
 
 # TODO: docstring for the file
 # TODO docstring
@@ -256,7 +256,7 @@ class PageEditBaseData(PageData):
             pubauthid = util.create_id_task()
 
         request_params_puburl = urllib.parse.urlencode(
-            {"action": "display_note", "taskid": self.task_taskid, "pubauthid": ss(self.task_public_share_auth)})
+            {"action": "page_display_note", "taskid": self.task_taskid, "pubauthid": ss(self.task_public_share_auth)})
 
         task_html_fragment_list = []
 
@@ -363,7 +363,7 @@ class PageEditExistingData(PageEditBaseData):
     def page_menu_to_html(self):
         # requests and links for saving an existing edited note
         request_params_display = urllib.parse.urlencode(
-            {"action": "display_note", "taskid": self.task_taskid, "history_back_id": self.history_back_id})
+            {"action": "page_display_note", "taskid": self.task_taskid, "history_back_id": self.history_back_id})
         request_params_list = urllib.parse.urlencode({"action": "history_back", "history_back_id": self.history_back_id})
 
         page_menu = """
@@ -399,6 +399,10 @@ class PageListData(PageData):
         self.alt_task_store_name = None
         self.highlight_in_notes = None
         self.history_back_id = None
+        self.sess_action_auth = None
+
+        # set[str] - set[single task line id]
+        self.single_note_line_id = set()
 
         # list of TaskDetails
         self.list_of_task_details = []
@@ -450,7 +454,7 @@ class PageListData(PageData):
         task_list_html_fragment_list = []
         for task in self.list_of_task_details:
 
-            request_params_dict = {"action": "display_note", "taskid": task.task_taskid, "history_back_id": self.history_back_id}
+            request_params_dict = {"action": "page_display_note", "taskid": task.task_taskid, "history_back_id": self.history_back_id}
             if self.highlight_in_notes is not None:
                 request_params_dict.update({"highlight_in_text": self.highlight_in_notes})
             if self.alt_task_store_name is not None:
@@ -495,12 +499,12 @@ class PageListData(PageData):
 
         reminders_list_html_fragment = "\n".join( [ x.to_html() for x in self.reminder_list ] )
 
-        request_params_new_note = urllib.parse.urlencode({"action": "add_new_note", "history_back_id": self.history_back_id})
-        request_params_note_list_multiple_select = urllib.parse.urlencode({"action": "note_list_multiple_select", "history_back_id": self.history_back_id})
+        request_params_new_note = urllib.parse.urlencode({"action": "page_add_new_note", "history_back_id": self.history_back_id})
+        request_params_note_list_multiple_select = urllib.parse.urlencode({"action": "page_note_list_multiple_select", "history_back_id": self.history_back_id})
 
-        request_params_list_trash = urllib.parse.urlencode({"action": "list_trash", "history_back_id": self.history_back_id})
-        request_params_import_prompt = urllib.parse.urlencode({"action": "import_prompt", "history_back_id": self.history_back_id})
-        request_params_export_prompt = urllib.parse.urlencode({"action": "export_prompt", "history_back_id": self.history_back_id})
+        request_params_list_trash = urllib.parse.urlencode({"action": "page_list_trash", "history_back_id": self.history_back_id})
+        request_params_import_prompt = urllib.parse.urlencode({"action": "page_import_prompt", "history_back_id": self.history_back_id})
+        request_params_export_prompt = urllib.parse.urlencode({"action": "page_export_prompt", "history_back_id": self.history_back_id})
         request_params_req_display_otp = urllib.parse.urlencode({"action": "req_display_otp", "history_back_id": self.history_back_id})
 
         DIV_STYLE_REMINDERLIST = """ style="padding:1em 1em; clear: both;" """
@@ -532,6 +536,32 @@ class PageListData(PageData):
             )
         else:
             div_overdue_reminders = ""
+
+        form_single_task_line = ""
+        if self.single_note_line_id:
+            form_single_task_line_buttons = ""
+            for id in sorted(self.single_note_line_id):
+                form_single_task_line_buttons += """
+                <input type="submit" class="uk-button uk-button-large" name="single_note_line_id" value="{}">""".format(id)
+
+            request_params_single_task_line = urllib.parse.urlencode( {"action": "req_save_new_single_task_line", "sessactionauth": self.sess_action_auth, "history_back_id": self.history_back_id})
+            form_single_task_line = """
+            <br>
+            Add a single line into a note:<br>
+            <form class="uk-form" action="/woolnote?{request_params_single_task_line}" method="post">
+            <label><input type="checkbox" name="single_note_line_prepend_minus_space" checked>
+            Prepend "- " before the line (make it an unchecked checkbox).
+            </label><br>
+            <input type="hidden" name="post_action" value="req_save_new_single_task_line">
+            <input type="hidden" name="history_back_id" value="{history_back_id}">
+            <input type="text" name="single_note_line_text" style="width:400px;" >
+            {lines}
+            </form>
+                """.format( request_params_single_task_line=request_params_single_task_line,
+                            history_back_id=self.history_back_id,
+                            lines=form_single_task_line_buttons
+                           )
+
 
         page_main_body = """
         <div {DIV_STYLE_TAGLISTS} >
@@ -575,11 +605,12 @@ class PageListData(PageData):
         <div {DIV_STYLE_TAGLIST} >
         other
         <br>
+        Search: <small>(<a href="/woolnote?action=page_search_notes&search_text=(_woolnote_config)+and+(search+expressions)">help</a>)</small><br>
         <form class="uk-form" action="/woolnote" method="get">
-        <input type="hidden" name="action" value="search_notes">
+        <input type="hidden" name="action" value="page_search_notes">
         <input type="hidden" name="history_back_id" value="{history_back_id}">
         {form_search_additional}
-        <input type="text" name="search_text" >
+        <input type="text" name="search_text" style="width:300px;" >
         <input type="submit" class="uk-button" value="Search in notes"><br>
         </form>
         <br>
@@ -591,6 +622,7 @@ class PageListData(PageData):
         <br>
         <a href="/woolnote?{request_params_req_display_otp}">display OTP</a>
         <br>
+        {form_single_task_line}
         </div>
         </div>
 
@@ -622,6 +654,7 @@ class PageListData(PageData):
             manipulate_selected_nodes=manipulate_selected_nodes,
             __n__join_task_list_html_fragment_list_="\n".join(task_list_html_fragment_list),
             form_search_additional=form_search_alt_task_store_name,
+            form_single_task_line=form_single_task_line,
             history_back_id=self.history_back_id,
             request_params_list_trash=request_params_list_trash,
             request_params_import_prompt=request_params_import_prompt,
@@ -712,9 +745,20 @@ class PageDisplayNoteData(PageData):
 
     def page_menu_to_html(self):
         request_params_list = urllib.parse.urlencode({"action": "history_back", "history_back_id": self.history_back_id})
+        request_params_display = urllib.parse.urlencode( {"action": "page_display_note", "taskid": self.task_taskid, "history_back_id": self.history_back_id})
+
         page_menu = """
-        <span """ + html_constants.HTML_SPAN_STYLE_BIG + """ " ><a href="/woolnote?""" + request_params_list + """" class="uk-button uk-button-large">back to list</a></span>
-        """
+            <span {HTML_SPAN_STYLE_BIG} >
+            <a href="/woolnote?{request_params_list}" class="uk-button uk-button-large">back to list</a>
+            </span>
+            <span {HTML_SPAN_STYLE_BIG} >
+            <a href="/woolnote?{request_params_display}" class="uk-button uk-button-large">reload note</a>
+            </span>
+            """.format(
+            HTML_SPAN_STYLE_BIG=html_constants.HTML_SPAN_STYLE_BIG,
+            request_params_list=request_params_list,
+            request_params_display=request_params_display
+        ).strip()
         return page_menu
 
     def page_main_content_to_html(self):
@@ -749,8 +793,8 @@ class PageDisplayNoteData(PageData):
                 return text
 
         request_params_checkbox_save = urllib.parse.urlencode( {"action": "req_note_checkboxes_save", "taskid": self.task_taskid, "sessactionauth": self.self_sess_action_auth, "history_back_id": self.history_back_id, "task_body_hash": self.task_body_hash})
-        request_params_edit = urllib.parse.urlencode( {"action": "edit_note", "taskid": self.task_taskid, "history_back_id": self.history_back_id})
-        request_params_delete = urllib.parse.urlencode( {"action": "delete_taskid", "taskid": self.task_taskid, "sessactionauth": self.self_sess_action_auth, "history_back_id": self.history_back_id})
+        request_params_edit = urllib.parse.urlencode( {"action": "page_edit_note", "taskid": self.task_taskid, "history_back_id": self.history_back_id})
+        request_params_delete = urllib.parse.urlencode( {"action": "page_delete_taskid", "taskid": self.task_taskid, "sessactionauth": self.self_sess_action_auth, "history_back_id": self.history_back_id})
         task_html_fragment_list = []
         if self.alt_task_store_name is None:
             task_html_fragment_list.append("""<span style="font-size:20pt; " >""")
@@ -866,7 +910,7 @@ class PageMultipleSelectData(PageData):
         </form>
         """
 
-        request_params = urllib.parse.urlencode({"action": "delete_taskid", "sessactionauth": self.self_sess_action_auth, "history_back_id": self.history_back_id})
+        request_params = urllib.parse.urlencode({"action": "page_delete_taskid", "sessactionauth": self.self_sess_action_auth, "history_back_id": self.history_back_id})
         notedel_html_fragment = """
          <form class="uk-form" action="/woolnote?""" + request_params + """" method="post">
          Delete listed notes:
@@ -879,7 +923,7 @@ class PageMultipleSelectData(PageData):
         task_list_html_fragment_list = []
         for task in self.task_details_to_delete:
             taskid = task.task_taskid
-            request_params = urllib.parse.urlencode({"action": "display_note", "taskid": taskid})
+            request_params = urllib.parse.urlencode({"action": "page_display_note", "taskid": taskid})
             task_list_html_fragment_list.append(html_constants.HTML_NOTE_LINK_WITH_PREVIEW.format(
                 request_params=request_params,
                 sanitized_task_name=ss(task.task_name),
@@ -941,7 +985,7 @@ class PageDeleteNotesData(PageData):
 
         task_list_html_fragment_list = []
         for task in self.task_details_to_delete:
-            request_params = urllib.parse.urlencode({"action": "display_note", "taskid": task.task_taskid})
+            request_params = urllib.parse.urlencode({"action": "page_display_note", "taskid": task.task_taskid})
             task_list_html_fragment_list.append(html_constants.HTML_NOTE_LINK_WITH_PREVIEW.format(
                 request_params=request_params,
                 sanitized_task_name=ss(task.task_name),
@@ -952,7 +996,7 @@ class PageDeleteNotesData(PageData):
             )
             )
 
-        request_params_delete_permanent = urllib.parse.urlencode( {"action": "req_delete_taskid_permanent", "sessactionauth": self.self_sess_action_auth, "history_back_id": self.history_back_id})
+        request_params_delete = urllib.parse.urlencode( {"action": "req_delete_taskid", "sessactionauth": self.self_sess_action_auth, "history_back_id": self.history_back_id})
         delete_taskid_list_html_fragment_list = []
         for task in self.task_details_to_delete:
             delete_taskid_list_html_fragment_list.append(
@@ -961,7 +1005,7 @@ class PageDeleteNotesData(PageData):
         page_main_body = """
         """ + "\n".join(task_list_html_fragment_list) + """
         <br>
-         <form class="uk-form" action="/woolnote?""" + request_params_delete_permanent + """" method="post">
+         <form class="uk-form" action="/woolnote?""" + request_params_delete + """" method="post">
         """ + "\n".join(delete_taskid_list_html_fragment_list) + """
           <input type="submit" class="uk-button uk-button-danger" value="Delete">
         </form>
@@ -1002,7 +1046,7 @@ class PageExportPromptData(PageData):
             raise Exception("nonce has not been set for the page template")
 
         request_params_list = urllib.parse.urlencode({"action": "history_back", "history_back_id": self.history_back_id})
-        request_params = urllib.parse.urlencode( {"action": "req_export_notes_permanent", "sessactionauth": self.self_sess_action_auth, "history_back_id": self.history_back_id, "nonceactionauth": self.nonce})
+        request_params = urllib.parse.urlencode( {"action": "req_export_notes", "sessactionauth": self.self_sess_action_auth, "history_back_id": self.history_back_id, "nonceactionauth": self.nonce})
 
         page_main_body = """
         <span style="font-size:20pt; " >
@@ -1047,9 +1091,9 @@ class PageImportPromptData(PageData):
             raise Exception("nonce has not been set for the page template")
         request_params_list = urllib.parse.urlencode({"action": "history_back", "history_back_id": self.history_back_id})
         request_params = urllib.parse.urlencode(
-            {"action": "req_import_notes_permanent", "sessactionauth": self.self_sess_action_auth, "history_back_id": self.history_back_id, "nonceactionauth": self.nonce})
+            {"action": "req_import_notes", "sessactionauth": self.self_sess_action_auth, "history_back_id": self.history_back_id, "nonceactionauth": self.nonce})
         request_params_replace = urllib.parse.urlencode(
-            {"action": "req_import_notes_permanent", "sessactionauth": self.self_sess_action_auth, "replace_local": "yes", "history_back_id": self.history_back_id, "nonceactionauth": self.nonce})
+            {"action": "req_import_notes", "sessactionauth": self.self_sess_action_auth, "replace_local": "yes", "history_back_id": self.history_back_id, "nonceactionauth": self.nonce})
 
         page_main_body = """
         <span style="font-size:20pt; " >

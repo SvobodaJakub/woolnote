@@ -1,0 +1,2711 @@
+EXPORT-LAMPORT-CLOCK 9099
+LAST-IMPORT-LAMPORT-CLOCK 9099
+
+TASK-BEGIN
+TASK-ID 8F85E5F81F2BB7871258F04FD36CAE725132EB4DF6583EA8EAE85C700D211665
+TASK-NAME recipes
+TASK-FOLDER notes tmp
+TASK-LAMPORT-TIMESTAMP 4393
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-06-11 16:34:36
+TASK-CHANGED-DATE 2016-08-07 11:51:33
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH FC025D867FB89631EFF66C744B13737DFAF4403F474F459F03664C08AD4B4DD6
+TASK-TAGS 
+TASK-BODY-BEGIN C89503FBF4608E50727CF4C5F4869D2F42E977E152B9B08C0A64677AD12513E7
+
+
+
+
+160611 tomato spinach sauce
+* fry onions until translucent
+* cut garlic into small pieces (don't fry)
+* olive oil
+* spinach
+* tomato puree
+* potato flour
+* a bit of salt, pepper
+* add ham at the end
+
+ideas for next time:
+- add wieners
+- try sth else with spinach
+- less potato flour
+
+
+
+
+
+TASK-BODY-END C89503FBF4608E50727CF4C5F4869D2F42E977E152B9B08C0A64677AD12513E7
+TASK-END 8F85E5F81F2BB7871258F04FD36CAE725132EB4DF6583EA8EAE85C700D211665
+
+
+
+TASK-BEGIN
+TASK-ID 7C00CAF0675140E4EE92CD1A2A6157911EC104FFD4E19A07EFF7ED40AF5369BC
+TASK-NAME ----
+TASK-FOLDER TODO waiting
+TASK-LAMPORT-TIMESTAMP 425
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-03 23:50:19
+TASK-CHANGED-DATE 2016-03-03 23:50:19
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 46C22A7074708EDBAC5AB9038F437A9FA52338844EA0B844854A714F117F4B6D
+TASK-TAGS 
+TASK-BODY-BEGIN 5ED720F4C085B18A03496312059388AE293E02BEBAEE4E500D3732D286D59141
+..
+---placeholder---
+TASK-BODY-END 5ED720F4C085B18A03496312059388AE293E02BEBAEE4E500D3732D286D59141
+TASK-END 7C00CAF0675140E4EE92CD1A2A6157911EC104FFD4E19A07EFF7ED40AF5369BC
+
+
+
+TASK-BEGIN
+TASK-ID 4401C72B06C3FDB5E53C337930DAF3F7B625FA0618E18CB203E703963CE17112
+TASK-NAME ----
+TASK-FOLDER notes longterm
+TASK-LAMPORT-TIMESTAMP 430
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-03 23:47:01
+TASK-CHANGED-DATE 2016-03-03 23:51:19
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 9A1B11F3CD307045C888A70B45ADEDC6984CCB23179FDF761730974DD163844F
+TASK-TAGS ctx doctor, ctx home, ctx leaving home, ctx mobile, ctx out, ctx pc, ctx work, prio q1 - imp/urg, prio q2 - imp/!u, prio q3 - !i/urg, prio q4 - !i/!u, proj ann, proj home, proj metaphysics, proj raspi, time current, time planned, time try this week
+TASK-BODY-BEGIN ACE5C3F30745DCFCB3542CBB84017D95B6DCF1AAFE190FCE81DB8B8DDC8C4860
+..
+---placeholder---
+TASK-BODY-END ACE5C3F30745DCFCB3542CBB84017D95B6DCF1AAFE190FCE81DB8B8DDC8C4860
+TASK-END 4401C72B06C3FDB5E53C337930DAF3F7B625FA0618E18CB203E703963CE17112
+
+
+
+TASK-BEGIN
+TASK-ID F8EA2458C6CC495C7CA94C803705374139ED5A0A2B349828C15C57E0279969A6
+TASK-NAME ticklers - periodic - home
+TASK-FOLDER TODO sometime
+TASK-LAMPORT-TIMESTAMP 8969
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2017-03-05 16:43:16
+TASK-CHANGED-DATE 2017-03-05 17:28:26
+TASK-DUE-DATE 2017-03-01
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 3EC0A0E92449D53620688793E9E6265C423D5B36675D1EB2FA2BEA6B6AFD600A
+TASK-TAGS ctx home, time planned, time try this week
+TASK-BODY-BEGIN B736E540064EF65E431CF776F908007049B1A31BA5061115A822AD41DEB94602
+
+
+
+
+**home**
+
+1 month
+- clean air purifier
+
+4 months
+- clean home turbo encabulator
+
+
+1 year
++ replace silica gel (1702)
+
+
+
+
+TASK-BODY-END B736E540064EF65E431CF776F908007049B1A31BA5061115A822AD41DEB94602
+TASK-END F8EA2458C6CC495C7CA94C803705374139ED5A0A2B349828C15C57E0279969A6
+
+
+
+TASK-BEGIN
+TASK-ID D1C2FBA4434B09307ADA534EF0040DD67D3CE3570CBC9D17A1FDA50BFCE03D48
+TASK-NAME ann - tasks
+TASK-FOLDER notes proj
+TASK-LAMPORT-TIMESTAMP 5987
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-09-25 21:43:53
+TASK-CHANGED-DATE 2016-09-28 04:47:16
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH B366DC3DC815F29223BD704A5EC48474613E75A520A9BED46A303ECB9A81280E
+TASK-TAGS proj ann
+TASK-BODY-BEGIN A8D6ABB90CA612E0017738A1A0D54186724046B78FBA75C22D38844F1E517AFF
+
+
+
+
+160925
+- try to comprehend secretary problem 150830.ods
+- read TransactionSimulator
+- read notes from 2015 about balancing rules
+- implement notes from 2015 about balancing rules
+- use the secretary problem in overlapping windows to make the current day selection always active
+- https://www.tensorflow.org/
+
+
+
+
+
+TASK-BODY-END A8D6ABB90CA612E0017738A1A0D54186724046B78FBA75C22D38844F1E517AFF
+TASK-END D1C2FBA4434B09307ADA534EF0040DD67D3CE3570CBC9D17A1FDA50BFCE03D48
+
+
+
+TASK-BEGIN
+TASK-ID 01D603704B97C285510FBB13CD6F2E5836EDE10B60A3058C8BDD15FFEED8D43F
+TASK-NAME recommended games
+TASK-FOLDER notes info
+TASK-LAMPORT-TIMESTAMP 2294
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-02 07:19:13
+TASK-CHANGED-DATE 2016-04-30 21:05:01
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH CA7883616F1CC4A181D45D8C3846704576FDE315023866BCA7BE6390EABF9318
+TASK-TAGS 
+TASK-BODY-BEGIN C339EF0290991DAD0A65B333055F58185AA5EB4DF5587163E6C633EC67A4768A
+
+
+
+
+- beyond two souls
++ heavy rain
+- hextris
+- super amazing wagon adventure
++ stanley parable
++ life is strange
+- thomas was alone
+- wolf among us
+- dying light
+- papers please
+- thank you for playing http://arstechnica.com/the-multiverse/2015/09/thank-you-for-playing-film-review-a-beautiful-tragic-attempt-to-press-pause/
+- twilight imperium
+- undertail
+
+
+
+
+
+TASK-BODY-END C339EF0290991DAD0A65B333055F58185AA5EB4DF5587163E6C633EC67A4768A
+TASK-END 01D603704B97C285510FBB13CD6F2E5836EDE10B60A3058C8BDD15FFEED8D43F
+
+
+
+TASK-BEGIN
+TASK-ID A3E49217603D62C151AE3A90730684369CAA7930542CD5B6B8541AE5DE148F9C
+TASK-NAME my bank account number
+TASK-FOLDER notes txt
+TASK-LAMPORT-TIMESTAMP 8184
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2017-01-16 10:40:57
+TASK-CHANGED-DATE 2017-01-16 10:40:57
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 7481FA8258015DE7530222799DEBBE30476ACFAC788AC0718B8A8864A3BC4157
+TASK-TAGS ctx personal
+TASK-BODY-BEGIN BC30E545B95E9FFBDE316B62B061974C2F2EFDCD284139ACA25CD497189CE714
+
+
+
+
+YY24KIHB12476423125915947930915268
+
+
+
+
+TASK-BODY-END BC30E545B95E9FFBDE316B62B061974C2F2EFDCD284139ACA25CD497189CE714
+TASK-END A3E49217603D62C151AE3A90730684369CAA7930542CD5B6B8541AE5DE148F9C
+
+
+
+TASK-BEGIN
+TASK-ID 7950557C3E8E2F1B038E5F926819377D55A9643F6B326D10345C417C42714876
+TASK-NAME ticklers - periodic - misc
+TASK-FOLDER TODO sometime
+TASK-LAMPORT-TIMESTAMP 8951
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-09-19 17:20:57
+TASK-CHANGED-DATE 2017-03-05 16:42:52
+TASK-DUE-DATE 2017-09-00
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 2F79BC0994CA6F63001CBDB8C57A51205F575408954D3F834263CEFAE12C2600
+TASK-TAGS ctx personal, time planned
+TASK-BODY-BEGIN 5CC7457EC3AA5AA17533B80D1225E61FF96A5062AE37F5F6D3DC9382F3756A84
+
+
+
+
+**doctors**
+* dentist - see calendar
+* eye doctor - see calendar
+* ...?
+
+
+
+
+TASK-BODY-END 5CC7457EC3AA5AA17533B80D1225E61FF96A5062AE37F5F6D3DC9382F3756A84
+TASK-END 7950557C3E8E2F1B038E5F926819377D55A9643F6B326D10345C417C42714876
+
+
+
+TASK-BEGIN
+TASK-ID F850622E724BF487EB9BAB2C3981B71F37D3EEFE916E88A022388BCE8735FE25
+TASK-NAME home repairs
+TASK-FOLDER TODO sometime
+TASK-LAMPORT-TIMESTAMP 1928
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-02 21:24:20
+TASK-CHANGED-DATE 2016-04-17 22:33:51
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 1FE01BC502BB0790E987563279104C0FCD8997D35E80535A10984E8DAE42BABB
+TASK-TAGS ctx home, ctx pc, prio q2 - imp/!u, proj home
+TASK-BODY-BEGIN 72A4153E1CE8F1B9E4F43EDA5915231E7B97406A22A25BBA0C202FCA0B523809
+
+
+
+
+- blinders
+- fan
+- floor
+
+
+
+
+TASK-BODY-END 72A4153E1CE8F1B9E4F43EDA5915231E7B97406A22A25BBA0C202FCA0B523809
+TASK-END F850622E724BF487EB9BAB2C3981B71F37D3EEFE916E88A022388BCE8735FE25
+
+
+
+TASK-BEGIN
+TASK-ID E167C5FD0D107C4BB9DF27E058972BFB66C1D36E805DC7C6853D0572F64E3F36
+TASK-NAME ----
+TASK-FOLDER TODO longterm
+TASK-LAMPORT-TIMESTAMP 421
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-03 23:50:14
+TASK-CHANGED-DATE 2016-03-03 23:50:14
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH E4CA6FF33F1559FD44AE087FDB00478190BE1734AD5AA20DCC7EA5829A2C064C
+TASK-TAGS 
+TASK-BODY-BEGIN A78FBEDD97848D0EE60574E05EED7E32E980CB9B59B7FC784EA3B902BAD45DDF
+..
+---placeholder---
+TASK-BODY-END A78FBEDD97848D0EE60574E05EED7E32E980CB9B59B7FC784EA3B902BAD45DDF
+TASK-END E167C5FD0D107C4BB9DF27E058972BFB66C1D36E805DC7C6853D0572F64E3F36
+
+
+
+TASK-BEGIN
+TASK-ID C5CC76BB70DB942F888C9547EDF2808E650EE932D3435B7EB06AA02F4153A62A
+TASK-NAME ticklers - periodic - pc
+TASK-FOLDER TODO sometime
+TASK-LAMPORT-TIMESTAMP 8967
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2017-03-05 16:43:22
+TASK-CHANGED-DATE 2017-03-05 17:27:27
+TASK-DUE-DATE 2017-05-01
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH C63B4DE4E50F1F757470E097A97FC93F4D5E24560C3126D626BAA25A15E831D7
+TASK-TAGS ctx pc, time planned
+TASK-BODY-BEGIN 65C364B12686118AD38559E2B823405046C992AA1111FB4BC02EA9C4293B7EDC
+
+
+
+
+**pc**
+
+1 month
++ calendar backup
+
+
+4 months
+- firefox settings backup
+- photo backup
+
+
+
+1 year
+- bookmarks backup
+
+
+
+
+TASK-BODY-END 65C364B12686118AD38559E2B823405046C992AA1111FB4BC02EA9C4293B7EDC
+TASK-END C5CC76BB70DB942F888C9547EDF2808E650EE932D3435B7EB06AA02F4153A62A
+
+
+
+TASK-BEGIN
+TASK-ID 0EA65072D5E7B50CFA87668D8AB789B1071DABF235FA72BC71A86B658DEDDAF7
+TASK-NAME ----
+TASK-FOLDER TODO
+TASK-LAMPORT-TIMESTAMP 420
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-03 23:50:13
+TASK-CHANGED-DATE 2016-03-03 23:50:13
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 46DEE565B81CA4BD20447CA1766036D7C59CECB150411914AEB40458030BF552
+TASK-TAGS 
+TASK-BODY-BEGIN 3DE999C393CEBF57F67780B3E079178216AEE52F1271676456CF8D612A0A5ECA
+..
+---placeholder---
+TASK-BODY-END 3DE999C393CEBF57F67780B3E079178216AEE52F1271676456CF8D612A0A5ECA
+TASK-END 0EA65072D5E7B50CFA87668D8AB789B1071DABF235FA72BC71A86B658DEDDAF7
+
+
+
+TASK-BEGIN
+TASK-ID 3B1C9932E84618F28832859B7A2D94F46B29B5F37673ED1E51F781C111E2A1D8
+TASK-NAME weekly/daily tasks
+TASK-FOLDER inbox
+TASK-LAMPORT-TIMESTAMP 9099
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-02 22:14:10
+TASK-CHANGED-DATE 2017-03-11 17:29:59
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 749EFD756C7F1B8D5387EAA49AA254F2672CB30E8CF775DBE2866F479BC58F9C
+TASK-TAGS !starred, time current
+TASK-BODY-BEGIN BABF2BE3C7100AC899FC27296341E2089CBF488ACD8E668698CB44DFE70C3654
+
+
+
+
+...
+
+**__week__** 13.3.
+
+- asdfasfasdf asdf asd f
+
+...
+
+**__week__** 6.3.
+
+- sf asdf asdf asdf 
++ sdf afas dfasdfasgsdf
+- qewrwerwetrtwertert
+
+
+
+
+TASK-BODY-END BABF2BE3C7100AC899FC27296341E2089CBF488ACD8E668698CB44DFE70C3654
+TASK-END 3B1C9932E84618F28832859B7A2D94F46B29B5F37673ED1E51F781C111E2A1D8
+
+
+
+TASK-BEGIN
+TASK-ID 55ADE8FCF6AA413854E30397DA6462675B6FF9EE456975389A8BC5567E20DC5A
+TASK-NAME android app development (for woolnote)
+TASK-FOLDER TODO
+TASK-LAMPORT-TIMESTAMP 8450
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2017-01-01 21:17:38
+TASK-CHANGED-DATE 2017-02-03 16:15:08
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 85A2E62813B859866D867EBE62C5B6A6CD6F4ECFFEB8E008F5FA8113E6AE7E07
+TASK-TAGS ctx hobbies personal, ctx pc, prio q2 - imp/!u, time current
+TASK-BODY-BEGIN 4C93F502F52164EA9782A983BE9D86CB713D5C31777BBCC2A37E22E7C98D5A9C
+
+
+
+
++ java hello world
++ ndk hello world
++ ndk hello world -> crystax hello world
+- a new crystax hello world (properly)
+- add a few things to the hello world
+- try to run a simple script with crystax python
+- build static hello world binary with crystax (try to build it using a generated standalone toolchain instead of android.mk)
+- ...
++ run pre compiled hello world binary from java
++ build static python for pc linux
+- build static python for android using crystax
+- build static python inside arm emulator / raspberry
++ cross compile inside chroot (get arm Ubuntu chroot with all libraries, get the correct cross compiler)
+- maybe use static qemu to translate x86 binary to arm
+- ...
+- find how to keep android from killing the python binary
+- find how to detect a window focus/foreground event (to check whether python has been killed)
++ find out how to generate https certs and how to sha1 them
++ ...
+- http links in lollipop don't work
+
+
+
+app devel introduction:
+https://developer.android.com/training/basics/firstapp/index.html
+
+info about device emulator:
+https://developer.android.com/studio/run/emulator.html
+
+info about manifests:
+https://developer.android.com/guide/topics/manifest/manifest-intro.html
+
+info about icons:
+https://material.io/guidelines/style/icons.html#icons-product-icons
+
+styles and themes:
+https://developer.android.com/guide/topics/ui/themes.html
+
+async task for ui actions:
+https://developer.android.com/reference/android/os/AsyncTask.html
+
+ndk:
+https://developer.android.com/ndk/index.html
+
+maybe useful info how to use qpython and links to github:
+https://stackoverflow.com/questions/26479280/execute-python-script-from-my-java-android-app
+
+maybe useful info how to run python from java:
+https://stackoverflow.com/questions/1119696/java-python-integration
+https://stackoverflow.com/questions/8898765/calling-python-in-java
+
+hello world python app wrapped in android java, using crystax ndk, no license info:
+https://github.com/joaoventura/pybridge
+
+kivy uses crystax ndk:
+https://blog.kivy.org/2016/01/python-for-android-now-supports-python-3%C2%A0apks/
+
+crystax ndk supports python:
+https://www.crystax.net/en/blog/6
+https://github.com/kivy/python-for-android/pull/707/commits/673bd3594c6db52b015b8fceb90487f03de18b83 (merge request for building python 3.5 with openssl, unlike the standard crystax 10.3 python without ssl; the source branch hints that python-for-android should be a good way to build python for android)
+https://groups.google.com/forum/#!topic/crystax-ndk/RGxXOqnLhOc (info how to use python using crystax)
+
+Create Hello-JNI with Android Studio - ndk hello world tutorial:
+https://codelabs.developers.google.com/codelabs/android-studio-jni/index.html
+https://developer.android.com/ndk/samples/sample_hellojni.html
+https://github.com/googlesamples/android-ndk/tree/master-cmake/hello-libs
+
+gradle problems vs. jni; how to develop with ndk / how to set up the project
+https://stackoverflow.com/questions/21096819/jni-and-gradle-in-android-studio
+https://developer.android.com/studio/projects/add-native-code.html
+
+differences between old ndk-build and new gradle:
+https://www.twilio.com/blog/2016/03/building-native-android-libraries-with-the-latest-experimental-android-plugin.html
+
+statically built python binaries:
+https://thenewboston.com/forum/topic.php?id=2939
+https://forum.xda-developers.com/android/software-hacking/scripting-python-static-2-7-8-3-4-2-t2958679/post57168101#post57168101
+https://forum.xda-developers.com/android/software-hacking/scripting-python-static-2-7-8-3-4-2-t2958679
+https://github.com/jianglei12138/python3 (not sure if static)
+
+cross compiling python for android:
+http://joaoventura.net/blog/2014/python-android-2/
+
+qpython3:
+https://github.com/qpython-android/qpython3
+https://github.com/qpython-android/qpython3-core (read HOWTO) (uses android-ndk)
+https://github.com/qpython-android/qpython
+
+compiling static binaries:
+https://developer.android.com/ndk/guides/standalone_toolchain.html
+https://rathodpratik.wordpress.com/2013/03/24/build-cc-executables-for-android-using-ndk/
+https://stackoverflow.com/questions/2943828/how-to-compile-a-static-library-using-the-android-ndk
+https://stackoverflow.com/questions/10798357/want-to-compile-native-android-binary-i-can-run-in-terminal-on-the-phone
+
+building standalone python for linux:
+https://stackoverflow.com/questions/23548188/how-do-i-compile-python-3-4-with-custom-openssl (openssl in a custom location - might be useful for building on crystax ndk)
+https://wiki.python.org/moin/BuildStatically
+https://stackoverflow.com/questions/1150373/compile-the-python-interpreter-statically
+https://github.com/python-cmake-buildsystem/python-cmake-buildsystem (cmake for python)
+
+jython on android:
+https://github.com/alsonkemp/jython-on-android
+
+arm emulator:
+https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Virtual_ARM_Linux_environment
+https://wiki.ubuntu.com/ARM/RootfsFromScratch/QemuDebootstrap
+https://unix.stackexchange.com/questions/41889/how-can-i-chroot-into-a-filesystem-with-a-different-architechture
+
+webview:
+https://developer.android.com/guide/webapps/webview.html
+
+background service:
+https://developer.android.com/training/run-background-service/create-service.html
+https://stackoverflow.com/questions/11859403/no-empty-constructor-when-create-a-service
+
+stopping threads:
+https://stackoverflow.com/questions/6410721/how-to-stop-a-thread-that-is-running-forever-without-any-use
+
+copy files from assets:
+https://stackoverflow.com/questions/16983989/copy-directory-from-assets-to-data-folder
+
+signing apk (unsigned cannot be installed):
+https://developer.android.com/studio/publish/app-signing.html
+https://stackoverflow.com/questions/4835925/unsigned-apk-can-not-be-installed
+
+"android:stopWithTask"
+stops the service if the activity has been closed from the task switcher
+
+UI navigation - up vs back
+https://developer.android.com/design/patterns/navigation.html#up-vs-back
+
+second activity
+right click the "app" folder in android studio in the upper left window set to the "project" view, create a new Settings Activity; this creates java code only, no xml layouts but it creates of xml files in res/xml
+do not destroy parent activity on up button - https://stackoverflow.com/questions/20819019/why-is-ondestroy-always-called-when-returning-to-parent-activity -> https://stackoverflow.com/questions/12276027/how-can-i-return-to-a-parent-activity-correctly/15933890#15933890
+
+
+SharedPreferences vs PreferenceManager
+https://stackoverflow.com/questions/22178414/what-are-the-preferencemanager-and-sharedpreference-classes-used-for-in-android
+https://developer.android.com/guide/topics/ui/settings.html
+
+
+progress bar:
+https://developer.android.com/guide/topics/ui/layout/listview.html
+
+
+
+
+TASK-BODY-END 4C93F502F52164EA9782A983BE9D86CB713D5C31777BBCC2A37E22E7C98D5A9C
+TASK-END 55ADE8FCF6AA413854E30397DA6462675B6FF9EE456975389A8BC5567E20DC5A
+
+
+
+TASK-BEGIN
+TASK-ID B1DCC0C3FC3D9C762F597A22F41008FDE513EBF076947FE16A201D9EA87DCA02
+TASK-NAME inbox - inbox
+TASK-FOLDER inbox
+TASK-LAMPORT-TIMESTAMP 9097
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-06-08 20:06:44
+TASK-CHANGED-DATE 2017-03-11 17:24:18
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 907B00391922559B891BBCD0AB6CBE1E23A3D65AF633A8750997652573EC5669
+TASK-TAGS !starred, time current
+TASK-BODY-BEGIN A4BF2D04E7C72AC117C3AD3BE01A26C78C7BFF5585ED4EFE4198E4F6E6FBA2AD
+
+
+
+
+..
+
+
+
+
+**__inbox__**:
+
++ @work http://www.aleax.it/5ep.html
+- tiddlywiky mind map plugin
+
+
+
+file to todo q2
+
+-
+
+
+
+
+
+
+file to todo q4
+-
+
+
+
+
+
+
+
+
+file to relax / todo sometime on pc/phone
+- 
+
+
+
+
+file to recommended media
+- poets clearview
+- alan wake game
+
+file to inbox reference
+* 
+
+
+
+
+TASK-BODY-END A4BF2D04E7C72AC117C3AD3BE01A26C78C7BFF5585ED4EFE4198E4F6E6FBA2AD
+TASK-END B1DCC0C3FC3D9C762F597A22F41008FDE513EBF076947FE16A201D9EA87DCA02
+
+
+
+TASK-BEGIN
+TASK-ID 253AC108FE4A9814BAC9BFEBD423835CEDDEE3BB083B99CCDC0C288A110655BA
+TASK-NAME metaphysics inbox
+TASK-FOLDER notes proj
+TASK-LAMPORT-TIMESTAMP 5776
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-02 07:23:18
+TASK-CHANGED-DATE 2016-09-19 20:33:58
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH AD2FDB535739C576B11BA6784E6A6E8A66C83401129983A5C5BCF0A034D7F63B
+TASK-TAGS proj metaphysics
+TASK-BODY-BEGIN 5CDC638D6810062B9A89FF422614BAE336B50635387B1B5CC5E54FC6548D7C41
+
+
+
+
+As the Buddhist scholar Robert Thurman has noted, those unflinching realists who scoff at the notion of an afterlife may be the ones indulging in wishful thinking.
+
+
+
+
+Telepathic upload hypothesis: Mind is telepathically uploaded to nearby individuals, they execute it outside of their consciousness, mind is uploaded back from these individuals upon revival of the original subject, information from the distributed copies is deduplicated to fit the singular notion of self in the memories in the form of OOBE.
+
+Telepathic download hypothesis: Memories from nearby individuals that fit the missing time span and match the OOBE subject are downloaded and processed so as to fit the singular notion of self in the memories, thus creating the OOBE retrospectively.
+
+For both hypotheses: It is known (TODO source) that experiences and memories are constructed in parallel as the information from the various senses come asynchronously and after they all come, the final version prevails. Although we process information out of order, we perceive it in order because we remember to perceive only what we remember. So if information from other sources are retroactively incorporated into our memory, we are not aware of the asynchronicity of information acquisition.
+
+
+
+
+According to (TODO OOBE salon), minds use our biological senses and probably our biological facilities for feelings, emotions, information processing and memory when alive/operating normally and they can switch to a non-matter mode of operation where our personality (including memory, emotions), information processing capabilities and senses are closely derived from our bodily ones and yet without the need of physical matter. According to (TODO sources), our personality, memory, emotions, information processing are determined by the physical properties of our brain and other bodily parts. According to (TODO Buddhism), our non-matter mind takes on the properties of our matter-based mind. Questions: What mechanisms may facilitate the cooperation between these two realms of existence and how is it possible that it is subtle enough that scientific measurements did not discover this other realm? How is such cooperation/interference between these two realms possible under evolution? Why are physical facilities necessary when the non-matter mind can sense without matter? How can the mind interpret similarly two different types of input (processed information via nerves, non-matter mind vision)?
+
+
+
+
+
+
+Those who prefer their principles over their happiness, they refuse to be happy outside the conditions they seem to have attached to their happiness.
+
+
+
+
+
+
+
+
+
+evolution vs happiness vs enjoying life (is enjoying life necessary for survival? so that the organism doesn't kill itself? so that an intelligent organism doesn't kill itself?)
+
+
+
+
+
+
+
+
+
+
+http://www.brainpickings.org/index.php/2013/07/08/carl-sagan-meaning-of-life/
+The hard truth seems to be this: We live in a vast and awesome universe in which, daily, suns are made and worlds destroyed, where humanity clings to an obscure clod of rock. The significance of our lives and our fragile realm derives from our own wisdom and courage. We are the custodians of life’s meaning. We would prefer it to be otherwise, of course, but there is no compelling evidence for a cosmic Parent who will care for us and save us from ourselves. It is up to us.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+In a classic psychological study, when humans and animals were placed in situations where there seemed to be no correct course of action to remedy the situation, they gave up. The term for this is learned Helplessness. Apathy is a dangerous feeling to relationships. Too many have given up trying to please their partner.
+
+
+
+
+
+
+
+
+
+anything can be dreamt of in many different perspectives
+
+
+
+
+TASK-BODY-END 5CDC638D6810062B9A89FF422614BAE336B50635387B1B5CC5E54FC6548D7C41
+TASK-END 253AC108FE4A9814BAC9BFEBD423835CEDDEE3BB083B99CCDC0C288A110655BA
+
+
+
+TASK-BEGIN
+TASK-ID 3303BE77FC8132BFA0605476AE5DFB46A62DACE5254AC39D12160D2785B66C37
+TASK-NAME ----
+TASK-FOLDER TODO sometime
+TASK-LAMPORT-TIMESTAMP 423
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-03 23:50:16
+TASK-CHANGED-DATE 2016-03-03 23:50:16
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH F8AFEDDD933C95102ED99C854FFD1D290C3431B4B16DF3E674DA53F43F72101E
+TASK-TAGS 
+TASK-BODY-BEGIN 94F589256DC71A011EA2E2E31540C6EA3C18E29363DC8712CCC3E49FF696D10F
+..
+---placeholder---
+TASK-BODY-END 94F589256DC71A011EA2E2E31540C6EA3C18E29363DC8712CCC3E49FF696D10F
+TASK-END 3303BE77FC8132BFA0605476AE5DFB46A62DACE5254AC39D12160D2785B66C37
+
+
+
+TASK-BEGIN
+TASK-ID 3170C3AE45F5CB434E631086F21A756B8A0FE13E18CCDA3B63913186457A7364
+TASK-NAME ----
+TASK-FOLDER TODO work
+TASK-LAMPORT-TIMESTAMP 424
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-03 23:50:17
+TASK-CHANGED-DATE 2016-03-03 23:50:17
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 0BC1527EF1BD82F2B97219D5E01BE72B802A89C1B584522E041200EF37E8B240
+TASK-TAGS 
+TASK-BODY-BEGIN A41AE2DFA7391E094D4B7073922CA1A4E7F020F04E61F29CFAC438C857CD483D
+..
+---placeholder---
+TASK-BODY-END A41AE2DFA7391E094D4B7073922CA1A4E7F020F04E61F29CFAC438C857CD483D
+TASK-END 3170C3AE45F5CB434E631086F21A756B8A0FE13E18CCDA3B63913186457A7364
+
+
+
+TASK-BEGIN
+TASK-ID 57F93CBAE7463F5B0FCE4C1BAC9127766B8662F08C4EEBB0971C291BF747AE4F
+TASK-NAME trigger list - gtd
+TASK-FOLDER notes longterm
+TASK-LAMPORT-TIMESTAMP 6602
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-02 07:06:16
+TASK-CHANGED-DATE 2016-10-21 16:38:59
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 32A59F813C7F16097BF897C413E64B1D988FB25DB5208128FCEBFECF8DE60EE3
+TASK-TAGS 
+TASK-BODY-BEGIN 6F0B35B5BAACD33B79DAD83833C4DB0F377C061E1CF5793B8BE917C60923A46E
+
+
+
+
+http://wiki.43folders.com/index.php/Trigger_List
+http://gtdportal.pbworks.com/w/page/6720192/IncompletionTriggersList
+
+
+Professional
+* Projects started, not completed
+* Projects that need to be started
+* Commitments/promises to others
+** Boss/partners
+** Colleagues
+** Subordinates
+** Other people in organization
+** “Outside” people
+** Customers
+** Other organizations
+** Professionals
+* Communications to make/get
+** Internal/External
+** Initiate or respond to:
+*** Phone calls
+*** Voice-mail
+*** E-mail
+*** Pages
+*** Faxes
+*** Letters
+*** Memos
+* Other writing to finish/submit
+** Reports
+** Evaluations/reviews
+** Proposals
+** Articles
+** Promotional materials
+** Manuals/instructions
+** Rewrites and edits
+* Meetings that need to be set/requested
+* Who needs to know about what decisions?
+* Significant read/review
+* Financial
+** Cash flow
+** Statistics
+** Budgets
+** Forecasts/projections
+** P&Ls
+** Balance sheet
+** Credit line
+* Planning/organizing
+** Formal planning (goals, targets, objectives)
+** Current projects (next stages)
+** Upcoming projects
+** Business/marketing plans
+** Organizational initiatives
+** Upcoming events
+** Meetings
+** Presentations
+** Organizational structuring
+** Changes in facilities
+** Installation of new systems/equipment
+** Travel
+* Banks
+** Receivables
+** Payables
+** Petty cash
+* Administration
+** Legal issues
+** Insurance
+** Personnel
+** Policies/procedures
+* Customers
+** Internal
+** External
+* Marketing
+* Promotion
+* Sales
+** Customer service
+* Systems
+** Phones
+** Computers
+** Office equipment
+** Other equipment
+** Utilities
+** Filing
+** Storage
+** Inventories
+* Supplies
+* Office/site
+** Office organization
+** Furniture
+** Decorations
+* Waiting for…
+** Information
+** Delegated tasks/projects
+** Completions critical to projects
+** Replies to:
+*** Letters
+*** Memos
+*** Calls
+*** Proposals
+*** Requistions
+*** Reimbursements
+*** Petty cash
+*** Insurance
+*** Ordered items
+*** Items being repaired
+*** Tickets
+*** Decisions of others
+* Professional development
+** Training/seminars
+** Things to learn
+** Things to look up
+** Skills to practice/learn especially re:computers
+** Tape/video training
+** Resumes
+* Outside education
+* Research—need to find out about…
+* Professional wardrobe
+
+Personal
+* Projects started, not completed
+* Projects that need to be started
+* Commitments/promises to others
+** Spouse
+** Children
+** Family
+** Friends
+** Professionals
+** Borrowed items
+* Projects: other organizations
+** Service
+** Civic
+** Volunteer
+* Communications to make/get
+** Family
+** Friends
+** Professional
+** Initiate or respond to:
+** Phone calls
+** Letters
+** Cards
+* Upcoming events
+** Special occasions
+** Birthdays
+** Anniversaries
+** Weddings
+** Graduations
+** Holidays
+** Travel
+** Weekend trips
+** Vacations
+** Social events
+** Cultural events
+** Sporting events
+* R&D—things to do
+** Places to go
+** People to meet/invite
+** Local attractions
+* Administration
+** Financial
+** Bills
+** Banks
+** Investments
+** Loans
+** Taxes
+** Insurance
+** Legal affairs
+** Filing
+* Waiting for…
+** Mail order
+** Repair
+** Reimbursements
+** Loaned items
+** Medical data
+** RSVPs
+* Home/household
+** Landlords
+** Property ownership
+** Legal
+** Real estate
+** Zoning
+** Taxes
+** Builders/contractors
+** Heating/air-conditioning
+** Plumbing
+** Electricity
+** Roofing
+** Landscape
+** Driveway
+** Walls/floors/ceilings
+** Decoration
+** Furniture
+** Utilities
+** Appliances
+** Lightbulbs/wiring
+** Kitchen things
+** Washer/dryer/vacuum
+** Areas to organize/clean
+** TV
+** VCR/DVD
+** Music/CDs/tapes
+** Cameras/film
+** Phones
+** Answering machine
+** Sports equipment
+** Closets/clothes
+** Garage/storage
+** Vehicle repair/maintenance
+** Tools
+** Luggage
+** Pets
+* Computers
+** Software
+** Hardware
+** Connections
+** CD-ROM
+** E-mail/Internet
+* Health care
+** Doctors
+** Dentists
+** Specialists
+* Hobbies
+** Books/records/tapes/disks
+* Errands
+** Hardware store
+** Drugstore
+** Market
+** Bank
+** Cleaner
+** Stationer
+* Community
+** Neighborhood
+** Schools
+** Local government
+* Civic issues
+
+
+
+
+TASK-BODY-END 6F0B35B5BAACD33B79DAD83833C4DB0F377C061E1CF5793B8BE917C60923A46E
+TASK-END 57F93CBAE7463F5B0FCE4C1BAC9127766B8662F08C4EEBB0971C291BF747AE4F
+
+
+
+TASK-BEGIN
+TASK-ID 3E3B029A6972E9D680421D9BB4E1C5E5744E9AE0AE1BB63B6D638FA4BC68E0A8
+TASK-NAME tea
+TASK-FOLDER notes longterm
+TASK-LAMPORT-TIMESTAMP 6983
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-02 07:35:27
+TASK-CHANGED-DATE 2016-11-10 23:31:34
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 7723E7D791E29950C42DCB7A2AC1FB321C892245163F5F5AF0957E6C8482FE02
+TASK-TAGS ctx personal
+TASK-BODY-BEGIN 5CFFE329B365E137D92382396B8F62B102C18E1E8BA73792F3A9AC9CC746C2C7
+
+
+
+
+china tie guyan yin - light oolong, awesome
+
+mi lan xian dan cong - dark oolong, quite good
+
+Fujian Mao Feng - black - too bitter
+
+darjeeling steinthal classic - first flush - mild, use not too warm water to make it as mild as possible
+
+phoenix tangchung - chinese oolong - mild and good
+
+rohini emerald green 2014 - japanese tea from india - subtly bitter / earth like, mild, light, good
+
+nantou si ji chun - taiwanese oolong - milky flowery taste, less oxidized, similar to tie guyan yin, very fine and good mléčná květinová chuť, méně oxidované - velmi podobný bohyni, velmi jemný a dobrý
+
+vietnam thai nguyen - green - mild if brewed shortly in not too warm water
+
+kukicha sakuraba - tastes slightly like grass, quite flavorless, quive mild, green
+
+taiwan gaba tea - light oolong, like tie guyan yin, maybe a bit stronger
+
+
+
+
+TASK-BODY-END 5CFFE329B365E137D92382396B8F62B102C18E1E8BA73792F3A9AC9CC746C2C7
+TASK-END 3E3B029A6972E9D680421D9BB4E1C5E5744E9AE0AE1BB63B6D638FA4BC68E0A8
+
+
+
+TASK-BEGIN
+TASK-ID 5E40B956038802B34E7F945B7C8CFBC8A90F5922E4B5FEE6F5BE79E4B8979270
+TASK-NAME ----
+TASK-FOLDER notes proj
+TASK-LAMPORT-TIMESTAMP 427
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-03 23:50:21
+TASK-CHANGED-DATE 2016-03-03 23:50:21
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH FB973DE275D50604F0B62B839D47D3F9A2F09F4798259A7F7D542EAB69E04AB8
+TASK-TAGS 
+TASK-BODY-BEGIN CDB91F4361BC10377EDD362315A95588F42E051D557E2FB54CD0797D78CBD968
+..
+---placeholder---
+TASK-BODY-END CDB91F4361BC10377EDD362315A95588F42E051D557E2FB54CD0797D78CBD968
+TASK-END 5E40B956038802B34E7F945B7C8CFBC8A90F5922E4B5FEE6F5BE79E4B8979270
+
+
+
+TASK-BEGIN
+TASK-ID 7796E968EC7853A3516D4024962FCD33067577E9041CF10E9879E84BA28F3485
+TASK-NAME all data here are dummy data
+TASK-FOLDER inbox
+TASK-LAMPORT-TIMESTAMP 9122
+TASK-EXPORT-LAMPORT-TIMESTAMP -1
+TASK-CREATED-DATE 2017-04-21 13:00:08
+TASK-CHANGED-DATE 2017-04-21 13:00:59
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 62DF25A92E1FDA9C6AB4339459405A4B999048F84A4F28F8D20E0144760127C3
+TASK-TAGS 
+TASK-BODY-BEGIN 8D3442AFC3C02DFCBBF1D023D38B19B610B239A64DDD1F99A31F5A00588E8FDC
+
+
+
+
+all data here are dummy data to show how woolnote can be used 
+
+(including the TASK-ID and TASK-PUBLIC-SHARE-AUTH keys)
+
+
+
+
+TASK-BODY-END 8D3442AFC3C02DFCBBF1D023D38B19B610B239A64DDD1F99A31F5A00588E8FDC
+TASK-END 7796E968EC7853A3516D4024962FCD33067577E9041CF10E9879E84BA28F3485
+
+
+
+TASK-BEGIN
+TASK-ID 335D06D9D9A75F0C272810CBDC9DB9F7B2D4D6418929AEC0DD59C2B87682919C
+TASK-NAME ----
+TASK-FOLDER TODO buy
+TASK-LAMPORT-TIMESTAMP 422
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-03 23:50:15
+TASK-CHANGED-DATE 2016-03-03 23:50:15
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH F55D5500F5D20821128C1D04BFEE7A84C48419AAF8FCFD10DB90D1C3FD03688D
+TASK-TAGS 
+TASK-BODY-BEGIN D7EA9ECDDBFD70B46AD4252B60ACB02500209A4BF10AD0F2AD11CB21F308AE8E
+..
+---placeholder---
+TASK-BODY-END D7EA9ECDDBFD70B46AD4252B60ACB02500209A4BF10AD0F2AD11CB21F308AE8E
+TASK-END 335D06D9D9A75F0C272810CBDC9DB9F7B2D4D6418929AEC0DD59C2B87682919C
+
+
+
+TASK-BEGIN
+TASK-ID DA131CEFC03BA5645EEE1304C47E5C2350FB3B854C23825A2AFA92EA6417C41F
+TASK-NAME inbox - tasks/reference
+TASK-FOLDER inbox
+TASK-LAMPORT-TIMESTAMP 8934
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-02 22:16:32
+TASK-CHANGED-DATE 2017-03-05 13:50:11
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH F0C2BDF77454E81A7B164B863E523F70D8FE5434AB40293841A8CDB3738BC6F7
+TASK-TAGS !starred, time current
+TASK-BODY-BEGIN AB218FC6A338E212ADEEE0674F4C911161B9E11FD6F5CB709C4F383A13A5D6B3
+
+
+
+
+..
+
+
+
+
+**__longterm/sometime task inbox__**: (individual tasks without deadline)
+
+**__Q1__**
+
+...q1...
++ q1 @doctor 1605 checkup
++ q1 @work w8
+
+
+**__Q2__**
+
+...q2...
+- q2 @personal: "First of all -- figure out a small way to be present every day Is it 15 minutes before your kids go to school? Is it a note in their lunchbox because you're leaving too early to see them? Is it a loving phone call or e-mail to your husband between cases?"
++ q2 @home - adjust cross country skis
+- q2 shoe warranty
+
+
+...q2 - @pc / @home...
+- q2 @pc @work google doc insect repellents
+
+
+**__Q3__**
+
+...q3...
+
+
+**__Q4__**
+
+...q4...
+
+...q4 - @pc / @home...
+- find whether magnetic water softeners are pseudoscience
+
+...q4 - relax @pc @home...
+- watch mgs walkthrough
+- system shock 2 - watch walkthrough
+
+
+...q4 - relax @pc / @mobile / @home...
+- http://varlamov.ru/1405687.html
+
+...
+
+
+**__longterm/sometime reference inbox__**: (individual references without deadline)
+
+
+**__Q1__**
+
+...q1...
+
+
+**__Q2__**
+
+...q2...
+* @pc: /usr/lib/virtualbox/vboxdrv.sh setup
+
+
+
+**__Q3__**
+
+...q3...
+
+
+
+
+**__Q4__**
+
+...q4...
+* http://self-compassion.org/category/exercises/
+
+
+...
+
+
+
+
+
+
+
+
+TASK-BODY-END AB218FC6A338E212ADEEE0674F4C911161B9E11FD6F5CB709C4F383A13A5D6B3
+TASK-END DA131CEFC03BA5645EEE1304C47E5C2350FB3B854C23825A2AFA92EA6417C41F
+
+
+
+TASK-BEGIN
+TASK-ID B1C668134AD0B5B454CF3414E424049EC9720ABFF82313298687576526020527
+TASK-NAME woolnote
+TASK-FOLDER TODO
+TASK-LAMPORT-TIMESTAMP 8757
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-02 21:53:39
+TASK-CHANGED-DATE 2017-02-20 21:06:22
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH DCE0E7EFB7987CFFFCB5B0F4F8A66CCCF72A172994141BDBB460530BE57B794A
+TASK-TAGS ctx home, ctx mobile, ctx pc, ctx personal, prio q4 - !i/!u, time current
+TASK-BODY-BEGIN 2247CE75328DF16EECFB6174BDDF60D78B820AF5461AF0CBFB99A599159B8BC8
+
+
+
+
+..
+
+initial ideas:
+* [task store data structure] <- [server] <- [encryption server proxy] < - - [encryption client proxy] <- [web interface] <- [web server]
+* server contains the task management business logic
+* server creates backups, allows backup restore
+* web server can serve content locally so that data are encrypted on the network
+* web server can serve content over local network when an app cannot be installed on the end point machine
+* encryption uses shared secrets, nonces, integrity checks, transmits over plain http
+* at least as flexible as evernote
+** rich text
+** multiple text modes
+*** code (100% fidelity, no rich text)
+*** quick edit (ui checkboxes available to be inserted, gui formatting, individual text boxes are plain text so that it is os friendly)
+*** markdown (plain text editing of rich text)
+** checkboxes anywhere
+** note alarm date
+** recurring alarms
+** note itself can be a task (checkbox in the title or when an alarm is set)
+** nested folders
+** undo
+** automatic save
+** local change history
+** attachments - small embedded displayed photo / arbitrary downloadable file
+** tags
+** task metadata
+** multiple export formats, self hosted, shareable over local network
+** concurrent access to different notes
+* allow vim on desktop
+
+initial ideas 2:
+* file integrity
+** main file saved twice at each save
+** history saved twice - journal1 on one save, journal2 on another save, journal1 on third save, journal2, 1, 2, etc.
+** last 10 changes similarly to history journal1/2
+** each file has four lines on top: 1) CHECK-INTEGRITY TRUE, 2) INTEGRITY-SHA256 ABCDEF..., 3) FILE-TYPE MAIN/HISTORY/LAST10, 4) LAMPORT-CLOCK 1234567
+** so that it can be disabled if a file has to be edited by hand
+** each file has revision counter on top (very high number; lamport clock shared between all; TODO: find out max in python)
+** the newest main file is used if integrity OK
+** the OK main file is used if only one main file has good integrity (= the other one probably got corrupted during crash)
+** the older file is used if both have bad integrity (it is more probable that a crash occurred while saving the last file)
+* +each note contains the global lamport clock revision number (->possible to compare all notes from one device)
+* android app is made in kivy ( https://kivy.org/ ) and just embeds a webview / native java app with a webview and running python in background
+** https://stackoverflow.com/questions/16730748/how-to-integrate-python-scripting-in-my-android-app-like-sl4a -> https://github.com/devpack/android-python27
+* android app allows the user to replace the .py file with the whole app
+* sync with desktop
+** desktop retrieves fresh tasks.dat from phone on each refresh
+** desktop pushes updated tasks.dat to phone on each change -> but that would break history! -> mobile goes through the received tasks.dat and the old tasks.dat and for every updated note (lamport clock) / deleted note creates a backup, hopefully with a shared backup functionality
+** desktop-mobile communication is only through the encrypted integrity-checked files; encrypted with a symmetric password; integrity using HMAC
+** desktop authenticates to mobile using a challenge-response protocol with nonces
+** authentication is both ways so that mobile doesn't accept fake files
+* +web server uses cookies to show tasks / allows manipulation only after login (so that others who connect over network can't do anything)
+* tasks.dat has a config section
+** shared network password
+** login string (username&password don't make much sense; login string also allows creating a bookmark - /woolnote?login=asdfasdf)
+* automatic ZIP archive backup of all .dat files
+* encrypted backups so that they can be uploaded to cloud
+* individually-encrypted notes
+* nested lists - just use wholly separate lists for each line; then multiple passes of neighboring list concatenation
+* lines immediately following a list but without "* "/"+ " etc are automatically converted to the style of the list they follow, immediately on save; an empty line stops this behavior
+
+
+initial TODOs:
++ sort dict by id so that the order stays the same and diff works
+- ? blocks/depends on like bugzilla?
++ composable filters
++ virtual folders as saved composed filters
+- auth and local sharing
+** [x] every page requires auth nonce
+** [ ] 2 passwords - main and guest, each provides the user with an auth nonce valid until server restart
+** [ ] pages modify behavior based on which nonce is provided - main user or guest user (allows concurrent access; the only state saved on server are the two nonces)
+** [ ] saved searches shareable as read-only or as read-write
+** [ ] read-only shared notes have comments
+** [ ] list of last commented notes
++ search highlighting for a list of parsed tokens on top of the while string
++ clickable div instead of just text a href (better mouse support)
+- built-in help (better than the default note?)
++ mass change updates lamport clock
+- filter bugs? - print parser status on error
++ reload checkbox save page after cookie reset - print an err msg, display the note (instead of exception)
+
+
+
+add new fields
+        output.append("TASK-BEGIN")
+        output.append("TASK-ID " + self.taskid)
+        output.append("TASK-NAME " + self.name)
+        output.append("TASK-BODY-BEGIN " + self.taskid)
+        output.append(self.body)
+        output.append("TASK-BODY-END " + self.taskid)
+        output.append("TASK-END " + self.taskid)
+add:
++ folder
++ tag
++ creation date (including time)
++ change date
++ due date
+- is task, checked, unchecked
++ body format - code, markdown
+- attachment type - embedded jpg, arbitrary
+- attachment name
+- attachment data
++ lamport clock timestamp revision
+
+
+feature improvements
++ have a small history of visited paths so that a "back" link can be provided
++ search in trash
++ list_notes_page_template - support trash
++ back button from note view in trash doesn't work well
+- CLI arguments
+- journal of checked-off items, changes, deletions, creations
+- import - methods for local change / remote change / etc. do not handle all possible states; create a new method that detects an undetected state, crash import with error message when this is detected
++ every risky operation generates a unique nonce and it's completion deletes the nonce so that browser back button doesn't cause havoc
++ otg auth
++ ?js encryption
++ checkbox save - [x] accepts only POST data and doesn't delete checkboxes on GET without POST, [x] hidden value in form without which nothing is changed
++ is config auto created?
+- front page has text area to quickly append text to inbox
++ history_back_id for note multi-select, note delete, import cancel
++ note editing - js also for the whole page for resizing text area, if possible
++ note editing - floating save on bottom?
++ adding tags adds tag1,tag2 without the space after the comma
++ https
++ serve css in a separate file
++ red reminder when a task becomes overdue or ==
++ note that css "\" had to be escaped
++ textarea margins - fix the big right margin
+- favicon
++ http://pythoncentral.io/python-for-android-using-webviews-sl4a/
++ history_back is None when first loaded
+- true nonblocking multithreading with lock around the core
++ message queue, message display on main page
++ request one-time pwd, display using a message on the main page, delete the pwd after 5 tries, do not allow usage when the pwd is empty or the int is low
++ otp true one-time - zero out after 1st successful use
++ html title during edit, search
++ fix <meta name="viewport" content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no;user-scalable=0;"/> (console errors F12)
++ save url and webpage GET reload causes everything in the note to delete if the session is fine
+- add licensing notes inside the app (a link next to "display OTP?"); maybe also add help
+- ensure secure URI encoding - https://speakerdeck.com/ckarande/top-overlooked-security-threats-to-node-dot-js-web-applications?slide=33
+- ensure correct (protocol-specific) sanitization of user-controlled data - html, URI, .dat, ...
+- https-only session cookie - https://speakerdeck.com/ckarande/top-overlooked-security-threats-to-node-dot-js-web-applications?slide=36
++ css querystring vs http cache - remove the querystring, make the cache period shorter - use e.g. /uikit-2.27.1.gradient-customized.css/v4
+- should the headers be this? 
+** Content-Type:text/css;charset=UTF-8
+** Date:Sun, 01 Jan 2017 17:29:23 GMT
+** Expires:Sun, 01 Jan 2017 17:30:23 GMT
+** Last-Modified:Tue, 20 Dec 2016 14:19:19 GMT
+- markup formatting util function should skip lines containing more formatting characters in a row - like 4 "-", 3 "_", ...
+- markup formatting should allow a state where all markup is disabled except for [   ] / [ x ]
+- plaintext formatting shouldn't eat spaces but probably shouldn't use nbsp either (because of text wrapping) - so google or maybe replace multiple consecutive spaces with [one space][other spaces as nbsp]? what about tabs? what about spaces at the beginning/end of line (should probably begin/end with nbsp but have a space near the nearest word)?
+- up arrow doesn't work in Firefox
+- make important links form buttons so that they are safe from web crawlers
+- on first startup (there are no notes, not even the config note), create a few demo notes showing the features (contexts, folders, tags, reminders)
+- prevent clickjacking, maybe csrf - https://news.ycombinator.com/item?id=13689697 (ctrl f for clickjacking)
+
+
+clean up:
++ clean up edit_note_page_template
++ # TODO old code - replace with the new code for showing a list of notes (so that it uses the correct formatting)
+- exceptions
+- separate frontend methods and _permanent handlers of final actions
++ use python {format} in strings instead of list.append
+- humans tend to overly-complicate their solutions, and then brag about it
++ urllib.parse.urlencode() -> 1 line
++ create a function from self.last_history_link_get_dict = {k: _hd[k] for k in _hd if k in _hk}
+- reading get/post into a helper function
+- avoid circular imports - http://effbot.org/zone/import-confusion.htm / http://www.dangtrinh.com/2013/09/python-circular-imports.html / http://stackoverflow.com/a/746067 
+- convert data structures and util/helper functions into classes where it makes sense
+
+finishing clean up:
+- docstrings
+- remaining TODOs
+- PEP8
+
+
+
+
+TASK-BODY-END 2247CE75328DF16EECFB6174BDDF60D78B820AF5461AF0CBFB99A599159B8BC8
+TASK-END B1C668134AD0B5B454CF3414E424049EC9720ABFF82313298687576526020527
+
+
+
+TASK-BEGIN
+TASK-ID 8CE431CE8527C21E3CB0BED7A1D15314DB65150337B41D3DF5A17E188617BF9B
+TASK-NAME _woolnote_config
+TASK-FOLDER notes txt
+TASK-LAMPORT-TIMESTAMP 9081
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-04-25 21:29:07
+TASK-CHANGED-DATE 2017-03-11 15:57:03
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-TAGS 
+TASK-BODY-BEGIN AEACF298677C6EEC7137B5B922144CCFD758E8F54534F8DDCFAA5E67F9A8D662
+
+
+
+
+**woolnote configuration**
+
+Unrecognized lines are ignored.
+
+**Virtual folders**
+Virtual folders are saved search expressions that are evaluated at the time of opening the virtual folder.
+Setting one virtual folder is done by putting one line of the form "^virtualfolder===={0}===={1}" in the _woolnote_config note, where "^" is the beginning of line (meaning there can be no preceding characters and the line begins with virtualfolder), {0} is the name of the virtual folder and {1} is the search expression which must not contain newline characters.
+
+Here is an example of a virtual folder:
+
+#virtualfolder====Virtual Folder Example====((fulltext: ("SOME")) and ((tag: "SEARCH") or (folder: "EXPRESSION"))) and 'AS AN EXAMPLE OF "VIRTUAL FOLDERS"'
+
+**Search expressions**
+Search expression control sequences are case sensitive (always lower case) and the search expression search strings are case insensitive (always converted to lower case and the matched text always converted to lower case).
+Search expression search strings are the strings that are searched in the notes.
+Search expression control sequences are: **fulltext:** **tag:** **folder:** **(** **)** **"** **'** **and** **or**.
+* **"** encloses only a search string that doesn't contain the **"** character.
+* **'** encloses only a search string that doesn't contain the **'** character.
+* **(** and **)** enclose a search string if the enclosed string doesn't begin with a control sequence or it encloses a search expression if it begins with a control sequence.
+** **(milk and cheese)** is evaluated as a search string.
+** **((milk) and (cheese))** is evaluated as a search for **(milk)** combined using **and** with a search for **(cheese)** and **(milk)** is evaluated as a fulltext search for **milk** and **(cheese)** is evaluated in the same way.
+* **fulltext:** sets the enclosed following searches to the ***fulltext*** search mode, unless some enclosed search is preceded with a different search type.
+** The fulltext search mode searches in the note name, body, folder, tags, task id, due date, changed date, created date.
+* **tag:** sets the enclosed following searches to the ***tag*** search mode, unless some enclosed search is preceded with a different search type.
+** The tag search mode searches in the names of the tags the note has.
+* **folder:** sets the enclosed following searches to the ***folder*** search mode, unless some enclosed search is preceded with a different search type.
+** The folder search mode searches in the name of the folder the note is in.
+* **and** and **or** can glue together exactly two subexpressions and perform the logical operations ***and*** and ***or***.
+** ***and*** returns only those tasks which are present in both subexpressions.
+** ***or*** returns those tasks which are present either of the subexpression.
+** To connect three subexpressions, use **(** **)** to enclose them into pairs: **((first expression) and (second expression)) and (third expression)**
+** This is invalid because it connects more than two subexpressions: **(first expression) and (second expression) and (third expression)**
+** Examples:
+** **text not beginning with a control sequence** - fulltext search for the whole text
+** **((lentils) or beans or bananas)** - equivalent of **("lentils" or "beans or bananas")**
+** **(tag: ((tag 1) or (tag2))) or (tag3)** - equivalent of **((tag:"tag 1") or (tag:"tag2")) or (tag:"tag3")** - equivalent of **((tag:tag 1) or tag:tag2) or (tag: tag3)** - equivalent of **( ( tag:tag 1)  or  tag:tag2) or  tag: tag3**
+
+**Formatting**
+__underline__
+---strikethrough---
+**bold**
+***italics***
+****bold italics****
+arbitrary [ ] checkbox or checked [x] checkbox
+* bullet list
+* bullet list
+- checkbox list
+- checkbox list
+** bullet list 2nd level
+** bullet list 2nd level
+*** bullet list 3rd level
+*** bullet list 3rd level
+** 2nd level bullet list __with__ **formatting** and [ ] a checkbox
+
+
+
+###############
+
+
+
+virtualfolder====actionable this week====( (folder:((("TODO" or "inbox") or "TODO longterm") or ("TODO buy" or "TODO sometime") or ("TODO work" or "TODO waiting"))) or (tag:"prio q1 - imp/urg")) and (tag:("time try this week"))
+virtualfolder====reference this week====( (folder:((("notes longterm" or "inbox") or "notes info") or ("notes proj" or "notes tmp") or ("notes txt")))   ) and (tag:("time try this week"))
+
+virtualfolder====actionable currently====( (folder:((("TODO" or "inbox") or "TODO longterm") or ("TODO buy" or "TODO sometime") or ("TODO work" or "TODO waiting"))) or (tag:"prio q1 - imp/urg")) and (tag:("time current" or "time try this week"))
+virtualfolder====reference currently====( (folder:((("notes longterm" or "inbox") or "notes info") or ("notes proj" or "notes tmp") or ("notes txt")))   ) and (tag:("time current" or "time try this week"))
+
+virtualfolder====actionable====( (folder:((("TODO" or "inbox") or "TODO longterm") or ("TODO buy" or "TODO sometime") or ("TODO work" or "TODO waiting"))) or (tag:"prio q1 - imp/urg"))
+virtualfolder====reference====( (folder:((("notes longterm" or "inbox") or "notes info") or ("notes proj" or "notes tmp") or ("notes txt")))   )
+
+virtualfolder====actionable q1====( (folder:((("TODO" or "inbox") or "TODO longterm") or ("TODO buy" or "TODO sometime") or ("TODO work" or "TODO waiting")))  ) and (tag: "prio q1 - imp/urg")
+virtualfolder====reference q1====( (folder:((("notes longterm" or "inbox") or "notes info") or ("notes proj" or "notes tmp") or ("notes txt")))   ) and (tag: "prio q1 - imp/urg")
+
+virtualfolder====actionable q2====( (folder:((("TODO" or "inbox") or "TODO longterm") or ("TODO buy" or "TODO sometime") or ("TODO work" or "TODO waiting")))  ) and (tag: "prio q2 - imp/!u")
+virtualfolder====reference q2====( (folder:((("notes longterm" or "inbox") or "notes info") or ("notes proj" or "notes tmp") or ("notes txt")))   ) and (tag: "prio q2 - imp/!u")
+
+virtualfolder====actionable q3====( (folder:((("TODO" or "inbox") or "TODO longterm") or ("TODO buy" or "TODO sometime") or ("TODO work" or "TODO waiting")))  ) and (tag: "prio q3 - !i/urg")
+virtualfolder====reference q3====( (folder:((("notes longterm" or "inbox") or "notes info") or ("notes proj" or "notes tmp") or ("notes txt")))   ) and (tag: "prio q3 - !i/urg")
+
+virtualfolder====actionable q4====( (folder:((("TODO" or "inbox") or "TODO longterm") or ("TODO buy" or "TODO sometime") or ("TODO work" or "TODO waiting")))  ) and (tag: "prio q4 - !i/!u")
+virtualfolder====reference q4====( (folder:((("notes longterm" or "inbox") or "notes info") or ("notes proj" or "notes tmp") or ("notes txt")))   ) and (tag: "prio q4 - !i/!u")
+
+
+
+
+
+
+
+virtualfolder====actionable this week pc====(( (folder:((("TODO" or "inbox") or "TODO longterm") or ("TODO buy" or "TODO sometime") or ("TODO work" or "TODO waiting"))) or (tag:"prio q1 - imp/urg")) and (tag:("time try this week"))) and ( (fulltext:"@pc"  )  or  (tag:"ctx pc"  ) )
+virtualfolder====reference this week pc====(( (folder:((("notes longterm" or "inbox") or "notes info") or ("notes proj" or "notes tmp") or ("notes txt")))   ) and (tag:("time try this week"))) and ( (fulltext:"@pc"  )  or  (tag:"ctx pc"  ) )
+
+virtualfolder====actionable currently pc====(( (folder:((("TODO" or "inbox") or "TODO longterm") or ("TODO buy" or "TODO sometime") or ("TODO work" or "TODO waiting"))) or (tag:"prio q1 - imp/urg")) and (tag:("time current" or "time try this week"))) and ( (fulltext:"@pc"  )  or  (tag:"ctx pc"  ) )
+virtualfolder====reference currently pc====(( (folder:((("notes longterm" or "inbox") or "notes info") or ("notes proj" or "notes tmp") or ("notes txt")))   ) and (tag:("time current" or "time try this week"))) and ( (fulltext:"@pc"  )  or  (tag:"ctx pc"  ) )
+
+virtualfolder====actionable pc====(( (folder:((("TODO" or "inbox") or "TODO longterm") or ("TODO buy" or "TODO sometime") or ("TODO work" or "TODO waiting"))) or (tag:"prio q1 - imp/urg"))) and ( (fulltext:"@pc"  )  or  (tag:"ctx pc"  ) )
+virtualfolder====reference pc====(( (folder:((("notes longterm" or "inbox") or "notes info") or ("notes proj" or "notes tmp") or ("notes txt")))   )) and ( (fulltext:"@pc"  )  or  (tag:"ctx pc"  ) )
+
+
+
+virtualfolder====actionable this week home====(( (folder:((("TODO" or "inbox") or "TODO longterm") or ("TODO buy" or "TODO sometime") or ("TODO work" or "TODO waiting"))) or (tag:"prio q1 - imp/urg")) and (tag:("time try this week"))) and ( (fulltext:"@home"  )  or  (tag:"ctx home"  ) )
+virtualfolder====reference this week home====(( (folder:((("notes longterm" or "inbox") or "notes info") or ("notes proj" or "notes tmp") or ("notes txt")))   ) and (tag:("time try this week"))) and ( (fulltext:"@home"  )  or  (tag:"ctx home"  ) )
+
+virtualfolder====actionable currently home====(( (folder:((("TODO" or "inbox") or "TODO longterm") or ("TODO buy" or "TODO sometime") or ("TODO work" or "TODO waiting"))) or (tag:"prio q1 - imp/urg")) and (tag:("time current" or "time try this week"))) and ( (fulltext:"@home"  )  or  (tag:"ctx home"  ) )
+virtualfolder====reference currently home====(( (folder:((("notes longterm" or "inbox") or "notes info") or ("notes proj" or "notes tmp") or ("notes txt")))   ) and (tag:("time current" or "time try this week"))) and ( (fulltext:"@home"  )  or  (tag:"ctx home"  ) )
+
+virtualfolder====actionable home====(( (folder:((("TODO" or "inbox") or "TODO longterm") or ("TODO buy" or "TODO sometime") or ("TODO work" or "TODO waiting"))) or (tag:"prio q1 - imp/urg"))) and ( (fulltext:"@home"  )  or  (tag:"ctx home"  ) )
+virtualfolder====reference home====(( (folder:((("notes longterm" or "inbox") or "notes info") or ("notes proj" or "notes tmp") or ("notes txt")))   )) and ( (fulltext:"@home"  )  or  (tag:"ctx home"  ) )
+
+
+
+virtualfolder====actionable this week work====(( (folder:((("TODO" or "inbox") or "TODO longterm") or ("TODO buy" or "TODO sometime") or ("TODO work" or "TODO waiting"))) or (tag:"prio q1 - imp/urg")) and (tag:("time try this week"))) and ( (fulltext:"@work"  )  or  (tag:"ctx work"  ) )
+virtualfolder====reference this week work====(( (folder:((("notes longterm" or "inbox") or "notes info") or ("notes proj" or "notes tmp") or ("notes txt")))   ) and (tag:("time try this week"))) and ( (fulltext:"@work"  )  or  (tag:"ctx work"  ) )
+
+virtualfolder====actionable currently work====(( (folder:((("TODO" or "inbox") or "TODO longterm") or ("TODO buy" or "TODO sometime") or ("TODO work" or "TODO waiting"))) or (tag:"prio q1 - imp/urg")) and (tag:("time current" or "time try this week"))) and ( (fulltext:"@work"  )  or  (tag:"ctx work"  ) )
+virtualfolder====reference currently work====(( (folder:((("notes longterm" or "inbox") or "notes info") or ("notes proj" or "notes tmp") or ("notes txt")))   ) and (tag:("time current" or "time try this week"))) and ( (fulltext:"@work"  )  or  (tag:"ctx work"  ) )
+
+virtualfolder====actionable work====(( (folder:((("TODO" or "inbox") or "TODO longterm") or ("TODO buy" or "TODO sometime") or ("TODO work" or "TODO waiting"))) or (tag:"prio q1 - imp/urg"))) and ( (fulltext:"@work"  )  or  (tag:"ctx work"  ) )
+virtualfolder====reference work====(( (folder:((("notes longterm" or "inbox") or "notes info") or ("notes proj" or "notes tmp") or ("notes txt")))   )) and ( (fulltext:"@work"  )  or  (tag:"ctx work"  ) )
+
+
+
+
+virtualfolder====actionable this week personal====(( (folder:((("TODO" or "inbox") or "TODO longterm") or ("TODO buy" or "TODO sometime") or ("TODO work" or "TODO waiting"))) or (tag:"prio q1 - imp/urg")) and (tag:("time try this week"))) and ( (fulltext:"@personal"  )  or  (tag:"ctx personal"  ) )
+virtualfolder====reference this week personal====(( (folder:((("notes longterm" or "inbox") or "notes info") or ("notes proj" or "notes tmp") or ("notes txt")))   ) and (tag:("time try this week"))) and ( (fulltext:"@personal"  )  or  (tag:"ctx personal"  ) )
+
+virtualfolder====actionable currently personal====(( (folder:((("TODO" or "inbox") or "TODO longterm") or ("TODO buy" or "TODO sometime") or ("TODO work" or "TODO waiting"))) or (tag:"prio q1 - imp/urg")) and (tag:("time current" or "time try this week"))) and ( (fulltext:"@personal"  )  or  (tag:"ctx personal"  ) )
+virtualfolder====reference currently personal====(( (folder:((("notes longterm" or "inbox") or "notes info") or ("notes proj" or "notes tmp") or ("notes txt")))   ) and (tag:("time current" or "time try this week"))) and ( (fulltext:"@personal"  )  or  (tag:"ctx personal"  ) )
+
+virtualfolder====actionable personal====(( (folder:((("TODO" or "inbox") or "TODO longterm") or ("TODO buy" or "TODO sometime") or ("TODO work" or "TODO waiting"))) or (tag:"prio q1 - imp/urg"))) and ( (fulltext:"@personal"  )  or  (tag:"ctx personal"  ) )
+virtualfolder====reference personal====(( (folder:((("notes longterm" or "inbox") or "notes info") or ("notes proj" or "notes tmp") or ("notes txt")))   )) and ( (fulltext:"@personal"  )  or  (tag:"ctx personal"  ) )
+
+
+
+
+TASK-BODY-END AEACF298677C6EEC7137B5B922144CCFD758E8F54534F8DDCFAA5E67F9A8D662
+TASK-END 8CE431CE8527C21E3CB0BED7A1D15314DB65150337B41D3DF5A17E188617BF9B
+
+
+
+TASK-BEGIN
+TASK-ID F6BFB339D366D18D28127BC073E5A6D473F040457F018E39E56B465A2D6C9E0B
+TASK-NAME ----
+TASK-FOLDER notes longterm
+TASK-LAMPORT-TIMESTAMP 4729
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-08-18 09:54:12
+TASK-CHANGED-DATE 2016-08-18 09:54:14
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 0BF7462D874E7D98A9503401BD25413B97FA1550108FCF72E21416BB6229A992
+TASK-TAGS ctx hobbies personal
+TASK-BODY-BEGIN 83080DC83D4EB1BCFD6D9FD0A67C0A5DD2BA58451B424371110DC7D1EEDB785F
+
+
+
+
+..
+---placeholder---
+
+
+
+
+
+
+
+TASK-BODY-END 83080DC83D4EB1BCFD6D9FD0A67C0A5DD2BA58451B424371110DC7D1EEDB785F
+TASK-END F6BFB339D366D18D28127BC073E5A6D473F040457F018E39E56B465A2D6C9E0B
+
+
+
+TASK-BEGIN
+TASK-ID 4E9D662EB99208D9D2D227C1EB0C48D4CFEE4AE0BD9BBD1A9B9FB4E59282719C
+TASK-NAME antihistamines & drowsiness & allergy
+TASK-FOLDER notes tmp
+TASK-LAMPORT-TIMESTAMP 8008
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-08 14:59:47
+TASK-CHANGED-DATE 2017-01-03 13:19:05
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH EE03B1BC7281D52898AB3119ACD69AA30468AF3FB2C79E636466A00E1EC0903A
+TASK-TAGS ctx doctor, ctx personal
+TASK-BODY-BEGIN 5FB2046159CF612429A20DD65CD17B4A3D4CC8FABE926457A9ECA302B23F1CA3
+
+
+
+
+..
+
+7.3. - analergin neo, light drowsiness, but little sleep
+8.3. - dtto
+9.3. - claritine, almost ok thinking, little sleep (7-8h), headache
+10.3.- claritine, ok thinking, ~8h, mild headache
+11.3. - claritine, ok thinking, ~9h, no headache
+... ok
+22.3. still claritine, mild mind fog most of the day
+... ok
+
+TODO
+- livostin
+- nasonex
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+TASK-BODY-END 5FB2046159CF612429A20DD65CD17B4A3D4CC8FABE926457A9ECA302B23F1CA3
+TASK-END 4E9D662EB99208D9D2D227C1EB0C48D4CFEE4AE0BD9BBD1A9B9FB4E59282719C
+
+
+
+TASK-BEGIN
+TASK-ID A321CCDC86AD49C4069A6F339DC4C9FB56485A1C9F6749AC083103C6BDEFEFCE
+TASK-NAME woolnote - github page
+TASK-FOLDER TODO sometime
+TASK-LAMPORT-TIMESTAMP 8918
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-11-16 21:27:35
+TASK-CHANGED-DATE 2017-03-04 20:06:18
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH B26C6E5C5F0D08A73A554C66FF381F281A310160C4BE4B76E6F506B2230038F3
+TASK-TAGS ctx hobbies personal, ctx mobile, ctx pc, prio q4 - !i/!u
+TASK-BODY-BEGIN 4AE709355E18098C20EDAC8B3B96BEF148D9876B7B71DAC704125114433CC159
+
+
+
+
+- create a demo tasks.dat with a structure similar to my own
+- create a start how-to where the demo tasks.dat is one of the steps - sidestepping the issue whether/how to automatically create a new tasks.dat when it is not found
+
+github woolnote
+
+
+
+
+google play ideas
+* free version
+* hackable donation version - allows change of the python code on the device without recompiling the apk
+* both versions uploaded to f-droid for free
+* ideas for what to write in the google play description
+** no vendor lock in - source code can be run anywhere using vanilla python 3, open source, data format is text-based, can be converted to anything by a programmer with the help of the original src code
+* needs better reminders - can set up time, UI time picker, notification restarts after device restart
+* needs better handling of net connectivity when device off, possibly with user-controllable settings
+
+
+
+
+
+README
+
+README for woolnote for Android
+
+
+Installation
+Upon installation, woolnote creates the /sdcard/woolnote directory into which data and backups are saved. If the device doesn't have the /sdcard directory, woolnote cannot run.
+
+Upon installation, go into Settings, Import & export and set a directory into which a "woolnote.zip" file will be saved on export and read from on import. You can set this mechanism to easily back up your notes to Dropbox or a similar storage and to sync notes between multiple devices. If you don't want to deal with that now and woolnote refuses to run because the directory doesn't exist (which will happen only if you actually go to settings and leave it unconfigured), just select the /sdcard/woolnote directory and woolnote.zip imports&exports will happen there.
+
+Settings
+Login password - A static password you can save into the bookmarks on your computer, provided you trust such bookmark storage.
+
+Import&export - You can specify the directory used to read/write the woolnote.zip file used by the "Import" and "Export" functions of woolnote. The directory is set to /sdcard/woolnote upon installation but is changed to an example Dropbox path once the settings screen is opened. If you do not wish to use the functionality, pick the /sdcard/woolnote path. However, I strongly recommend setting it up with Dropbox (or some other service which listens to file changes and uploads them automatically) because it allows you to back up your data on demand. I have a habit of exporting the data every day, knowing that if I lose my phone, I won't lose my data.
+
+Ordinarily, you probably want to use import & export only for backups. Woolnote starts a server reachable on the local network, so you can access the data from your computer on the same network and have no hassle with synchronization.
+
+The Android Dropbox app listens to file changes for files marked as "Available Offline" and automatically uploads the changes, which means exports from Woolnote can be automatically uploaded to Dropbox. If the file changes on Dropbox, you have to manually open the Dropbox app go to menu, Offline, and let it sync to download the changes so that they can be imported by Woolnote. If you are a software developer and want to help me with having a better storage integration, you are welcome.
+
+How to set up Dropbox for automatic synchronization
+1. Export the woolnote.zip file from woolnote and manually import it into Dropbox using the Dropbox app to the place inside Dropbox where you wish to store it.
+2. In the Dropbox app, long-click the woolnote.zip file and enable Offline. This downloads the file somewhere to /storage/emulated/0/Android/data/com.dropbox.android/files/u20358332(use your Dropbox account number)/scratch/. In woolnote, select the directory where woolnote.zip is stored by Dropbox.
+3. Export from woolnote - this one is easy. Make sure the Dropbox app is running in the background. In Woolnote, select Export and export the data. Dropbox detects that the file changes and uploads it, displaying a notification.
+4. Import to woolnote - this one is more complicated. Unfortunately, unlike on desktop, Dropbox doesn't automatically sync files from cloud to the device, you have to trigger the sync manually. Open the Dropbox app, display the offline files from the sidebar, let it sync. Then open woolnote and use the Import type which you want.
+
+
+Backups
+Woolnote creates local backup copies of the task database on these occasions:
+* Starting up the woolnote server.
+* Export
+* Import
+
+Sometimes, you might need to recover old data. You might find them in the backups directory (/sdcard/woolnote/backups). The primary task database is in /sdcard/woolnote/task_store.dat. To recover data, first make a backup of task_store.dat so that you can revert in case you do something wrong. Quit woolnote. Manually fix the database file (make sure not to break the file format structure). You might find the tools grep, meld, windiff useful.
+
+The backups directory is growing, you might want to clean it from time to time. The most comfortable way is to either delete the whole backups directory and create it again, or to selectively delete files from desktop (through cable or SSH).
+
+
+Connecting to the woolnote server
+Woolnote for Android is in fact a standard Android Java application for the user interface (menu, settings, launcher icon), containing a WebView for displaying the interface of woolnote, and containing the Python interpreter and the woolnote note&task management app written in Python, which is a basic web application, displaying its user interface over HTTP or HTTPS.
+Every time Woolnote for Android runs, the woolnote server runs as well. You can connect to the port 8088 over HTTP or to the port 8089 over HTTPS. You can authenticate using a login password or using a OTP (one-time password).
+
+HTTP
+Don't use HTTP on networks you don't trust. Anyone with sufficient access to the network can see all your transmitted data including the login password or authentication cookies and can log into woolnote as you and access or modify anything in there.
+
+HTTPS
+Because Woolnote cannot use a valid SSL/TLS certificate, it has to auto-generate a self-signed untrusted certificate. To check the security of the connection, you generally have to do the following on untrusted networks:
+
+1. Connect to Woolnote from your browser but don't enter valid login credentials. (woolnote menu, Display IP address tells you how)
+2. Dismiss the security alert in the browser.
+3. View the HTTPS certificate in the browser and view the SHA256 fingerprint.
+4. On the mobile phone, go to the Woolnote main page and see the SHA256 fingerprint on top.
+5. If the fingerprints are different, someone is attacking you. If the fingerprints are the same, you can now use valid login credentials to log in from the browser.
+6. To log out from the browser (e.g. in case you don't trust it anymore because someone else has access to the computer), then use the menu items Quit or Restart server in Woolnote on your mobile phone.
+If you are a software developer and want to make the secure network communication better and more user-friendly, you are welcome.
+
+Login password
+A static password you can save into the bookmarks on your computer, provided you trust such bookmark storage.
+
+OTP
+One-time password. Once an OTP is generated, it is valid for 5 unsuccessful tries and then it is invalidated. It is also invalidated after a successful use so that if you enter it while someone sees you, they cannot reuse it unless they can type it and hit enter faster than you.
+
+README for woolnote in general (both the pure Python version and the Android version)
+
+Easy to type lists
+Lists are text lines beginning with "-" or "+" or "*"or "**" or "***" followed by a space and text. The following lines automatically gain the same prefix on save (until an empty line or until a different list is defined). This allows you to easily type a long list on the phone keyboard because you don't have to search for the special characters on each line - just on the first line. If you don't like the feature, set the note's format to plaintext - this is useful when you insert arbitrary copy&pasted things like emails or code.
+More information about formatting is directly inside woolnote in the "_woolnote_config" note.
+
+
+FAQ a.k.a. questions nobody asks that I pulled out of my colored hat :)
+* Is woolnote better than other note-taking apps?
+** Objectively, no.
+* What are the strengths of woolnote?
+** OpenSource, 
+** easily hackable in Python, 
+** allows easy switching between using PC and phone without synchronization, 
+** simple data format that doesn't lock you in (and you can use woolnote's source code to hack together export to another format should you decide to move to sth else), 
+** you are in control of the data,
+** backup archive with previous note database versions, 
+** simple markup language allowing the creation of ad-hoc mixed checklists and notes with simple formatting, 
+** import&export including a rudimentary ability to handle conflicts,
+** no user tracking (well, if you don't use cloud storage for import&export),
+** individual notes can be shared over the local network as read-only to other people who don't have login,
+** access token & password checking is implemented in a secure way preventing timing attacks to reveal the password over network,
+** HTTPS support.
+* Should I use woolnote?
+** Depends on your needs and expertise with Python and IT in general in case something breaks.
+** If you are happy with Google Keep, Evernote, Simplepad, or any other existing product, please don't use woolnote. Woolnote is not a product, has no development lifecycle, has no support, and is not tailored to keep most users happy.
+** If you tried all of them and you are still in a search for something else, you should check out woolnote and if it fits your style, use it as a base for your own app.
+* Should I fork?
+** Yes, because woolnote is not aimed for the general user, it has been created to serve my peculiar needs. Adding too much additional functionality wouldn't fit woolnote's non-extensible "architecture". It's better to create a new app using woolnote as a base.
+* How do I request new functionality?
+** You can certainly try to request it through github or through a merge request. I might implement/merge it if it fits my needs, or I might advise you to fork and create your own version. If your idea is especially intriguing, I might even maintain a fork for a time, just to experiment with the idea. (I don't usually have much time for woolnote, so don't hold your breath.)
+* How can we collaborate?
+** If you happen to have the exact same needs for note and task management, collaboration on a single project with a unified vision might work.
+** If you create a fork, I'd be happy to collaborate on fixing parts that are shared between our forks, to a sensible extent. I believe in friendly forking, leading to healthy competition, growth of fresh ideas, and experiments.
+* Will woolnote magically help me with note and task management?
+** No.
+** You need a good system. Start with reading GTD and ZTD for much needed inspiration. Think about yourself and your life. Create a system that suits you. Create a system where you do things not because someone said so but because you have personal reasons why you should do it so.
+** A good system is a vehicle for your thoughts
+** Woolnote is a vehicle for the system. A part of it, actually. I don't want emails in woolnote. I can't have physical stuff in woolnote.
+* Why is there such a weak support for reminders?
+** I don't use that functionality that often. A central part of my task list is a week-by-week timeline-like task list where most of the short-term stuff ends up. Most of the long-term reminders end up on my calendar and in my tickler note. The reminder/deadline functionality is therefore for the oddball notes that are perhaps temporary projects (like home renovation) which can't be put easily on one line into a tickler or into the calendar but are a topic of notes and tasks in one woolnote note and then I remember I need this note to pop up on me on a certain date. You can see a few examples of that in the demo file tasks.dat.
+* Why does it look so awful?
+** Some people feel uneasy looking at unaligned graphical elements and whatnot. If you are one of them, I know the interface looks insane to you. I don't care about such things and I don't have the time nor the skills necessary to fix it. If you want to make the UI better, you are welcome.
+
+
+
+
+TASK-BODY-END 4AE709355E18098C20EDAC8B3B96BEF148D9876B7B71DAC704125114433CC159
+TASK-END A321CCDC86AD49C4069A6F339DC4C9FB56485A1C9F6749AC083103C6BDEFEFCE
+
+
+
+TASK-BEGIN
+TASK-ID 264968A4803604A1F184A3CFBE422ABA8756AF9AA1FA9F79A48852CB47AC3CAB
+TASK-NAME buy in ikea
+TASK-FOLDER TODO buy
+TASK-LAMPORT-TIMESTAMP 5518
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-09-14 11:15:44
+TASK-CHANGED-DATE 2016-09-14 11:15:44
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH F9DCC62E9F90A289713F9E81B7D9883FF47AFD4604A423D019398C0460BC6218
+TASK-TAGS ctx out
+TASK-BODY-BEGIN 1D10CBB7AF488C9BDE0EA75A3D265FA25BDDDBEC823C286E35EA7993963956C4
+
+
+
+
+- grönsaksbullar
+
+
+
+
+TASK-BODY-END 1D10CBB7AF488C9BDE0EA75A3D265FA25BDDDBEC823C286E35EA7993963956C4
+TASK-END 264968A4803604A1F184A3CFBE422ABA8756AF9AA1FA9F79A48852CB47AC3CAB
+
+
+
+TASK-BEGIN
+TASK-ID CD59CE606EC592E4DA693A4378524E209F404DEE20851EAC424688053F7A39FD
+TASK-NAME firefox about:config
+TASK-FOLDER notes tmp
+TASK-LAMPORT-TIMESTAMP 7619
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-05-31 19:31:55
+TASK-CHANGED-DATE 2016-12-20 16:34:22
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 80FDB79459457E364480FCAD263A53FFA892F8A8FDE5AFA73D1A70C6B94A44A9
+TASK-TAGS ctx pc
+TASK-BODY-BEGIN 2AA53BE2E3A889E7E392CA42F409E1A4BD5AFC9483892748A765CB783DA43B28
+
+
+
+
+TODO
+- https://github.com/pyllyukko/user.js
+- (?) browser.download.forbid_open_with = true
+- network.protocol-handler.warn* = true
+- network.protocol-handler.expose* = false
+- network.protocol-handler.expose-all = true (otherwise, some javascript links break)
+- network.protocol-handler.external* = false
+
+
+**settings**
+
+usage
+
+autoScroll - true
+browser.fullscreen.animate - false
+browser.tabs.animate - false
+
+
+hardening
+
+media.autoplay.enabled - false (probably doesn't harden at all)
+(noscript.forbidWebGL - true)
+webgl.disabled - true
+javascript.options.baselinejit - false
+javascript.options.ion
+javascript.options.asmjs
+gfx.downloadable_fonts.enabled - false - prevents exploits, doesn't prevent fingerprinting
+
+https://gist.github.com/haasn/69e19fc2fe0e25f3cff5 and http://rationallyparanoid.com/articles/firefox-about-config-security.html
+* network.IDN_show_punycode - true
+
+
+privacy
+
+network.seer.enabled 
+privacy.resistFingerprinting
+
+
+network.http.referer.spoofSource - true - https://discuss.howtogeek.com/t/firefox-referer-preferences-in-about-config/24969 
+
+browser.safebrowsing.downloads.enabled - false
+browser.safebrowsing.enabled - false
+browser.safebrowsing.malware.enabled - false
+
+https://gist.github.com/haasn/69e19fc2fe0e25f3cff5 and http://rationallyparanoid.com/articles/firefox-about-config-security.html
+* dom.event.clipboardevents.enabled=false
+* dom.battery.enabled=false
+* browser.send_pings=false
+* webgl.disabled=true
+* media.peerconnection.enabled=false
+* beacon.enabled - false
+* social.directories=""
+* social.whitelist=""
+* social.remote-install.enabled=false
+* social.toast-notifications.enabled=false
+* social.shareDirectory=""
+* device.sensors.enabled=false
+* camera.control.face_detection.enabled=false
+* network.http.speculative-parallel-limit=0
+* network.prefetch-next - false
+* network.dns.disablePrefetch - true
+* geo.enabled=false
+* dom.presentation.device.name
+
+
+
+
+
+**addons**
+
+hardening
+
+ublock
+* fonts
+** https://github.com/gorhill/uBlock/issues/605
+
+noscript (only desktop)
+master password+ (only desktop)
+
+
+privacy
+
+clean links
+decentraleyes
+https everywhere
+self-destructing cookies
+ublock origin
+No Resource URI Leak
+privacy badger (only desktop)
+refcontrol (only desktop)
+secure login (only desktop)
+betterprivacy (only desktop)
+google search link fix (only desktop)
+
+
+usability
+
+android text reflow
+load from cache
+greasemonkey (only desktop)
+mozilla archive format (only desktop)
+tab tree (only desktop)
+zoom page (only desktop)
+enable auto complete (only desktop)
+profilist (only desktop)
+autoplay_away (only desktop?)
+
+
+
+
+**google chrome**
+
+chrome://flags/#disable-hyperlink-auditing
+
+
+
+
+TASK-BODY-END 2AA53BE2E3A889E7E392CA42F409E1A4BD5AFC9483892748A765CB783DA43B28
+TASK-END CD59CE606EC592E4DA693A4378524E209F404DEE20851EAC424688053F7A39FD
+
+
+
+TASK-BEGIN
+TASK-ID 793312EB521A4987160F9ABBAF805813B02A62B14EC1F3F87279BE04B4D839B8
+TASK-NAME recommended films
+TASK-FOLDER notes info
+TASK-LAMPORT-TIMESTAMP 8105
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-02 21:31:35
+TASK-CHANGED-DATE 2017-01-09 20:51:18
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 8B254E3B8EF3D75C8B4BC3CB655EDEECEC3568AE735BF447B5DECE57F7B37369
+TASK-TAGS 
+TASK-BODY-BEGIN 0044146949501AC81B9A6A4FA9F3AF229953455669BBB0CFC9F740BAA0273388
+
+
+
+
+- big lebowski
++ interstellar
++ lego movie
+- cosmos
+- machine gun preacher
+- monty python - holy grail, life of Brian
++ firefly
+- iron sky
+- shoot them up
+- sandler anger management
++ john wick
+- machete
++ mad max fury road
++ The Butterfly Effect
+- godfather
++ Five year engagement
+- Waking Ned Devine
++ deadnote
++ elysium
++ blade runner
++ office space
++ the imitation game
++ baraka samsara https://en.wikipedia.org/wiki/Samsara_%282011_film%29
++ men who stare at goats
++ theory of everything
++ el metodo 2005
+- Into the wild
+- internship
++ chappie (2015)
+- sicario
+
+
+
+
+TASK-BODY-END 0044146949501AC81B9A6A4FA9F3AF229953455669BBB0CFC9F740BAA0273388
+TASK-END 793312EB521A4987160F9ABBAF805813B02A62B14EC1F3F87279BE04B4D839B8
+
+
+
+TASK-BEGIN
+TASK-ID BF1F5732C9B0BCA1252CCB122E7FB34E1F2310C8570BAEFF2F2AE81DB9606220
+TASK-NAME buy in drug store
+TASK-FOLDER TODO buy
+TASK-LAMPORT-TIMESTAMP 9042
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-05-07 15:44:00
+TASK-CHANGED-DATE 2017-03-10 13:23:12
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 77CF0D2CBC3E9EFFD2DB87D68911590F137104A71F128E3A91832008A7AD17E6
+TASK-TAGS ctx out
+TASK-BODY-BEGIN 00FCBEE0AAD37A693A69EA7E39CD84D83A53B1415FD3AE271772A8C244AB29A2
+
+
+
+
++ toilet cleaner
++ mouthwash
++ soap
++ tp
+
+
+
+
+TASK-BODY-END 00FCBEE0AAD37A693A69EA7E39CD84D83A53B1415FD3AE271772A8C244AB29A2
+TASK-END BF1F5732C9B0BCA1252CCB122E7FB34E1F2310C8570BAEFF2F2AE81DB9606220
+
+
+
+TASK-BEGIN
+TASK-ID 64780BF657140CC384C2151FD09AB7388ECE347968E58D40E33E5F466101B96D
+TASK-NAME won't do tasks
+TASK-FOLDER notes longterm
+TASK-LAMPORT-TIMESTAMP 6728
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-08 14:35:23
+TASK-CHANGED-DATE 2016-10-26 21:32:09
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH F492F42888EED3303BE54EA46CE37B81DFFF61F47F624D6D9D2D6B4C3F69C93E
+TASK-TAGS 
+TASK-BODY-BEGIN 4FD069CE0A4380DABDE4575AD1ABE4ECA18E7B523E0D0C21F414EB30316D48BA
+
+
+
+
+...
+
+- 
+
+
+
+
+TASK-BODY-END 4FD069CE0A4380DABDE4575AD1ABE4ECA18E7B523E0D0C21F414EB30316D48BA
+TASK-END 64780BF657140CC384C2151FD09AB7388ECE347968E58D40E33E5F466101B96D
+
+
+
+TASK-BEGIN
+TASK-ID 826CC1F4D18E29E0ECC01BD0932E73FF19FF61FABA778ABB0064BE23BE6B129C
+TASK-NAME home - boxes
+TASK-FOLDER notes longterm
+TASK-LAMPORT-TIMESTAMP 8739
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-02 21:22:32
+TASK-CHANGED-DATE 2017-02-19 16:29:31
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH F9060187E23CA39EDB749D894C8797D509C0AA663B26CF85D71EA6955C4F1157
+TASK-TAGS ctx home
+TASK-BODY-BEGIN 832AAE24C6155F554C94F12003C34C94D7F184903F5A62F089D42FB514472436
+
+
+
+
+box 1 (lowest): orange bag
+
+
+box 2: sleeping bag
+
+
+box 3: plastic zip bags
+
+
+box 4: christmas tree
+
+
+box 5: plastic bags
+
+
+
+
+TASK-BODY-END 832AAE24C6155F554C94F12003C34C94D7F184903F5A62F089D42FB514472436
+TASK-END 826CC1F4D18E29E0ECC01BD0932E73FF19FF61FABA778ABB0064BE23BE6B129C
+
+
+
+TASK-BEGIN
+TASK-ID 75243B801228A2F9DD3BB803DE3162BB76FFDEDB579D961358257BB14622874F
+TASK-NAME router password
+TASK-FOLDER notes txt
+TASK-LAMPORT-TIMESTAMP 179
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-01 23:24:57
+TASK-CHANGED-DATE 2016-03-01 23:24:57
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH FFBB5E450F3C1BCBF1DBACEE87081FC0F46C30ECB2F697C69341D79A47CC5FAA
+TASK-TAGS 
+TASK-BODY-BEGIN 9AC1E481406B2AE4CD274116DEA7AC053B6E3D7BF0B772151374AD33263A2B66
+
+
+
+
+thooid-archical-cubero-wagoning-cistrons
+
+
+
+192.168.1.100
+
+admin
+
+saroyan-zortzico-blatti-polyanthus
+
+
+
+
+TASK-BODY-END 9AC1E481406B2AE4CD274116DEA7AC053B6E3D7BF0B772151374AD33263A2B66
+TASK-END 75243B801228A2F9DD3BB803DE3162BB76FFDEDB579D961358257BB14622874F
+
+
+
+TASK-BEGIN
+TASK-ID 4C5C75D02CB2E0E2831CF018D64F9A0DF6C50EDE11E67277BE20F2591FD6527F
+TASK-NAME ----
+TASK-FOLDER notes info
+TASK-LAMPORT-TIMESTAMP 426
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-03 23:50:20
+TASK-CHANGED-DATE 2016-03-03 23:50:20
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 887077F3092FBE883473784BA71508757CE354F49DF04F935039248B11EA32F5
+TASK-TAGS 
+TASK-BODY-BEGIN 23755D5A6B4D2182A45F86DC762962D32A8C1615C902430FB5A1B82276442F20
+..
+---placeholder---
+TASK-BODY-END 23755D5A6B4D2182A45F86DC762962D32A8C1615C902430FB5A1B82276442F20
+TASK-END 4C5C75D02CB2E0E2831CF018D64F9A0DF6C50EDE11E67277BE20F2591FD6527F
+
+
+
+TASK-BEGIN
+TASK-ID 79E46654646E55418B4D02A36ADEBBE3B80383844492D469DDFE80B08EBFBD56
+TASK-NAME buy food
+TASK-FOLDER TODO buy
+TASK-LAMPORT-TIMESTAMP 9041
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-02 21:51:21
+TASK-CHANGED-DATE 2017-03-10 13:23:01
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH F0FF1866591A66510EDC64151008C0EC2E248778F64A3EF7FCD912FB9994A72A
+TASK-TAGS ctx out
+TASK-BODY-BEGIN 8D0119C1E6C3D83A18A8A3B3735E92C43DE5EA5AB9606E77656EAA9F1BB73519
+
+
+
+
++ pasta
++ ham
++ cheese
++ corn flakes
++ tea
++ onions
++ musli
++ nachos
++ butter
+- eggs
+
+
+
+
+TASK-BODY-END 8D0119C1E6C3D83A18A8A3B3735E92C43DE5EA5AB9606E77656EAA9F1BB73519
+TASK-END 79E46654646E55418B4D02A36ADEBBE3B80383844492D469DDFE80B08EBFBD56
+
+
+
+TASK-BEGIN
+TASK-ID CB283F083E0F7CCB066B91EEAF9A27C82A95895B41315764396B1D0E58968D28
+TASK-NAME hobby XYZ
+TASK-FOLDER TODO longterm
+TASK-LAMPORT-TIMESTAMP 641
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-02 07:09:20
+TASK-CHANGED-DATE 2016-03-11 13:04:37
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH CC7F62386098F8A6D724E4A050B6B7DCBEE044B2989DC63F54197C94AE6D4C37
+TASK-TAGS ctx hobbies personal, ctx personal, prio q2 - imp/!u, proj ann
+TASK-BODY-BEGIN 86E6F4F3782A8087003F4B18B7B6015D58A455640AA305E11C39053298C2136C
+
+
+
+
+- aaa
+- bbb
+- ccc
++ ddd
+- eee
+- fff
+- ggg
+
+
+
+
+TASK-BODY-END 86E6F4F3782A8087003F4B18B7B6015D58A455640AA305E11C39053298C2136C
+TASK-END CB283F083E0F7CCB066B91EEAF9A27C82A95895B41315764396B1D0E58968D28
+
+
+
+TASK-BEGIN
+TASK-ID 14C7AD7D292E9C998F9480ED7CBBF1F3FBD24B85674598BE6413E16F0D478123
+TASK-NAME personal growth - energy management - hbr
+TASK-FOLDER notes proj
+TASK-LAMPORT-TIMESTAMP 8298
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-09-01 09:00:40
+TASK-CHANGED-DATE 2017-01-23 17:51:15
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 2850A0581E345B5014EE4B893FAE5FEEA86CBFA9AF64A311A8AD24749F5EA707
+TASK-TAGS ctx hobbies personal, ctx personal, proj growth framework
+TASK-BODY-BEGIN 450888E8DC3FB6C6F49036985C3852D7452207BD6E2374F882766D350BC2648C
+
+
+
+
+https://hbr.org/2007/10/manage-your-energy-not-your-time
+
+
+
+- improve my energy management:
+
+
+Body
+
+__ [ ] I don’t regularly get at least seven to eight hours of sleep, and I often wake up feeling tired.
+
+__ [ ] I frequently skip breakfast, or I settle for something that isn’t nutritious.
+
+__ [ ] I don’t work out enough (meaning cardiovascular training at least three times a week and strength training at least once a week).
+
+__ [ ] I don’t take regular breaks during the day to truly renew and recharge, or I often eat lunch at my desk, if I eat it at all.
+
+Emotions
+
+__ [ ] I frequently find myself feeling irritable, impatient, or anxious at work, especially when work is demanding.
+
+__ [ ] I don’t have enough time with my family and loved ones, and when I’m with them, I’m not always really with them.
+
+__ [ ] I have too little time for the activities that I most deeply enjoy.
+
+__ [ ] I don’t stop frequently enough to express my appreciation to others or to savor my accomplishments and blessings.
+
+Mind
+
+__ [ ] I have difficulty focusing on one thing at a time, and I am easily distracted during the day, especially by e-mail.
+
+__ [ ] I spend much of my day reacting to immediate crises and demands rather than focusing on activities with longer-term value and high leverage.
+
+__ [ ] I don’t take enough time for reflection, strategizing, and creative thinking.
+
+__ [ ] I work in the evenings or on weekends, and I almost never take an e-mail–free vacation.
+
+Spirit
+
+__ [ ] I don’t spend enough time at work doing what I do best and enjoy most.
+
+__ [ ] There are significant gaps between what I say is most important to me in my life and how I actually allocate my time and energy.
+
+__ [ ] My decisions at work are more often influenced by external demands than by a strong, clear sense of my own purpose.
+
+__ [ ] I don’t invest enough time and energy in making a positive difference to others or to the world.• • •
+
+
+Total number of statements checked: __
+
+
+0–3: Excellent energy management skills
+
+4–6: Reasonable energy management skills
+
+7–10: Significant energy management deficits
+
+11–16: A full-fledged energy management crisis
+
+What do you need to work on?
+
+Number of checks in each category:
+
+Body __
+
+Mind __
+
+Emotions __
+
+Spirit __
+
+
+
+- learn the lens perspectives: 
+
+"People can cultivate positive energy by learning to change the stories they tell themselves about the events in their lives. We teach them to tell the most hopeful stories possible."
+
+"The most effective way people can change a story is to view it through any of three new lenses, which are all alternatives to seeing the world from the victim perspective. With the reverse lens, for example, people ask themselves, “What would the other person in this conflict say and in what ways might that be true?” With the long lens they ask, “How will I most likely view this situation in six months?” With the wide lens they ask themselves, “Regardless of the outcome of this issue, how can I grow and learn from it?” Each of these lenses can help people intentionally cultivate more positive emotions."
+
+
+
+
+TASK-BODY-END 450888E8DC3FB6C6F49036985C3852D7452207BD6E2374F882766D350BC2648C
+TASK-END 14C7AD7D292E9C998F9480ED7CBBF1F3FBD24B85674598BE6413E16F0D478123
+
+
+
+TASK-BEGIN
+TASK-ID 36985BAFEF5E972CF2D95BD3258A5377D11E752889696860B20EAF26792E169F
+TASK-NAME raspberry pi - gpio - notes
+TASK-FOLDER notes proj
+TASK-LAMPORT-TIMESTAMP 196
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-01 23:37:10
+TASK-CHANGED-DATE 2016-03-01 23:37:10
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH FFF2596B36202B500EA1B59F3F38E58BB38511371818C7BCD584E778C7DFAFA2
+TASK-TAGS ctx home, proj raspi
+TASK-BODY-BEGIN 05D1F8C9D2F47AD12796547D9935027711F31FB69EC60A942E06C965D8EC0209
+
+
+
+
+* soldered pin headers? https://www.raspberrypi.org/pinout-for-gpio-connectors/
+* settings https://www.raspberrypi.org/forums/viewtopic.php?f=37&t=22736
+* extended info http://elinux.org/RPi_Serial_Connection
+* rs232 from java + picture http://pi4j.com/example/serial.html
+* how to use with pc terminal + pics https://blog.bartbania.com/raspberry_pi/setting-up-raspberry-pi-to-display-on-pc/
+* lots of text and diagrams https://jeffskinnerbox.wordpress.com/2012/12/05/raspberry-pi-serial-communication/
+
+
+
+freeing up RS232 - turn off serial console
+
+-------------------------------------------------------------
+
+sources:
+
+* http://elinux.org/RPi_Serial_Connection
+
+boot partition/cmdline.txt original: dwc_otg.lpm_enable=0 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline rootwait
+
+edit /etc/inittab:
+
+* comment line: T0:23:respawn:/sbin/getty -L ttyAMA0 115200 vt100
+
+check: cat /proc/cmdline; ps aux | grep ttyAMA0 # find getty processes using rs232
+
+
+
+my testing harness
+
+-----------
+
+1 - rxd - gnd
+
+4 - rxd - pullup
+
+
+
+how to set up RS232
+
+-----------------------
+
+sources:
+
+* http://superuser.com/questions/191654/how-can-i-send-data-to-the-serial-port-from-a-linux-shell
+
+stty -F /dev/ttyS0 9600 -parity cs8 -cstopb
+
+
+
+
+TASK-BODY-END 05D1F8C9D2F47AD12796547D9935027711F31FB69EC60A942E06C965D8EC0209
+TASK-END 36985BAFEF5E972CF2D95BD3258A5377D11E752889696860B20EAF26792E169F
+
+
+
+TASK-BEGIN
+TASK-ID D6B6F4FEFB73C0D79B640B2A6A3C2DB00EDC478F4A7FC191CF8EDFE6893F7597
+TASK-NAME ----
+TASK-FOLDER notes txt
+TASK-LAMPORT-TIMESTAMP 429
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-03 23:50:23
+TASK-CHANGED-DATE 2016-03-03 23:50:23
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH CD94AF677678DE0375E06A5745310A43824295B72D68A463471E83F11B23A16B
+TASK-TAGS 
+TASK-BODY-BEGIN E2C4AE7175CA6ACE11FA5E323E9AE10935B9DB7CA7FD8689CCDDD4BCD69A0CFB
+..
+---placeholder---
+TASK-BODY-END E2C4AE7175CA6ACE11FA5E323E9AE10935B9DB7CA7FD8689CCDDD4BCD69A0CFB
+TASK-END D6B6F4FEFB73C0D79B640B2A6A3C2DB00EDC478F4A7FC191CF8EDFE6893F7597
+
+
+
+TASK-BEGIN
+TASK-ID 00CD3929A1EA9DC05BB12A605B5DE9800BF97B200C2FB34DAACD21DE74E0BE9E
+TASK-NAME tickler
+TASK-FOLDER TODO sometime
+TASK-LAMPORT-TIMESTAMP 8977
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-22 18:15:36
+TASK-CHANGED-DATE 2017-03-05 18:23:27
+TASK-DUE-DATE 2017-04-01
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 8AA9572E8928E645710A9755B21E1A144B1567963A462552EC8FABA5C3E0A41D
+TASK-TAGS time planned
+TASK-BODY-BEGIN 8B1D2F395B97442A85E4595F8440F87E383EC23CB3B2A9AAAC05F0613E459207
+
+
+
+
+170430
+- do X
+
+170500
+- do Y
+
+170600
+- do Z
+
+190923
+- do ASDF
+
+
+
+
+TASK-BODY-END 8B1D2F395B97442A85E4595F8440F87E383EC23CB3B2A9AAAC05F0613E459207
+TASK-END 00CD3929A1EA9DC05BB12A605B5DE9800BF97B200C2FB34DAACD21DE74E0BE9E
+
+
+
+TASK-BEGIN
+TASK-ID 515639EB5EE65EA0871EAA73CA1F854C187646C86AFFF88445D5AE71194FB07B
+TASK-NAME ----
+TASK-FOLDER notes tmp
+TASK-LAMPORT-TIMESTAMP 428
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-03 23:50:22
+TASK-CHANGED-DATE 2016-03-03 23:50:22
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH BAD542F1E670B556FA511BA1D76FF091A6A57EFAE4E1E88D7588057EF8F09510
+TASK-TAGS 
+TASK-BODY-BEGIN BCCDF781895E8CD01DDC64B2B55A8D4931D64AFBA5233D9D7C41C33005A16C87
+..
+---placeholder---
+TASK-BODY-END BCCDF781895E8CD01DDC64B2B55A8D4931D64AFBA5233D9D7C41C33005A16C87
+TASK-END 515639EB5EE65EA0871EAA73CA1F854C187646C86AFFF88445D5AE71194FB07B
+
+
+
+TASK-BEGIN
+TASK-ID 34CED149FB3DDD036A50320C1204ABE2346014CB719E270BE6DF13931219CB61
+TASK-NAME employer address
+TASK-FOLDER notes txt
+TASK-LAMPORT-TIMESTAMP 7009
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-02 21:01:01
+TASK-CHANGED-DATE 2016-11-11 11:09:35
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH C9E063002B6A8AA7AC158770F5D2A2688A88391B44AFF5194161E966863C7615
+TASK-TAGS ctx work
+TASK-BODY-BEGIN 9C53BF32268704883E2291B386C94C4F819D100EC21FEF38123C863872BC1F67
+
+
+
+
+for sick leave certificates, papers, etc.
+
+
+3141 Owen Lane
+Acme
+Michigan
+49610
+VAT num 374-66-7145
+
+
+
+
+TASK-BODY-END 9C53BF32268704883E2291B386C94C4F819D100EC21FEF38123C863872BC1F67
+TASK-END 34CED149FB3DDD036A50320C1204ABE2346014CB719E270BE6DF13931219CB61
+
+
+
+TASK-BEGIN
+TASK-ID BA8E6C199E6FD71291B4984C01C92E553B2D6826E99AA6B37BBEF196EEA5AE12
+TASK-NAME buy autumn shoes
+TASK-FOLDER TODO buy
+TASK-LAMPORT-TIMESTAMP 269
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-03-02 21:00:33
+TASK-CHANGED-DATE 2016-03-02 21:00:33
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 2A7D4301920F5A17893AF98B08F3C5A18158946B232FFB461C392FD9DBD17E89
+TASK-TAGS ctx out, prio q4 - !i/!u
+TASK-BODY-BEGIN A4A894A753A5DF450E4FFEB33DAD0C55376DB6E58E7F9397532094CA7287B863
+
+
+
+
+
+TASK-BODY-END A4A894A753A5DF450E4FFEB33DAD0C55376DB6E58E7F9397532094CA7287B863
+TASK-END BA8E6C199E6FD71291B4984C01C92E553B2D6826E99AA6B37BBEF196EEA5AE12
+
+
+
+TASK-BEGIN
+TASK-ID D85CB8BA36A6945CBE804316598522AB0876E06F4E52CAC5F6A846793EF43DAC
+TASK-NAME hobbies in progress
+TASK-FOLDER notes tmp
+TASK-LAMPORT-TIMESTAMP 8559
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-08-04 09:39:10
+TASK-CHANGED-DATE 2017-02-08 11:09:23
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 355421F4F7066874138C80DF1ADC67D395381453AC12579043A24F0E7B864B24
+TASK-TAGS ctx hobbies personal, ctx personal, time current
+TASK-BODY-BEGIN CB89DA154A0A1B76043651D67FBDBD400C1ECCFBC6642A49FBD1733919EFCD22
+
+
+
+
+- Feynman
++ sort photos
+- duolingo
++ art of sw sec ass
++ fix kick scooter
+- php
+- thich nhat hanh
+- The_AWK_Programming_Language.pdf
+- geb
+- woolnote
+- thinking fast and slow
+- Rust (programming language)
+
+
+
+
+TASK-BODY-END CB89DA154A0A1B76043651D67FBDBD400C1ECCFBC6642A49FBD1733919EFCD22
+TASK-END D85CB8BA36A6945CBE804316598522AB0876E06F4E52CAC5F6A846793EF43DAC
+
+
+
+TASK-BEGIN
+TASK-ID 73416F0F2A64C521E826487D8B11A16B7215228AEFC0B6AF5C80AE2F0144DDB5
+TASK-NAME songs that sound like singing sloths
+TASK-FOLDER notes tmp
+TASK-LAMPORT-TIMESTAMP 7416
+TASK-EXPORT-LAMPORT-TIMESTAMP 9099
+TASK-CREATED-DATE 2016-12-01 11:48:52
+TASK-CHANGED-DATE 2016-12-06 19:30:25
+TASK-DUE-DATE 
+TASK-DUE-DATE-REMINDER-DISMISSED False
+TASK-BODY-FORMAT MARKUP
+TASK-PUBLIC-SHARE-AUTH 6826C617FF25644F33A3745C2110B78F6BAA11EAA901B0B2DABACF8C690808A9
+TASK-TAGS 
+TASK-BODY-BEGIN 4EF46E42562FAE318F75C3AC23F615C360B1ECCE06F41C3CE45B9A3798B362F9
+
+
+
+
+* happy with singing sloths - baby elephant - every day is a new life - arto tuncboyaciyan
+* singing shamans and sloths - blackdress - virgin land - arto tuncboyaciyan
+
+
+
+
+TASK-BODY-END 4EF46E42562FAE318F75C3AC23F615C360B1ECCE06F41C3CE45B9A3798B362F9
+TASK-END 73416F0F2A64C521E826487D8B11A16B7215228AEFC0B6AF5C80AE2F0144DDB5
+
+

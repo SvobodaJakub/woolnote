@@ -1,5 +1,5 @@
 # University of Illinois/NCSA Open Source License
-# Copyright (c) 2017, Jakub Svoboda.
+# Copyright (c) 2018, Jakub Svoboda.
 
 # TODO: docstring for the file
 import random
@@ -9,6 +9,7 @@ import os
 import hashlib
 
 from woolnote import config
+from woolnote import tests
 
 # debug output can be toggled with debug_print for the whole file
 debug_print = True
@@ -45,6 +46,7 @@ class Search_AST_Node:
         return "\n".join(out)
 
 
+@tests.integration_function("util")
 def search_expression_tokenizer(filter_expression):
     # TODO: docstring
     """
@@ -68,6 +70,7 @@ def search_expression_tokenizer(filter_expression):
     # (one query) and (another query)
     # "one query" and (another query)
     # ((one query) and (another query)) or (third query)
+    # (one query) and ( not (another query))
     #
     # invalid queries:
     # composed queries cannot be inside quotes - they are interpreted as strings
@@ -83,7 +86,7 @@ def search_expression_tokenizer(filter_expression):
     # CTRL_SEQ_SEARCH_TYPE
 
     STRING_CTRL_SEQ_BEGINNING = ["(", '"', "'", "fulltext:", "folder:", "tag:"]
-    STRING_CTRL_OPERATOR = ["and", "or"]
+    STRING_CTRL_OPERATOR = ["and", "or", "not"]
     SINGLE_CHAR_WHITESPACE = [" ", "\t"]
 
     rest_of_filter_expression = filter_expression
@@ -187,12 +190,96 @@ def search_expression_tokenizer(filter_expression):
     commit_search_string_to_tokens()
 
     dbgprint("tokens: " + repr(tokens))
-    return tokens
+
+    if search_expression_validate_token_list(tokens):
+        return tokens
+
+
+@tests.integration_function("util")
+def search_expression_validate_token_list(tokens):
+    """
+    Validates the search expression to ensure it has well-formed and unambiguous syntax.
+
+    Args:
+        tokens (List[Tuple[str, str]]):
+
+    Returns:
+        True or raises Exception
+
+    """
+    prev_token_type = None
+    state_inside_OPENING = 0  # tracks how many opening states we are in
+    state_operator_argument_required = False
+    opening_operators = {} # tracks which operators (and, or) are used on which levels of state_inside_OPENING
+    for (token_type, token_content) in tokens:
+        dbgprint("validate dbg: {} {}".format(token_type, token_content))
+        if token_type == "SEARCH_STRING":
+            if prev_token_type == "SEARCH_STRING":
+                raise Exception("two SEARCH_STRING in succession. Problematic content: {}".format(token_content))
+            if prev_token_type == "CTRL_SEQ_CLOSING":
+                raise Exception("SEARCH_STRING follows after CTRL_SEQ_CLOSING. Problematic content: {}".format(token_content))
+            state_operator_argument_required = False
+        elif token_type == "CTRL_SEQ_CLOSING":
+            if prev_token_type == "CTRL_SEQ_OPENING":
+                raise Exception("CTRL_SEQ_CLOSING follows after CTRL_SEQ_OPENING. Problematic content: {}".format(token_content))
+            if prev_token_type == "CTRL_SEQ_OPERATOR":
+                raise Exception("CTRL_SEQ_CLOSING follows after CTRL_SEQ_OPERATOR. Problematic content: {}".format(token_content))
+            if prev_token_type == "CTRL_SEQ_SEARCH_TYPE":
+                raise Exception("CTRL_SEQ_CLOSING follows after CTRL_SEQ_SEARCH_TYPE. Problematic content: {}".format(token_content))
+            if state_inside_OPENING in opening_operators:
+                # returning from a certain level of OPENING and we shouldn't care what happens in a neighboring set of
+                # opening tokens (because these are independent), so deleting the data for the just-exited level
+                opening_operators[state_inside_OPENING] = []
+            state_inside_OPENING -= 1
+        elif token_type == "CTRL_SEQ_OPERATOR":
+            if token_content == "not":
+                if prev_token_type == "SEARCH_STRING":
+                    raise Exception("CTRL_SEQ_OPERATOR 'not' follows after SEARCH_STRING. Problematic content: {}".format(token_content))
+                if prev_token_type == "CTRL_SEQ_CLOSING":
+                    raise Exception("CTRL_SEQ_OPERATOR 'not' follows after CTRL_SEQ_CLOSING. Problematic content: {}".format(token_content))
+            else:
+                if prev_token_type == "CTRL_SEQ_OPERATOR":
+                    raise Exception("CTRL_SEQ_OPERATOR follows after CTRL_SEQ_OPERATOR. Problematic content: {}".format(token_content))
+                if prev_token_type == "CTRL_SEQ_OPENING":
+                    raise Exception("CTRL_SEQ_OPERATOR follows after CTRL_SEQ_OPENING. Problematic content: {}".format(token_content))
+                if prev_token_type == "CTRL_SEQ_SEARCH_TYPE":
+                    raise Exception("CTRL_SEQ_OPERATOR follows after CTRL_SEQ_SEARCH_TYPE. Problematic content: {}".format(token_content))
+            state_operator_argument_required = True
+            if state_inside_OPENING not in opening_operators:
+                opening_operators[state_inside_OPENING] = [token_content]
+            else:
+                opening_operators[state_inside_OPENING].append(token_content)
+            for op in opening_operators[state_inside_OPENING]:
+                if op != token_content:
+                    raise Exception("One level of CTRL_SEQ_OPENING contains multiple types of CTRL_SEQ_OPERATOR leading to undefined behavior. Problematic content: {}. These are the operators used at the same level: {}.".format(token_content, repr(opening_operators[state_inside_OPENING])))
+        elif token_type == "CTRL_SEQ_OPENING":
+            if prev_token_type == "SEARCH_STRING":
+                raise Exception("CTRL_SEQ_OPENING follows after SEARCH_STRING. Problematic content: {}".format(token_content))
+            if prev_token_type == "CTRL_SEQ_CLOSING":
+                raise Exception("CTRL_SEQ_OPENING follows after CTRL_SEQ_CLOSING. Problematic content: {}".format(token_content))
+            state_inside_OPENING += 1
+            state_operator_argument_required = False
+        elif token_type == "CTRL_SEQ_SEARCH_TYPE":
+            if prev_token_type == "SEARCH_STRING":
+                raise Exception("CTRL_SEQ_SEARCH_TYPE follows after SEARCH_STRING. Problematic content: {}".format(token_content))
+            if prev_token_type == "CTRL_SEQ_CLOSING":
+                raise Exception("CTRL_SEQ_SEARCH_TYPE follows after CTRL_SEQ_CLOSING. Problematic content: {}".format(token_content))
+            state_operator_argument_required = False
+        else:
+            raise Exception("Unknown token type {} follows after SEARCH_STRING. Problematic content: {}".format(token_type, token_content))
+        prev_token_type = token_type
+        if state_inside_OPENING < 0:
+            raise Exception("unmatched opening and closing tokens")
+    if state_operator_argument_required:
+        raise Exception("state_operator_argument_required - missing argument for binary and/or operator.")
+    if state_inside_OPENING != 0:
+        raise Exception("unmatched opening and closing tokens")
+    return True
 
 
 def search_expression_build_ast(tokens):
-    # TODO: docstring
     """
+    Builds AST from the tokens and returns the root of the AST or raises an exception if the supplied tokens are invalid.
 
     Args:
         tokens (List[Tuple[str, str]]):
@@ -208,7 +295,6 @@ def search_expression_build_ast(tokens):
     # CTRL_SEQ_SEARCH_TYPE - sets the current token type and content, inserts an empty child and moves the current position pointer there
     # new type of token
     # CTRL_SEQ_CLOSED - when the CTRL_SEQ_CLOSING arrives at CTRL_SEQ_OPENING
-    # TODO: valid token transitions (which tokens can have which children)
 
 
     # set up the execute root and one empty child as the current position
@@ -222,7 +308,8 @@ def search_expression_build_ast(tokens):
     execute_root.type = "EXEC_ROOT"
     execute_root.content = None
 
-    # TODO: asserts what can and cannot happen
+    # raises an exception if invalid
+    search_expression_validate_token_list(tokens)
 
     for (token_type, token_content) in tokens:
         dbgprint("ast dbg: {} {}".format(token_type, token_content))
@@ -237,29 +324,38 @@ def search_expression_build_ast(tokens):
             dbgprint("ast dbg closed after while {}".format(current_position.type))
             current_position.type = "CTRL_SEQ_CLOSED"
         elif token_type == "CTRL_SEQ_OPERATOR":
-            parent = current_position.parent
+            if token_content == "not":
+                current_position.type = token_type
+                current_position.content = token_content
+                child = Search_AST_Node()
+                list_of_nodes.append(child)
+                child.parent = current_position
+                current_position.children.append(child)
+                current_position = child
+            else:
+                parent = current_position.parent
 
-            # the inserted node takes place of the current position node and the current position node becomes the first child of the inserted node
+                # the inserted node takes place of the current position node and the current position node becomes the first child of the inserted node
 
-            inserted_node = Search_AST_Node()
-            list_of_nodes.append(inserted_node)
-            inserted_node.type = token_type
-            inserted_node.content = token_content
-            inserted_node.parent = parent
+                inserted_node = Search_AST_Node()
+                list_of_nodes.append(inserted_node)
+                inserted_node.type = token_type
+                inserted_node.content = token_content
+                inserted_node.parent = parent
 
-            # replace the child of parent - put the inserted node instead of the current position node
-            parent.children = [inserted_node if child == current_position else child for child in parent.children]
+                # replace the child of parent - put the inserted node instead of the current position node
+                parent.children = [inserted_node if child == current_position else child for child in parent.children]
 
-            first_child = current_position
-            first_child.parent = inserted_node
-            inserted_node.children.append(first_child)
+                first_child = current_position
+                first_child.parent = inserted_node
+                inserted_node.children.append(first_child)
 
-            second_child = Search_AST_Node()
-            list_of_nodes.append(second_child)
-            second_child.parent = inserted_node
-            inserted_node.children.append(second_child)
+                second_child = Search_AST_Node()
+                list_of_nodes.append(second_child)
+                second_child.parent = inserted_node
+                inserted_node.children.append(second_child)
 
-            current_position = second_child
+                current_position = second_child
         elif token_type == "CTRL_SEQ_OPENING":
             current_position.type = token_type
             current_position.content = token_content
@@ -277,21 +373,20 @@ def search_expression_build_ast(tokens):
             current_position.children.append(child)
             current_position = child
         else:
-            # TODO: throw exception - unknown token type
-            dbgprint("ERROR in search_expression_build_ast!")
+            raise Exception("unknown token type: {}".format(repr(token_type)))
 
     dbgprint(execute_root.toString())
 
     # basic sanity check
-    # we don't care about invalid expressions much (until woolnote strives to be general-user-friendly)
     if execute_root.type != "EXEC_ROOT":
-        return None
+        raise Exception("search_expression_build_ast failed for: {}".format(repr(tokens)))
     if execute_root.content != None:
-        return None
+        raise Exception("search_expression_build_ast failed for: {}".format(repr(tokens)))
 
     return execute_root
 
 
+@tests.integration_function("util")
 def search_expression_execute_ast_node(ast_node, task_store, search_type=None, fulltext_search_strings=None):
     # TODO: docstring
     # TODO doscstring about fulltext_search_strings changing the return value
@@ -354,6 +449,12 @@ def search_expression_execute_ast_node(ast_node, task_store, search_type=None, f
             or_list = list(set(list1 + list2))
             sorted_or_list = task_store.sort_taskid_list_descending_lamport_helper(or_list)
             return sorted_or_list
+        elif ast_node.content == "not":
+            list1 = search_expression_execute_ast_node(ast_node.children[0], task_store, search_type=search_type,
+                                                       fulltext_search_strings=fulltext_search_strings)
+            list2 = task_store.sort_taskid_list_descending_lamport()
+            sorted_not_list = [x for x in list2 if x not in list1]
+            return sorted_not_list
     elif ast_node.type == "CTRL_SEQ_SEARCH_TYPE":
         return search_expression_execute_ast_node(ast_node.children[0], task_store, search_type=ast_node.content,
                                                   fulltext_search_strings=fulltext_search_strings)
@@ -368,9 +469,21 @@ def search_expression_execute_ast_node(ast_node, task_store, search_type=None, f
 # helper functions for core functionality and web backend & frontend
 ####################################################################
 
+def _testing_deterministic_insecure_current_timestamp():
+    _testing_deterministic_insecure_current_timestamp.i += 10000
+    curr_date = str(time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(_testing_deterministic_insecure_current_timestamp.i)))
+    return curr_date
+# >>> time.gmtime(1900000000)
+# time.struct_time(tm_year=2030, tm_mon=3, tm_mday=17, tm_hour=17, tm_min=46, tm_sec=40, tm_wday=6, tm_yday=76, tm_isdst=0)
+# >>> time.gmtime(1900010000)
+# time.struct_time(tm_year=2030, tm_mon=3, tm_mday=17, tm_hour=20, tm_min=33, tm_sec=20, tm_wday=6, tm_yday=76, tm_isdst=0)
+_testing_deterministic_insecure_current_timestamp.i = 1900000000
+
+
+@tests.tests_deterministic_replacement(_testing_deterministic_insecure_current_timestamp)
 def current_timestamp():
-    # TODO: docstring
     """
+    Generates a string as a timestamp of the current date and time in string-sortable order.
 
     Returns:
         str:
@@ -379,31 +492,44 @@ def current_timestamp():
     return curr_date
 
 
+def _testing_deterministic_insecure_create_id_task():
+    _testing_deterministic_insecure_create_id_task.i += 1
+    return "{:064X}".format(_testing_deterministic_insecure_create_id_task.i)
+_testing_deterministic_insecure_create_id_task.i = 1000
+
+
+@tests.tests_deterministic_replacement(_testing_deterministic_insecure_create_id_task)
 def create_id_task():
-    # TODO: docstring
     """
+    Creates a random ID consisting of 64 [01-9A-F] symbols.
 
     Returns:
         str:
     """
-    """Creates a random ID consisting of 64 [01-9A-F] symbols."""
     return "{:064X}".format(random.randrange(16 ** 64))
 
 
+def _testing_deterministic_insecure_generate_one_time_pwd():
+    _testing_deterministic_insecure_generate_one_time_pwd.i += 1
+    return "{:08x}".format(_testing_deterministic_insecure_generate_one_time_pwd.i)
+_testing_deterministic_insecure_generate_one_time_pwd.i = 1000
+
+
+@tests.tests_deterministic_replacement(_testing_deterministic_insecure_generate_one_time_pwd)
 def generate_one_time_pwd():
-    # TODO: docstring
     """
+    Creates a random password with [01-9A-F] symbols and 8 characters for one-time passwords.
 
     Returns:
         str:
     """
-    #"""Creates a random password with [01-9A-F] symbols and 8 characters for one-time passwords."""
-    return "{:8x}".format(random.randrange(16 ** 8))
+    return "{:08x}".format(random.randrange(16 ** 8))
 
 
+@tests.integration_function("util")
 def sanitize_singleline_string_for_tasksave(unsafe):
-    # TODO: docstring
     """
+    Converts a string into a certifiably one-line string.
 
     Args:
         unsafe (str):
@@ -418,9 +544,10 @@ def sanitize_singleline_string_for_tasksave(unsafe):
     return new
 
 
+@tests.integration_function("util")
 def sanitize_singleline_string_for_html(unsafe):
-    # TODO: docstring
     """
+    Converts a string into a certifiably one-line string and escapes HTML characters.
 
     Args:
         unsafe (Union[str, List[str]]):
@@ -432,12 +559,14 @@ def sanitize_singleline_string_for_html(unsafe):
     # http://stackoverflow.com/questions/1061697/whats-the-easiest-way-to-escape-html-in-python
     # http://stackoverflow.com/questions/3096948/escape-html-in-python
     # https://wiki.python.org/moin/EscapingHtml
+    # TODO: can this be broken by other unicode newline characters?
     new = unsafe.replace("\n", "")
     new = new.replace("\r", "")
     safe = html.escape(new)
     return safe
 
 
+@tests.integration_function("util")
 def sanitize_multiline_string_for_textarea_html(unsafe):
     # TODO: docstring
     """
@@ -452,6 +581,7 @@ def sanitize_multiline_string_for_textarea_html(unsafe):
     return new
 
 
+@tests.integration_function("util")
 def convert_multiline_plain_string_into_safe_html(unsafe):
     """
     Converts multiline plain text into html that displays it the same way.
@@ -474,6 +604,7 @@ def convert_multiline_plain_string_into_safe_html(unsafe):
     return new
 
 
+@tests.integration_function("util")
 def task_body_save_fix_newlines(plain):
     # TODO: docstring
     """
@@ -486,6 +617,8 @@ def task_body_save_fix_newlines(plain):
     """
     return plain.replace("\r", "")
 
+
+@tests.integration_function("util")
 def task_body_save_fix_multiline_markup_bullet_lists(plain):
     # TODO: docstring
     """
@@ -694,6 +827,16 @@ def convert_multiline_markup_string_into_safe_html(unsafe):
         Returns:
             str:
         """
+
+        # disable markup resolution if more than a certain number of characters is present
+        # so that preformatted text like emails doesn't break
+        if any((
+            "*****" in s,
+            "___" in s,
+            "----" in s,
+        )):
+            return s
+
         s = str_itabold(s)
         s = str_ita(s)
         s = str_bold(s)
@@ -701,11 +844,20 @@ def convert_multiline_markup_string_into_safe_html(unsafe):
         s = str_strike(s)
         return s
 
+    # last step in text formatting and sanitization, includes the preceding steps (markup)
     def line_ahref(s):
         """ahref until space, lt, gt, quote, then escaped text"""
+        checkbox = ""
         link = ""
         rest = ""
         endlinkchar = {" ", '<', '>', '"', "'", }
+
+        if s.startswith("- ") or s.startswith("+ "):
+            checkbox = s[:2]
+            s = s[2:]
+        if s.startswith("[ ] ") or s.startswith("[x] "):
+            checkbox = s[:4]
+            s = s[4:]
 
         if s.startswith("http://") or s.startswith("https://") or s.startswith("www."):
             stilllink = True
@@ -722,10 +874,13 @@ def convert_multiline_markup_string_into_safe_html(unsafe):
         rest_safe = html.escape(rest)
         rest_safe = str_markup(rest_safe)
         link_safe = html.escape(link)
+        checkbox_safe = html.escape(checkbox)  # not really needed, just for sure in case this is ever refactored
+
+        # note for refactoring: make sure only safe things are returned
         if link == "":
-            return rest_safe
+            return checkbox_safe + rest_safe
         else:
-            return "<a href=\"" + link_safe + "\">" + link_safe + "</a>" + rest_safe
+            return checkbox_safe + "<a href=\"" + link_safe + "\">" + link_safe + "</a>" + rest_safe
 
     def line_bullet(s):
         # TODO: docstring
@@ -780,6 +935,8 @@ def convert_multiline_markup_string_into_safe_html(unsafe):
     new_lines = []
     for line in lines:
         new_line = line_bullet(line)
+        if new_line == "___":
+            new_line = "<hr>"
         new_lines.append(new_line)
     new = "\n".join(new_lines)
     new = new.replace("\n", "<br>\n")
@@ -788,6 +945,7 @@ def convert_multiline_markup_string_into_safe_html(unsafe):
     return new
 
 
+@tests.integration_function("util")
 def multiline_markup_checkbox_mapping(markup, plain, edit_chkbox_state=False, chkbox_on_list=None,
                                       disabled_checkboxes=False):
     # TODO: docstring
@@ -911,6 +1069,7 @@ def multiline_markup_checkbox_mapping(markup, plain, edit_chkbox_state=False, ch
     return result_html
 
 
+@tests.integration_function("util")
 def convert_multiline_string_into_safe_html_short_snippet(unsafe, len):
     # TODO: docstring
     """
@@ -942,6 +1101,7 @@ def convert_multiline_string_into_safe_html_short_snippet(unsafe, len):
 #     dbgprint(sha256_fingerprint)
 #     return sha256_fingerprint
 
+@tests.integration_function("util")
 def safe_string_compare(string1, string2):
     # TODO: docstring
     """

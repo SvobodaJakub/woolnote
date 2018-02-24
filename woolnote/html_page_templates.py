@@ -1,5 +1,5 @@
 # University of Illinois/NCSA Open Source License
-# Copyright (c) 2017, Jakub Svoboda.
+# Copyright (c) 2018, Jakub Svoboda.
 
 # TODO: docstring for the file
 import hashlib
@@ -9,9 +9,11 @@ import os
 from woolnote import util
 from woolnote import html_page_templates_pres
 from woolnote import config
+from woolnote import tests
 
 
 
+@tests.integration_function("html_page_templates")
 def folder_tag_etc_list(action_name, req_elem_name, elem_list=None, elem_dict=None, sort_elem_list=False,
                                       sorted_tuple_list=None, small_text=False, alt_task_store_name=None,
                                       red_bold_text=False):
@@ -70,7 +72,7 @@ def folder_tag_etc_list(action_name, req_elem_name, elem_list=None, elem_dict=No
     return elem_list_data_for_html_fragment_list
 
 
-
+@tests.integration_function("html_page_templates")
 def generate_note_reminder_link_list_html_fragment(list_taskid, used_task_store, overdue=False,
                                                    alt_task_store_name=None, dismiss_reminder_action=False):
     """
@@ -107,14 +109,14 @@ def generate_note_reminder_link_list_html_fragment(list_taskid, used_task_store,
         elem_name = task.name + " - " + task.due_date
         sorted_tuple_list.append((elem_name, req_value))
     red_bold_text = False
-    action_name="display_note"
+    action_name="page_display_note"
     if overdue:
         small_text = False
     else:
         small_text = True
     if dismiss_reminder_action:
         red_bold_text = True
-        action_name="dismiss_reminder_and_display_note"
+        action_name="req_dismiss_reminder_and_display_note"
     list_html_fragment = folder_tag_etc_list(
         action_name=action_name,
         req_elem_name="taskid",
@@ -127,9 +129,7 @@ def generate_note_reminder_link_list_html_fragment(list_taskid, used_task_store,
     return list_html_fragment
 
 
-
-
-
+@tests.integration_function("html_page_templates")
 def page_edit_note_template(task_store, task, self_sess_action_auth,
                             editing_mode_existing_note=False, history_back_id=None, page_header_list_of_warnings=None):
     """
@@ -143,7 +143,7 @@ def page_edit_note_template(task_store, task, self_sess_action_auth,
         self_sess_action_auth (str):
         editing_mode_existing_note (bool): false == editing mode for a new note, true == editing mode for an existing note
         history_back_id (str):
-        page_header_list_of_warnings (Union[None, None, None]):
+        page_header_list_of_warnings (Union[None, list[str]]):
 
     Returns:
         Union[str, None]:
@@ -171,9 +171,10 @@ def page_edit_note_template(task_store, task, self_sess_action_auth,
     return page_html
 
 
-def page_list_notes_template(list_taskid_desc, title=None, primary_task_store=None,
+@tests.integration_function("html_page_templates")
+def page_list_notes_template(list_taskid_desc, self_sess_action_auth, title=None, primary_task_store=None,
                              alt_task_store=None, alt_task_store_name=None, highlight_in_notes=None,
-                             history_back_id=None, virtual_folders=None,
+                             history_back_id=None, virtual_folders=None, single_task_line_ids=None,
                              page_header_first_text=None,
                              page_header_optional_small_second_text=None,
                              page_header_optional_link_button_name=None,
@@ -186,6 +187,7 @@ def page_list_notes_template(list_taskid_desc, title=None, primary_task_store=No
 
     Args:
         list_taskid_desc (List[str]): notes are listed in the order of taskids
+        self_sess_action_auth (str):
         title (str):
         primary_task_store (woolnote.task_store.TaskStore): Always give the reference to the primary task store.
         alt_task_store (Union[None, woolnote.task_store.TaskStore]): If the notes should be listed from a different task store (e.g. trash), give the reference to it, otherwise None.
@@ -193,6 +195,7 @@ def page_list_notes_template(list_taskid_desc, title=None, primary_task_store=No
         highlight_in_notes (Union[None, List[str]]): text to highlight in the notes listed on this page (after a note is opened)
         history_back_id (str): string returned by woolnote.web_ui.save_history()
         virtual_folders (Dict[str, str]): woolnote.woolnote_config.virtual_folders
+        single_task_line_ids (Set[str]): woolnote.woolnote_config.single_note_line_id.keys()
         page_header_first_text (str):
         page_header_optional_small_second_text (Union[str, None]):
         page_header_optional_link_button_name (Union[str, None]):
@@ -207,6 +210,7 @@ def page_list_notes_template(list_taskid_desc, title=None, primary_task_store=No
     page.page_title = title
     page.alt_task_store_name = alt_task_store_name
     page.highlight_in_notes = highlight_in_notes
+    page.sess_action_auth = self_sess_action_auth
     page.history_back_id = history_back_id
     page.page_header_first_text = page_header_first_text
     page.page_header_optional_small_second_text = page_header_optional_small_second_text
@@ -239,7 +243,7 @@ def page_list_notes_template(list_taskid_desc, title=None, primary_task_store=No
 
 
     page.folder_list = folder_tag_etc_list(
-                action_name="list_folder",
+                action_name="page_list_folder",
                 req_elem_name="folder",
                 elem_list=used_task_store.get_folder_list(),
                 alt_task_store_name=alt_task_store_name
@@ -247,22 +251,24 @@ def page_list_notes_template(list_taskid_desc, title=None, primary_task_store=No
 
 
     page.tag_list = folder_tag_etc_list(
-                action_name="list_tag",
+                action_name="page_list_tag",
                 req_elem_name="tag",
                 elem_list=used_task_store.get_tag_list(),
                 alt_task_store_name=alt_task_store_name
             )
 
     page.virtfldr_list = folder_tag_etc_list(
-                action_name="search_notes",
+                action_name="page_search_notes",
                 req_elem_name="search_text",
                 elem_dict=virtual_folders,
                 sort_elem_list=True,
                 alt_task_store_name=alt_task_store_name
             )
 
+    page.single_note_line_id = single_task_line_ids
+
     page.context_list = folder_tag_etc_list(
-                action_name="search_notes",
+                action_name="page_search_notes",
                 req_elem_name="search_text",
                 elem_list=used_task_store.get_context_list(),
                 alt_task_store_name=alt_task_store_name
@@ -285,8 +291,7 @@ def page_list_notes_template(list_taskid_desc, title=None, primary_task_store=No
     return page.to_html()
 
 
-
-
+@tests.integration_function("html_page_templates")
 def unauth_page_display_note_public_template(tainted_task_id, tainted_task_pubauthid, task_store):
     """
     Displays a given task if the given parameters are correct. Meant to display a read-only note (so that the user
@@ -328,6 +333,7 @@ def unauth_page_display_note_public_template(tainted_task_id, tainted_task_pubau
         return page.to_html()
 
 
+@tests.integration_function("html_page_templates")
 def page_display_note_template(task_id, task, page_header_optional_list_of_warnings=None,
                                alt_task_store_name=None, highlight_in_text=None, history_back_id=None,
                                self_sess_action_auth=None):
@@ -369,6 +375,7 @@ def page_display_note_template(task_id, task, page_header_optional_list_of_warni
     return page.to_html()
 
 
+@tests.integration_function("html_page_templates")
 def page_note_list_multiple_select_template(tasks_to_delete=None, task_store=None,
                                    history_back_id=None, self_sess_action_auth=None):
     """
@@ -409,7 +416,7 @@ def page_note_list_multiple_select_template(tasks_to_delete=None, task_store=Non
     return page.to_html()
 
 
-
+@tests.integration_function("html_page_templates")
 def page_delete_notes_template(tasks_to_delete=None, history_back_id=None, self_sess_action_auth=None):
     """
     Template for a page with a list of tasks to delete. Upon confirmation, these tasks will be moved from task_store into
@@ -446,6 +453,8 @@ def page_delete_notes_template(tasks_to_delete=None, history_back_id=None, self_
 
     return page.to_html()
 
+
+@tests.integration_function("html_page_templates")
 def page_export_prompt_template(nonce, history_back_id=None, self_sess_action_auth=None):
     """
     Template for a page with a button to export tasks.
@@ -466,6 +475,8 @@ def page_export_prompt_template(nonce, history_back_id=None, self_sess_action_au
     page.export_path = str(os.path.join(config.PATH_SAVE_DROPBOX_EXPORT, config.FILE_WOOLNOTE_ZIP))
     return page.to_html()
 
+
+@tests.integration_function("html_page_templates")
 def page_import_prompt_template(nonce, history_back_id=None, self_sess_action_auth=None):
     """
     Template for a page with a button to import tasks.

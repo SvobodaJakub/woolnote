@@ -3,7 +3,7 @@
 # qpy://127.0.0.1:8088/woolnote?woolauth=please_change_me
 
 # University of Illinois/NCSA Open Source License
-# Copyright (c) 2017, Jakub Svoboda.
+# Copyright (c) 2018, Jakub Svoboda.
 
 
 # TODO: docstring for the file
@@ -22,6 +22,7 @@ from woolnote.ui_backend import UIBackend
 from woolnote.web_ui import WebUI
 from woolnote.web_ui_req_handler import get_WebInterfaceHandlerLocal
 from woolnote.ui_auth import WoolnoteUIAuth
+from woolnote import tests
 
 
 # info about time comparison using string comparison:
@@ -78,7 +79,7 @@ from woolnote.ui_auth import WoolnoteUIAuth
 #  + TODO: LAST-IMPORT-LAMPORT-CLOCK; import error if lower than EXPORT-LAMPORT-CLOCK
 #  +x TODO: public notes have a unique random pubid (different from taskid); taskid is not exposed in any way; pubid is saved in task's metadata (new field); loading tasks loads also a dict of all pubids; pubids accessible via a special get request without login (make sure to NOT grant auth cookie)
 #  - TODO: edit mode for pubid - changes saved to a special staging area with a colorful diff
-#  + TODO: markdup vs. plain format
+#  + TODO: markup vs. plain format
 #  - TODO:
 #  - TODO:
 #  - TODO:
@@ -120,10 +121,51 @@ util.tasks_backup(task_store, task_store_trash)
 woolnote_config = WoolnoteConfig()
 ui_auth = WoolnoteUIAuth()
 ui_backend = UIBackend(task_store, task_store_trash)
+
+if tests.TEST_FRAMEWORK_ENABLED:
+    # if replaying tests, unplickle all the other supporting instances before web_ui is instantiated
+    if tests.RERUN_INTEGRATION_INSTEAD_OF_NORMAL_PROGRAM_OPERATION:
+        tests.integration_pre_rerun("web_ui")
+
+        task_store = tests.integration_unpickle_data("web_ui", "task_store")
+        task_store_trash = tests.integration_unpickle_data("web_ui", "task_store_trash")
+        ui_backend = tests.integration_unpickle_data("web_ui", "ui_backend")
+
+        woolnote_config = tests.integration_referenced_data("web_ui")["woolnote_config"]
+        ui_auth = tests.integration_referenced_data("web_ui")["ui_auth"]
+
 web_ui = WebUI(task_store, task_store_trash, ui_backend, woolnote_config, ui_auth)
 
-WebInterfaceHandlerLocal = get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth)
+if tests.TEST_FRAMEWORK_ENABLED:
 
+    tests.integration_instance("web_ui", "web_ui", web_ui)
+
+    if tests.RERUN_INTEGRATION_INSTEAD_OF_NORMAL_PROGRAM_OPERATION:
+        # the order of these tests matter if they are run with shared state
+        # note that it might be necessary to COMPLETELY replicate the whole environment for the test to result in an identical run
+        # that's why it is necessary to run `TEST_reset_tasks_dat.sh` before both recording and replaying
+        tests.integration_rerun("web_ui")
+        tests.integration_rerun("html_page_templates")
+        tests.integration_rerun("util")
+        quit()
+    else:
+        # recording state at the current moment (first state)
+        tests.integration_pickle_data("web_ui", "task_store", task_store)
+        tests.integration_pickle_data("web_ui", "task_store_trash", task_store_trash)
+        # tests.integration_pickle_data("web_ui", "woolnote_config", woolnote_config)
+        tests.integration_pickle_data("web_ui", "ui_backend", ui_backend)
+        # tests.integration_pickle_data("web_ui", "ui_auth", ui_auth)
+
+        # this will record their state at the latest moment (last state)
+        # tests.integration_referenced_data("web_ui")["task_store"] = task_store
+        # tests.integration_referenced_data("web_ui")["task_store_trash"] = task_store_trash
+        tests.integration_referenced_data("web_ui")["woolnote_config"] = woolnote_config
+        # tests.integration_referenced_data("web_ui")["ui_backend"] = ui_backend
+        tests.integration_referenced_data("web_ui")["ui_auth"] = ui_auth
+
+# below is web interface that is not necessary for tests of web_ui.py and the things that are called from that module
+
+WebInterfaceHandlerLocal = get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth)
 
 def get_server_on_port(port, use_ssl=False):
     server = HTTPServer(("", port), WebInterfaceHandlerLocal)

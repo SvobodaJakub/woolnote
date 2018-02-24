@@ -1,5 +1,5 @@
 # University of Illinois/NCSA Open Source License
-# Copyright (c) 2017, Jakub Svoboda.
+# Copyright (c) 2018, Jakub Svoboda.
 
 # TODO: docstring for the file
 import urllib
@@ -210,11 +210,11 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
                 nonlocal page_content
                 if "action" not in self.last_request_get_dict:
                     page_content = web_ui.page_list_notes(no_history=True)
-                elif self.last_request_get_dict["action"][0] == "list_folder":
+                elif self.last_request_get_dict["action"][0] == "page_list_folder":
                     page_content = web_ui.page_list_folder()
-                elif self.last_request_get_dict["action"][0] == "list_tag":
+                elif self.last_request_get_dict["action"][0] == "page_list_tag":
                     page_content = web_ui.page_list_tag()
-                elif self.last_request_get_dict["action"][0] == "search_notes":
+                elif self.last_request_get_dict["action"][0] == "page_search_notes":
                     page_content = web_ui.page_search_notes()
                 else:
                     page_content = web_ui.page_list_notes(no_history=True)
@@ -231,9 +231,9 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
                 if "action" not in self.last_request_get_dict:
                     page_content = web_ui.page_list_notes()
 
-                elif self.last_request_get_dict["action"][0] == "display_note":
+                elif self.last_request_get_dict["action"][0] == "page_display_note":
                     page_content = web_ui.page_display_note()
-                elif self.last_request_get_dict["action"][0] == "dismiss_reminder_and_display_note":
+                elif self.last_request_get_dict["action"][0] == "req_dismiss_reminder_and_display_note":
                     web_ui.req_note_dismiss_reminder()
                     page_content = web_ui.page_display_note()
 
@@ -242,25 +242,25 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
                     history_go_back()
                     display_content_after_history_back_during_request_processing()
 
-                elif self.last_request_get_dict["action"][0] == "list_folder":
+                elif self.last_request_get_dict["action"][0] == "page_list_folder":
                     page_content = web_ui.page_list_folder()
 
-                elif self.last_request_get_dict["action"][0] == "list_tag":
+                elif self.last_request_get_dict["action"][0] == "page_list_tag":
                     page_content = web_ui.page_list_tag()
 
-                elif self.last_request_get_dict["action"][0] == "search_notes":
+                elif self.last_request_get_dict["action"][0] == "page_search_notes":
                     page_content = web_ui.page_search_notes()
 
-                elif self.last_request_get_dict["action"][0] == "list_trash":
+                elif self.last_request_get_dict["action"][0] == "page_list_trash":
                     page_content = web_ui.page_list_trash()
 
-                elif self.last_request_get_dict["action"][0] == "edit_note":
+                elif self.last_request_get_dict["action"][0] == "page_edit_note":
                     page_content = web_ui.page_edit_note()
 
-                elif self.last_request_get_dict["action"][0] == "add_new_note":
+                elif self.last_request_get_dict["action"][0] == "page_add_new_note":
                     page_content = web_ui.page_add_new_note()
 
-                elif self.last_request_get_dict["action"][0] == "delete_taskid":
+                elif self.last_request_get_dict["action"][0] == "page_delete_taskid":
                     page_content = web_ui.page_delete_notes()
 
                 elif self.last_request_get_dict["action"][0] == "req_note_checkboxes_save":
@@ -275,24 +275,28 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
                     web_ui.req_save_new_note()
                     page_content = web_ui.page_edit_note()
 
-                elif self.last_request_get_dict["action"][0] == "import_prompt":
+                elif self.last_request_get_dict["action"][0] == "req_save_new_single_task_line":
+                    web_ui.req_save_new_single_task_line()
+                    page_content = web_ui.page_display_note()
+
+                elif self.last_request_get_dict["action"][0] == "page_import_prompt":
                     page_content = web_ui.page_import_prompt()
 
-                elif self.last_request_get_dict["action"][0] == "export_prompt":
+                elif self.last_request_get_dict["action"][0] == "page_export_prompt":
                     page_content = web_ui.page_export_prompt()
 
-                elif self.last_request_get_dict["action"][0] == "req_import_notes_permanent":
-                    web_ui.req_import_notes_permanent()
+                elif self.last_request_get_dict["action"][0] == "req_import_notes":
+                    web_ui.req_import_notes()
                     history_go_back()
                     display_content_after_history_back_during_request_processing()
 
-                elif self.last_request_get_dict["action"][0] == "req_export_notes_permanent":
-                    web_ui.req_export_notes_permanent()
+                elif self.last_request_get_dict["action"][0] == "req_export_notes":
+                    web_ui.req_export_notes()
                     history_go_back()
                     display_content_after_history_back_during_request_processing()
 
-                elif self.last_request_get_dict["action"][0] == "req_delete_taskid_permanent":
-                    web_ui.req_delete_taskid_permanent()
+                elif self.last_request_get_dict["action"][0] == "req_delete_taskid":
+                    web_ui.req_delete_taskid()
                     history_go_back()
                     display_content_after_history_back_during_request_processing()
 
@@ -311,7 +315,7 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
                     history_go_back()
                     display_content_after_history_back_during_request_processing()
 
-                elif self.last_request_get_dict["action"][0] == "note_list_multiple_select":
+                elif self.last_request_get_dict["action"][0] == "page_note_list_multiple_select":
                     page_content = web_ui.page_note_list_multiple_select()
 
                 else:
@@ -337,7 +341,7 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
             """
             page_content = "<html><body>N/A</body></html>"
             try:
-                if self.last_request_get_dict["action"][0] == "display_note":
+                if self.last_request_get_dict["action"][0] == "page_display_note":
                     task_id = self.last_request_get_dict["taskid"][0]
                     task_pubauthid = self.last_request_get_dict["pubauthid"][0]
                     page_content = web_ui.unauth_page_display_note_public(task_id, task_pubauthid)
@@ -399,9 +403,10 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
             self.send_response(200)
             # reply for POST can only be text/html because of how woolnote works
             self.send_header("Content-Type", "text/html")
+            self.send_header("X-Frame-Options", "DENY")
             # set auth cookie
             if self.authenticated:
-                self.send_header("Set-cookie", "auth=" + ui_auth.return_cookie_authenticated())
+                self.send_header("Set-cookie", "auth=" + ui_auth.return_cookie_authenticated() + "; SameSite=Strict; HttpOnly")
             self.end_headers()
             # end of what is otherwise done in do_HEAD()
 
@@ -426,8 +431,9 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
                     break
             if not resource_found:
                 self.send_header("Content-Type", "text/html")
+            self.send_header("X-Frame-Options", "DENY")
             if self.authenticated:
-                self.send_header("Set-cookie", "auth=" + ui_auth.return_cookie_authenticated())
+                self.send_header("Set-cookie", "auth=" + ui_auth.return_cookie_authenticated() + "; SameSite=Strict; HttpOnly")
             self.end_headers()
 
     return WebInterfaceHandlerLocal

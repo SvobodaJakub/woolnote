@@ -1,5 +1,5 @@
 # University of Illinois/NCSA Open Source License
-# Copyright (c) 2017, Jakub Svoboda.
+# Copyright (c) 2018, Jakub Svoboda.
 
 # TODO: docstring for the file
 import os
@@ -27,6 +27,26 @@ class UIBackend():
         super().__init__()
         self.task_store = task_store
         self.task_store_trash = task_store_trash
+
+
+    def helper_sanitize_task_body_before_save(self, task_to_be_updated, tainted_task_body):
+        """
+        Sanitizes new body of a task and saves it into the task.
+
+        Args:
+            task_to_be_updated (woolnote.task_store.Task):
+            tainted_task_body (str):
+
+        Returns:
+            None:
+        """
+
+        # TODO: if the new body contains the delimiter used by the saved file in a vulnerable way, escape/remove it (don't do it here, do it in task_store.py)
+        if task_to_be_updated.body_format == MARKUP:
+            task_to_be_updated.body = util.task_body_save_fix_multiline_markup_bullet_lists(tainted_task_body)
+        else:
+            task_to_be_updated.body = util.task_body_save_fix_newlines(tainted_task_body)
+
 
     def helper_sanitize_task_before_save(self, task_to_be_updated,
                                          tainted_task_name,
@@ -85,13 +105,10 @@ class UIBackend():
             util.dbgprint("tainted_formatting had a nonstandard value {}".format(tainted_formatting))
             pass
 
-        # TODO: if the new body contains the delimiter used by the saved file in a vulnerable way, escape/remove it (don't do it here, do it in task_store.py)
-        if task_to_be_updated.body_format == MARKUP:
-            task_to_be_updated.body = util.task_body_save_fix_multiline_markup_bullet_lists(tainted_task_body)
-        else:
-            task_to_be_updated.body = util.task_body_save_fix_newlines(tainted_task_body)
+        self.helper_sanitize_task_body_before_save(task_to_be_updated=task_to_be_updated,
+                                                   tainted_task_body=tainted_task_body)
 
-    def save_new_note_permanent(self, task):
+    def save_new_note(self, task):
         """
         Saves a new task into the task store. That is, a task whose taskid is not already in the task store.
         Args:
@@ -103,7 +120,7 @@ class UIBackend():
         self.task_store.add(task)
         self.task_store.task_store_save()
 
-    def save_edited_note_permanent(self, task):
+    def save_edited_note(self, task):
         """
         Saves a new version of an existing task into a task store. That is, a task whose taskid is already in the task store.
         Args:
@@ -116,7 +133,7 @@ class UIBackend():
         self.task_store.touch(task.taskid)
         self.task_store.task_store_save()
 
-    def import_notes_permanent(self, replace_local_request):
+    def import_notes(self, replace_local_request):
         """
 
         Imports notes from the configured path into the task store. Does either differential sync or overwrite all import
@@ -128,9 +145,6 @@ class UIBackend():
         Returns:
             Union[str, None]: error message or None if no error
         """
-
-        # TODO: the import is not permanent until another action saves the task store.
-        # TODO: ? print a warning that if you are unhappy with the operation and want to revert the import, kill the woolnote server immediately and start it again and the import operation will be reverted.
 
         self.task_store.task_store_save()
         self.task_store_trash.task_store_save()
@@ -305,7 +319,7 @@ class UIBackend():
         util.tasks_backup(self.task_store, self.task_store_trash, s="imp1")
         return None
 
-    def export_notes_permanent(self):
+    def export_notes(self):
         """
         Exports the task store to a file in the configured path.
 
@@ -333,7 +347,7 @@ class UIBackend():
             exportzip.write(os.path.join(config.PATH_SAVE_DB, config.FILE_WOOLNOTE_DAT), arcname=config.FILE_WOOLNOTE_DAT,
                             compress_type=zipfile.ZIP_DEFLATED)
 
-    def delete_taskid_permanent(self, task_id_list):
+    def delete_taskid(self, task_id_list):
         """
         Moves a specified tasks from task store into task trash store.
 
@@ -350,7 +364,7 @@ class UIBackend():
         self.task_store.task_store_save()
         self.task_store_trash.task_store_save()
 
-    def notes_tagdel_permanent(self, task_id_list, tagdel):
+    def notes_tagdel(self, task_id_list, tagdel):
         """
         Deletes the specified tag from the tasks from the task store specified by task ids.
 
@@ -369,7 +383,7 @@ class UIBackend():
                 task.tags.discard(tagdel)
         self.task_store.task_store_save()
 
-    def notes_tagadd_permanent(self, task_id_list, tagadd):
+    def notes_tagadd(self, task_id_list, tagadd):
         """
         Adds the specified tag to the tasks from the task store specified by task ids.
 
@@ -386,7 +400,7 @@ class UIBackend():
             task.tags.add(tagadd)
         self.task_store.task_store_save()
 
-    def notes_foldermove_permanent(self, task_id_list, foldermove):
+    def notes_foldermove(self, task_id_list, foldermove):
         """
         Moves the tasks from the task store specified by task ids to the specified folder.
         Args:
