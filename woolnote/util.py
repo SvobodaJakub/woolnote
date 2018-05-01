@@ -509,6 +509,23 @@ def create_id_task():
     return "{:064X}".format(random.randrange(16 ** 64))
 
 
+def _testing_deterministic_insecure_create_random_id():
+    _testing_deterministic_insecure_create_random_id.i += 1
+    return "{:064X}".format(_testing_deterministic_insecure_create_random_id.i)
+_testing_deterministic_insecure_create_random_id.i = 2000000
+
+
+@tests.tests_deterministic_replacement(_testing_deterministic_insecure_create_random_id)
+def create_random_id():
+    """
+    Creates a random string consisting of 64 [01-9A-F] symbols.
+
+    Returns:
+        str:
+    """
+    return "{:064X}".format(random.randrange(16 ** 64))
+
+
 def _testing_deterministic_insecure_generate_one_time_pwd():
     _testing_deterministic_insecure_generate_one_time_pwd.i += 1
     return "{:08x}".format(_testing_deterministic_insecure_generate_one_time_pwd.i)
@@ -1115,7 +1132,7 @@ def safe_string_compare(string1, string2):
     """
     #"""Safe comparison to avoid timing attacks"""
     # hashing&salting so that string comparison doesn't easily allow timing attacks
-    random_string = create_id_task()
+    random_string = create_random_id()
     hash1 = hashlib.sha256(repr(string1 + random_string).encode("utf-8")).hexdigest()
     hash2 = hashlib.sha256(repr(string2 + random_string).encode("utf-8")).hexdigest()
     assert len(hash1) == 64

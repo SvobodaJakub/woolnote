@@ -47,10 +47,10 @@ class WebUI():
         self.last_history_dict_of_links = {}
 
         # this is used for permanent actions like delete so that get requests with permanent effects cannot be cached and mistakenly used in other sessions
-        self.sess_action_auth = util.create_id_task()  # create a new random auth string
+        self.sess_action_auth = util.create_random_id()  # create a new random auth string
 
         # this is used for permanent actions like import/export so that get requests with permanent effects cannot be cached and mistakenly used in other sessions or by going back in the browser's history
-        self.nonce_action_auth = util.create_id_task()  # create a new random auth string
+        self.nonce_action_auth = util.create_random_id()  # create a new random auth string
         self.nonce_action_auth_valid_uses = 0  # do not allow the value to be used at beginning
 
         self.task_store = task_store

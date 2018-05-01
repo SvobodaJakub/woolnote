@@ -10,7 +10,7 @@ Woolnote note-taking web app. You can start it by running this file. The interfa
 
 from woolnote import tests
 tests.TEST_FRAMEWORK_ENABLED = True
-tests.RERUN_INTEGRATION_INSTEAD_OF_NORMAL_PROGRAM_OPERATION = False
+tests.PICKLETEST_REPLAY = False
 
 # this runs Woolnote
 import woolnote.woolnote

@@ -243,7 +243,7 @@ class TaskStore():
         serialized = "".join(serialized_list)
         return serialized
 
-    def task_store_save(self, alt_path=None):
+    def task_store_save(self, alt_path=None, testing_no_write=False):
         """
         Saves the serialized itself into the file configured in __init__(). This method has to be called manually,
         the task store doesn't save its in-memory representation into the file automatically. If no alternative path
@@ -254,6 +254,7 @@ class TaskStore():
 
         Args:
             alt_path (Union[str, None]): Alternative path where to save.
+            testing_no_write (bool): Do not do file write. Only for testing purposes.
 
         Returns:
             None:
@@ -272,8 +273,9 @@ class TaskStore():
             for taskid in self.taskids_touched_since_last_add_or_del:
                 task = self.store_dict_id[taskid]
                 diffupdate_store.add_deserialized(task)
-            with open(path_diff, "w", encoding="utf-8") as stored_file:
-                stored_file.write(diffupdate_store.serialize())
+            if not testing_no_write:
+                with open(path_diff, "w", encoding="utf-8") as stored_file:
+                    stored_file.write(diffupdate_store.serialize())
 
         elif alt_path is None:
             # no alternative path, saving to the primary location
@@ -281,16 +283,18 @@ class TaskStore():
 
             self.taskids_touched_since_last_add_or_del.clear()  # going to save the full file
             self.taskids_touched_dict_cleared_since_last_save = False  # going to save the full file and begin with a clean slate again
-            with open(self.filepath, "w", encoding="utf-8") as stored_file:
-                stored_file.write(self.serialize())
-            with open(path_diff, "w", encoding="utf-8") as stored_file:
-                stored_file.write("")
+            if not testing_no_write:
+                with open(self.filepath, "w", encoding="utf-8") as stored_file:
+                    stored_file.write(self.serialize())
+                with open(path_diff, "w", encoding="utf-8") as stored_file:
+                    stored_file.write("")
 
         else:
             # alternative path, do not use differential files at all
 
-            with open(alt_path, "w", encoding="utf-8") as stored_file:
-                stored_file.write(self.serialize())
+            if not testing_no_write:
+                with open(alt_path, "w", encoding="utf-8") as stored_file:
+                    stored_file.write(self.serialize())
 
     def task_store_load(self, alt_path=None):
         """
@@ -591,3 +595,9 @@ class TaskStore():
             if name_found or body_found or taskid_found or due_found or created_found or changed_found:
                 list_taskid_filtered.append(task.taskid)
         return list_taskid_filtered
+
+
+class TaskStoreTestingNoWrite(TaskStore):
+    def task_store_save(self, alt_path=None):
+        super().task_store_save(alt_path=alt_path, testing_no_write=True)
+

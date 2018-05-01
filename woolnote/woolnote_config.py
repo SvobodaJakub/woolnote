@@ -5,6 +5,7 @@
 # woolnote config class
 #######################
 from woolnote.task_store import Task
+from woolnote import tests
 
 
 class WoolnoteConfig:
@@ -95,6 +96,7 @@ ___
         # dict[id, taskid]
         self.single_note_line_id = {}
 
+    @tests.integration_method("web_ui")
     def save_default_config_note(self, task_store):
         # TODO: docstring
         """
@@ -107,6 +109,7 @@ ___
         task.body = self.CONFIG_TASK_DEFAULT_BODY
         task_store.add(task)
 
+    @tests.integration_method("web_ui")
     def read_from_config_note(self, task_store):
         """
         Reads configuration from notes.

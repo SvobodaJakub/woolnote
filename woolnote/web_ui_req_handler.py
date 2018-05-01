@@ -10,6 +10,7 @@ import ssl
 
 from woolnote import util
 from woolnote import html_constants
+from woolnote import tests
 
 
 # web interface request handler
@@ -54,12 +55,31 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
             """
             self.last_request_get_dict = {}
             self.last_request_post_data_dict = {}
-            self.last_request_post_data = ""
             self.last_request_path = ""
-            self.headers = {}
+            self.last_request_headers = {}
             self.authenticated = False
+            if tests.TEST_FRAMEWORK_ENABLED:
+                tests.gen_serializable_test_new_request()
+                tests.gen_serializable_test_instance("WebInterfaceHandlerLocal", self)
             super().__init__(*args, **kwargs)
 
+        @tests.gen_serializable_test_method()
+        def _test_repr(self):
+            """
+            Prints some properties. For testing purposes.
+
+            Returns:
+                str
+            """
+            repr = ""
+            repr += "self.last_request_get_dict = {}\n".format(self.last_request_get_dict)
+            repr += "self.last_request_post_data_dict = {}\n".format(self.last_request_post_data_dict)
+            repr += "self.last_request_path = {}\n".format(self.last_request_path)
+            repr += "self.last_request_headers = {}\n".format(self.last_request_headers)
+            repr += "self.authenticated = {}\n".format(self.authenticated)
+            return repr
+
+        @tests.gen_serializable_test_method()
         def helper_check_permanent_pwd(self):
             """
             Checks whether the password provided in the GET data (in the request path) is correct.
@@ -68,7 +88,7 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
                 bool: True if the password should be accepted, False otherwise.
             """
             try:
-                full_path = self.path
+                full_path = self.last_request_path
                 user_supplied_key, user_supplied_value = full_path.split("=")
                 if not util.safe_string_compare(user_supplied_key.strip(), "/woolnote?woolauth"):
                     return False
@@ -78,6 +98,7 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
             except:
                 return False
 
+        @tests.gen_serializable_test_method()
         def helper_check_one_time_pwd(self):
             """
             Checks whether the one-time password provided in the GET data (in the request path) is correct.
@@ -86,7 +107,7 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
                 bool: True if the OTP should be accepted, False otherwise.
             """
             try:
-                full_path = self.path
+                full_path = self.last_request_path
                 user_supplied_key, user_supplied_value = full_path.split("=")
                 if not util.safe_string_compare(user_supplied_key.strip(), "/woolnote?otp"):
                     return False
@@ -96,6 +117,7 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
             except:
                 return False
 
+        @tests.gen_serializable_test_method()
         def helper_get_request_authentication(self):
             """
             Sets self.authenticated to True or False based on whether the request is authenticated from path or from
@@ -108,8 +130,6 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
             self.authenticated = False
 
             # hashing&salting so that string comparison doesn't easily allow timing attacks
-            # if self.path == ("/woolnote?woolauth=" + LOGIN_PASSWORD):
-            # if util.safe_string_compare(self.path, "/woolnote?woolauth=" + config.LOGIN_PASSWORD):
             if self.helper_check_permanent_pwd():
                 self.authenticated = True
                 # will display page_content = web_ui.page_list_notes()
@@ -117,7 +137,7 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
                 self.authenticated = True
                 # will display page_content = web_ui.page_list_notes()
             try:
-                cookies = self.headers['Cookie'].split(";")
+                cookies = self.last_request_headers['Cookie'].split(";")
                 for cookie in cookies:
                     keyval = cookie.split("=")
                     key = keyval[0].strip()
@@ -129,6 +149,21 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
                             self.authenticated = True
             except Exception as exc:
                 util.dbgprint("exception in cookie handling {}".format(str(exc)))
+            return self.authenticated
+
+        def get_request_path(self):
+            """
+            Copies the request path into self.last_request_path.
+
+            Returns:
+                None:
+            """
+
+            try:
+                self.input_data_last_request_path(self.path)
+            except:
+                self.input_data_last_request_path("")
+
 
         def get_request_data(self):
             """
@@ -140,25 +175,32 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
             """
 
             try:
-                self.last_request_get_dict = urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query)
+                self.input_data_last_request_get_dict(urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query))
             except:
-                self.last_request_get_dict = {}
+                self.input_data_last_request_get_dict({})
             try:
-                self.last_request_path = self.path
+                self.input_data_last_request_path(self.path)
             except:
-                self.last_request_path = ""
+                self.input_data_last_request_path("")
             try:
-                self.last_request_post_data = self.rfile.read(int(self.headers['Content-Length'])).decode("utf-8")
+                last_request_post_data = self.rfile.read(int(self.headers['Content-Length'])).decode("utf-8")
             except:
-                self.last_request_post_data = ""
+                last_request_post_data = ""
             try:
-                self.last_request_post_data_dict = urllib.parse.parse_qs(self.last_request_post_data)
+                self.input_data_last_request_post_data_dict(urllib.parse.parse_qs(last_request_post_data))
             except:
-                self.last_request_post_data_dict = {}
+                self.input_data_last_request_post_data_dict({})
+            try:
+                # convert http.client.HTTPMessage to dict
+                last_request_headers = {k: v for k, v in self.headers.items()}
+                self.input_data_last_request_headers(last_request_headers)
+            except:
+                self.input_data_last_request_headers({})
 
             self.authenticated = False
             self.helper_get_request_authentication()
 
+        @tests.gen_serializable_test_method()
         def req_handler_authenticated(self):
             """
             Request handler for authenticated requests. To be used by helper_generate_page_contents().
@@ -332,6 +374,7 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
                 page_content = page_content.replace("\\n", "<br>\n")
             return page_content
 
+        @tests.gen_serializable_test_method()
         def req_handler_unauthenticated(self):
             """
             Request handler for unauthenticated requests.
@@ -349,6 +392,7 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
                 pass
             return page_content
 
+        @tests.gen_serializable_test_method()
         def helper_generate_page_contents(self):
             """
             Generates contents for the main woolnote functionality - the pages, request handlers, etc. Both
@@ -365,34 +409,70 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
                 page_content = self.req_handler_unauthenticated()
             return page_content
 
+        @tests.gen_serializable_test_method()
         def req_handler(self):
             """
-            Handles requests to both static and dynamic content. Writes contents to self.wfile.
+            Handles requests to both static and dynamic content.
+            Returns contents that are intended to be written to self.wfile.
 
             Returns:
-                None:
+                str:
             """
             resource_found = False
             # handle static requests
             for resource in self.HTTP_STATIC_RESOURCES:
-                if self.path.startswith(resource):
+                if self.last_request_path.startswith(resource):
                     page_content = self.HTTP_STATIC_RESOURCES[resource]["page_content"]
                     resource_found = True
                     break
             # handle dynamic requests
             if not resource_found:
                 page_content = self.helper_generate_page_contents()
+            return page_content
+
+        @tests.gen_serializable_test_method()
+        def input_data_last_request_path(self, val):
+            """
+            This function exists so that input data can be captured by the test generator so that this class is testable.
+            """
+            self.last_request_path = val
+
+        @tests.gen_serializable_test_method()
+        def input_data_last_request_get_dict(self, val):
+            """
+            This function exists so that input data can be captured by the test generator so that this class is testable.
+            """
+            self.last_request_get_dict = val
+
+        @tests.gen_serializable_test_method()
+        def input_data_last_request_post_data_dict(self, val):
+            """
+            This function exists so that input data can be captured by the test generator so that this class is testable.
+            """
+            self.last_request_post_data_dict = val
+
+        @tests.gen_serializable_test_method()
+        def input_data_last_request_headers(self, val):
+            """
+            This function exists so that input data can be captured by the test generator so that this class is testable.
+            """
+            self.last_request_headers = val
+
+        # not decorated on purpose
+        def output_data_wfile_write(self, val):
+            """
+            This function exists so that output data can be captured by the test generator so that this class is testable.
+            """
             try:
-                self.wfile.write(page_content.encode("utf-8"))
+                self.wfile.write(val.encode("utf-8"))
             except ssl.SSLEOFError:
                 # TODO in woolnote.py - why is suppress_ragged_eofs ignored?
                 util.dbgprint("ssl.SSLEOFError (#TODO in the code)")
-            return
 
         def do_GET(self):
             self.get_request_data()
             self.do_HEAD()
-            self.req_handler()
+            self.output_data_wfile_write(self.req_handler())
             return
 
         def do_POST(self):
@@ -410,13 +490,14 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
             self.end_headers()
             # end of what is otherwise done in do_HEAD()
 
-            self.req_handler()
+            self.output_data_wfile_write(self.req_handler())
 
         def do_HEAD(self):
+            self.get_request_path()
             self.send_response(200)
             resource_found = False
             for resource in self.HTTP_STATIC_RESOURCES:
-                if self.path.startswith(resource):
+                if self.last_request_path.startswith(resource):
                     try:
                         content_type = self.HTTP_STATIC_RESOURCES[resource]["Content-Type"]
                         self.send_header("Content-Type", content_type)
@@ -435,5 +516,8 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
             if self.authenticated:
                 self.send_header("Set-cookie", "auth=" + ui_auth.return_cookie_authenticated() + "; SameSite=Strict; HttpOnly")
             self.end_headers()
+            if tests.TEST_FRAMEWORK_ENABLED:
+                # let the test generator record it, so that the internal state is captured in the tests
+                self._test_repr()
 
     return WebInterfaceHandlerLocal

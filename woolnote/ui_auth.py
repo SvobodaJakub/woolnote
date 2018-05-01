@@ -4,6 +4,7 @@
 # TODO: docstring for the file
 from woolnote import util
 from woolnote import config
+from woolnote import tests
 
 # UI authentication helper
 ##########################
@@ -14,11 +15,12 @@ class WoolnoteUIAuth():
         Class providing functionality to generate and check authentication strings.
         """
         super().__init__()
-        self.authenticated_cookie = util.create_id_task()
+        self.authenticated_cookie = util.create_random_id()
         self.one_time_pwd = util.generate_one_time_pwd()
         self.one_time_pwd_tries_left = 0
         self.ONE_TIME_PWD_TRIES = 5
 
+    @tests.integration_method("web_ui")
     def return_cookie_authenticated(self):
         """
         Returns a string that should be used as a cookie granting access.
@@ -28,6 +30,7 @@ class WoolnoteUIAuth():
         """
         return self.authenticated_cookie
 
+    @tests.integration_method("web_ui")
     def create_new_one_time_pwd(self):
         """
         Creates a new one-time password and sets how many tries are left.
@@ -39,6 +42,7 @@ class WoolnoteUIAuth():
         self.one_time_pwd_tries_left = self.ONE_TIME_PWD_TRIES
         return self.one_time_pwd
 
+    @tests.integration_method("web_ui")
     def check_one_time_pwd(self, user_supplied_pwd):
         """
         Checks whether the supplied one-time password is correct, only if tries are left.
@@ -61,6 +65,7 @@ class WoolnoteUIAuth():
             return False
         return False
 
+    @tests.integration_method("web_ui")
     def check_permanent_pwd(self, user_supplied_pwd):
         """
         Checks whether the supplied password is correct.

@@ -17,7 +17,7 @@ import ssl
 from woolnote import config
 from woolnote.woolnote_config import WoolnoteConfig
 from woolnote import util
-from woolnote.task_store import Task, TaskStore
+from woolnote.task_store import Task, TaskStore, TaskStoreTestingNoWrite
 from woolnote.ui_backend import UIBackend
 from woolnote.web_ui import WebUI
 from woolnote.web_ui_req_handler import get_WebInterfaceHandlerLocal
@@ -114,33 +114,36 @@ if config.DISPLAY_STARTUP_HELP:
 task_store = TaskStore(os.path.join(config.PATH_SAVE_DB, config.FILE_TASKS_DAT))
 task_store_trash = TaskStore(os.path.join(config.PATH_SAVE_DB, config.FILE_TASKS_TRASH_DAT))
 
+if tests.TEST_FRAMEWORK_ENABLED:
+    # if replaying tests, unplickle all the other supporting instances before web_ui is instantiated
+    if tests.PICKLETEST_REPLAY:
+        tests.integration_pre_rerun("web_ui")
+
+        # NOTE: this is how data structures can be restored if necessary
+        # task_store = tests.integration_unpickle_data("web_ui", "task_store")
+        # task_store_trash = tests.integration_unpickle_data("web_ui", "task_store_trash")
+        # woolnote_config = tests.integration_referenced_data("web_ui")["woolnote_config"]
+        # ui_auth = tests.integration_referenced_data("web_ui")["ui_auth"]
+
+        task_store = TaskStoreTestingNoWrite(os.path.join(config.PATH_SAVE_DB, config.FILE_TASKS_DAT))
+        task_store_trash = TaskStoreTestingNoWrite(os.path.join(config.PATH_SAVE_DB, config.FILE_TASKS_TRASH_DAT))
+
 task_store.task_store_load()
 task_store_trash.task_store_load()
 util.tasks_backup(task_store, task_store_trash)
 
-woolnote_config = WoolnoteConfig()
 ui_auth = WoolnoteUIAuth()
+woolnote_config = WoolnoteConfig()
 ui_backend = UIBackend(task_store, task_store_trash)
-
-if tests.TEST_FRAMEWORK_ENABLED:
-    # if replaying tests, unplickle all the other supporting instances before web_ui is instantiated
-    if tests.RERUN_INTEGRATION_INSTEAD_OF_NORMAL_PROGRAM_OPERATION:
-        tests.integration_pre_rerun("web_ui")
-
-        task_store = tests.integration_unpickle_data("web_ui", "task_store")
-        task_store_trash = tests.integration_unpickle_data("web_ui", "task_store_trash")
-        ui_backend = tests.integration_unpickle_data("web_ui", "ui_backend")
-
-        woolnote_config = tests.integration_referenced_data("web_ui")["woolnote_config"]
-        ui_auth = tests.integration_referenced_data("web_ui")["ui_auth"]
-
 web_ui = WebUI(task_store, task_store_trash, ui_backend, woolnote_config, ui_auth)
 
 if tests.TEST_FRAMEWORK_ENABLED:
 
     tests.integration_instance("web_ui", "web_ui", web_ui)
+    tests.integration_instance("web_ui", "woolnote_config", woolnote_config)
+    tests.integration_instance("web_ui", "ui_auth", ui_auth)
 
-    if tests.RERUN_INTEGRATION_INSTEAD_OF_NORMAL_PROGRAM_OPERATION:
+    if tests.PICKLETEST_REPLAY:
         # the order of these tests matter if they are run with shared state
         # note that it might be necessary to COMPLETELY replicate the whole environment for the test to result in an identical run
         # that's why it is necessary to run `TEST_reset_tasks_dat.sh` before both recording and replaying
@@ -149,19 +152,23 @@ if tests.TEST_FRAMEWORK_ENABLED:
         tests.integration_rerun("util")
         quit()
     else:
+        tests.gen_serializable_test_beginning()
+
+        # NOTE: this is how data structures can be restored if necessary
+
         # recording state at the current moment (first state)
-        tests.integration_pickle_data("web_ui", "task_store", task_store)
-        tests.integration_pickle_data("web_ui", "task_store_trash", task_store_trash)
+        # tests.integration_pickle_data("web_ui", "task_store", task_store)
+        # tests.integration_pickle_data("web_ui", "task_store_trash", task_store_trash)
+        # tests.integration_pickle_data("web_ui", "ui_backend", ui_backend)
         # tests.integration_pickle_data("web_ui", "woolnote_config", woolnote_config)
-        tests.integration_pickle_data("web_ui", "ui_backend", ui_backend)
         # tests.integration_pickle_data("web_ui", "ui_auth", ui_auth)
 
         # this will record their state at the latest moment (last state)
         # tests.integration_referenced_data("web_ui")["task_store"] = task_store
         # tests.integration_referenced_data("web_ui")["task_store_trash"] = task_store_trash
-        tests.integration_referenced_data("web_ui")["woolnote_config"] = woolnote_config
         # tests.integration_referenced_data("web_ui")["ui_backend"] = ui_backend
-        tests.integration_referenced_data("web_ui")["ui_auth"] = ui_auth
+        # tests.integration_referenced_data("web_ui")["woolnote_config"] = woolnote_config
+        # tests.integration_referenced_data("web_ui")["ui_auth"] = ui_auth
 
 # below is web interface that is not necessary for tests of web_ui.py and the things that are called from that module
 
@@ -186,10 +193,10 @@ def get_server_on_port(port, use_ssl=False):
     return server
 
 
-def serve_on_port(port, use_ssl=False):
-    server = get_server_on_port(port, use_ssl)
-    util.dbgprint("trying serve_forever")
-    server.serve_forever()
+# def serve_on_port(port, use_ssl=False):
+#     server = get_server_on_port(port, use_ssl)
+#     util.dbgprint("trying serve_forever")
+#     server.serve_forever()
 
 
 # Using threads this way doesn't work correctly on Python 3.3 and maybe the code is wrong
