@@ -369,7 +369,7 @@ def gen_serializable_test_beginning():
 from woolnote import tests
 
 tests.TEST_FRAMEWORK_ENABLED = True
-tests.TEST_GEN_SERIALIZABLE_OUTFILE_REPLAY = True
+tests.TEST_GEN_SERIALIZABLE_OUTFILE_REPLAY = True  # set to False to regenerate the same tests, useful after changes and careful deleting of failing asserts in the old tests
 tests.PICKLETEST_REPLAY = False
 tests.PICKLETEST_ENABLED = False
 # uncomment to generate other tests from this integration test
