@@ -481,6 +481,43 @@ def search_expression_execute_ast_node(ast_node, task_store, search_type=None, f
         return None
 
 
+# TODO @tests.integration_function("util")
+def search_expression_get_task_lines(search_query, used_task_store):
+    """
+
+    Args:
+        search_query ():
+        used_task_store ():
+
+    Returns:
+        List[Tuple[str, List[str]]]
+
+    """
+    # TODO: docstring
+    # TODO test correctness of the code
+    tokens = search_expression_tokenizer(search_query)
+    tree_root = search_expression_build_ast(tokens)
+    fulltext_search_strings = []
+    list_taskid_desc = search_expression_execute_ast_node(tree_root, used_task_store,
+                                                               fulltext_search_strings=fulltext_search_strings)
+    results = []
+    # loop through all matched tasks and search text inside
+    for taskid in list_taskid_desc:
+        body = used_task_store.store_dict_id[taskid].body
+        if any([s in body for s in fulltext_search_strings]):
+            matching_lines = []
+            for line in body.split('\n'):
+                for s in fulltext_search_strings:
+                    if s in line:
+                        matching_lines.append(line)
+                        break
+            if matching_lines:
+                results.append((taskid, matching_lines))
+    return results, fulltext_search_strings
+                
+
+
+
 # helper functions for core functionality and web backend & frontend
 ####################################################################
 
@@ -979,7 +1016,7 @@ def convert_multiline_markup_string_into_safe_html(unsafe):
 
 @tests.integration_function("util")
 def multiline_markup_checkbox_mapping(markup, plain, edit_chkbox_state=False, chkbox_on_list=None,
-                                      disabled_checkboxes=False):
+                                      disabled_checkboxes=False, chkbox_naming=None):
     # TODO: docstring
     """
 
@@ -989,6 +1026,7 @@ def multiline_markup_checkbox_mapping(markup, plain, edit_chkbox_state=False, ch
         edit_chkbox_state (bool): if false, it returns html with html checkboxes, if true, it takes chkbox_on_list and makes those checked and the rest unchecked and returns the modified plain text
         chkbox_on_list (Union[None, List[str]]): see docstring for edit_chkbox_state
         disabled_checkboxes (bool): if the generated html checkboxes should be disabled for read-only display
+        chkbox_naming (Union[None, str]): if the generated checkbox names should contain the provided string
 
     Returns:
         str:
@@ -998,7 +1036,10 @@ def multiline_markup_checkbox_mapping(markup, plain, edit_chkbox_state=False, ch
         chkbox_on_list = []
 
     def chkbox_name(index):
-        return "checkbox" + str(index)
+        if chkbox_naming:
+            return "checkbox_" + str(chkbox_naming) + "_" + str(index)
+        else:
+            return "checkbox" + str(index)
 
     def chkbox_html(index, checked):
         attr_chkd = ""

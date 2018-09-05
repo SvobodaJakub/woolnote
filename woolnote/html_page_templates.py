@@ -171,6 +171,61 @@ def page_edit_note_template(task_store, task, self_sess_action_auth,
     page_html = page.to_html()
     return page_html
 
+# TODO
+# TODO @tests.integration_function("html_page_templates")
+def page_list_singleline_tasks_template(single_line_tasks_desc, self_sess_action_auth, title=None,
+                             highlight_in_notes=None,
+                             history_back_id=None,
+                             page_header_first_text=None,
+                             page_header_optional_small_second_text=None,
+                             page_header_optional_link_button_name=None,
+                             page_header_optional_link_button_request_dict=None,
+                             page_header_optional_list_of_warnings=None):
+    # TODO new docstring
+    """
+    Template for note list. The given list of taskids must be matchable with the given task store. Both the reference
+    to the task store and the name of the task store must be given (internal details and hardcoded task store names,
+    search the code for more info).
+
+    Args:
+        single_line_tasks_desc (List[List[Tuple[str, str, str]]]): one nonempty list of tuples for each task, each tuple contains taskid, task_name, shasum, line.
+        self_sess_action_auth (str):
+        title (str):
+        highlight_in_notes (Union[None, List[str]]): text to highlight in the notes listed on this page (after a note is opened)
+        history_back_id (str): string returned by woolnote.web_ui.save_history()
+        page_header_first_text (str):
+        page_header_optional_small_second_text (Union[str, None]):
+        page_header_optional_link_button_name (Union[str, None]):
+        page_header_optional_link_button_request_dict (Union[None, Dict[str, str]]):
+        page_header_optional_list_of_warnings (Union[List[str], None]):
+
+    Returns:
+        str:
+    """
+
+    page = html_page_templates_pres.PageOneLineTasks()
+    page.page_title = title
+    page.highlight_in_notes = highlight_in_notes
+    page.sess_action_auth = self_sess_action_auth
+    page.history_back_id = history_back_id
+    page.page_header_first_text = page_header_first_text
+    page.page_header_optional_small_second_text = page_header_optional_small_second_text
+    page.page_header_optional_link_button_name = page_header_optional_link_button_name
+    page.page_header_optional_link_button_request_dict = page_header_optional_link_button_request_dict
+    page.page_header_optional_list_of_warnings = page_header_optional_list_of_warnings
+
+    ll = []
+    for list_of_tuple in single_line_tasks_desc:
+        l = []
+        for line in list_of_tuple:
+            tld = page.TaskLineDetails(taskid=line[0], task_name=line[1], shasum=line[2], line=line[3])
+            l.append(tld)
+        ll.append(l)
+    page.list_of_list_of_task_line_details = ll
+
+    return page.to_html()
+
+
 
 @tests.integration_function("html_page_templates")
 def page_list_notes_template(list_taskid_desc, self_sess_action_auth, title=None, primary_task_store=None,
@@ -180,6 +235,8 @@ def page_list_notes_template(list_taskid_desc, self_sess_action_auth, title=None
                              page_header_optional_small_second_text=None,
                              page_header_optional_link_button_name=None,
                              page_header_optional_link_button_request_dict=None,
+                             page_header_optional_2nd_link_button_name=None,
+                             page_header_optional_2nd_link_button_request_dict=None,
                              page_header_optional_list_of_warnings=None):
     """
     Template for note list. The given list of taskids must be matchable with the given task store. Both the reference
@@ -201,6 +258,8 @@ def page_list_notes_template(list_taskid_desc, self_sess_action_auth, title=None
         page_header_optional_small_second_text (Union[str, None]):
         page_header_optional_link_button_name (Union[str, None]):
         page_header_optional_link_button_request_dict (Union[None, Dict[str, str]]):
+        page_header_optional_2nd_link_button_name (Union[str, None]):
+        page_header_optional_2nd_link_button_request_dict (Union[None, Dict[str, str]]):
         page_header_optional_list_of_warnings (Union[List[str], None]):
 
     Returns:
@@ -217,6 +276,8 @@ def page_list_notes_template(list_taskid_desc, self_sess_action_auth, title=None
     page.page_header_optional_small_second_text = page_header_optional_small_second_text
     page.page_header_optional_link_button_name = page_header_optional_link_button_name
     page.page_header_optional_link_button_request_dict = page_header_optional_link_button_request_dict
+    page.page_header_optional_2nd_link_button_name = page_header_optional_2nd_link_button_name
+    page.page_header_optional_2nd_link_button_request_dict = page_header_optional_2nd_link_button_request_dict
     page.page_header_optional_list_of_warnings = page_header_optional_list_of_warnings
 
 

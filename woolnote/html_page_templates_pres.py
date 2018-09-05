@@ -396,6 +396,8 @@ class PageListData(PageData):
         self.page_header_optional_small_second_text = None
         self.page_header_optional_link_button_name = None
         self.page_header_optional_link_button_request_dict = None
+        self.page_header_optional_2nd_link_button_name = None
+        self.page_header_optional_2nd_link_button_request_dict = None
         self.page_header_optional_list_of_warnings = None
         self.alt_task_store_name = None
         self.highlight_in_notes = None
@@ -437,6 +439,11 @@ class PageListData(PageData):
             page_header += """ | <a href="/woolnote?{params}" class="uk-button">{button_name}</a>""".format(
                 button_name=ss(self.page_header_optional_link_button_name),
                 params=urllib.parse.urlencode(self.page_header_optional_link_button_request_dict),
+            )
+        if self.page_header_optional_2nd_link_button_name and self.page_header_optional_2nd_link_button_request_dict:
+            page_header += """ | <a href="/woolnote?{params}" class="uk-button">{button_name}</a>""".format(
+                button_name=ss(self.page_header_optional_2nd_link_button_name),
+                params=urllib.parse.urlencode(self.page_header_optional_2nd_link_button_request_dict),
             )
         if self.page_header_optional_list_of_warnings:
             page_header += " | <b>Warning: {}</b>".format(
@@ -1118,6 +1125,84 @@ class PageImportPromptData(PageData):
         return page_main_body
 
 
+class PageOneLineTasks(PageListData):
+    """
+    Class for a template of page with a list of notes. More documentation in PageData class.
+    """
+    TaskLineDetails = namedtuple("TaskLineDetails", ["taskid", "task_name", "shasum", "line"])
+
+    def __init__(self):
+        super().__init__()
+        self.page_title = None
+        self.page_header_first_text = None
+        self.page_header_optional_small_second_text = None
+        self.page_header_optional_link_button_name = None
+        self.page_header_optional_link_button_request_dict = None
+        self.page_header_optional_list_of_warnings = None
+        self.highlight_in_notes = None
+        self.history_back_id = None
+        self.sess_action_auth = None
+
+        # list of list of TaskLineDetails - one list per taskid
+        self.list_of_list_of_task_line_details = []
 
 
+    def page_main_content_to_html(self):
+        ss = util.sanitize_singleline_string_for_html
+        cmps = util.convert_multiline_plain_string_into_safe_html
+        cms = util.convert_multiline_markup_string_into_safe_html
+        mmcm = util.multiline_markup_checkbox_mapping
 
+        highlight_in_text_sanitized = None
+        if self.highlight_in_notes:
+            highlight_in_text_sanitized = [ss(x) for x in self.highlight_in_notes]
+
+        def highlight_string_in_html_text(text, highlight_list):
+            if not highlight_list:
+                return text
+
+            def highlight(re_match):
+                input_string = re_match.group(0)
+                return "<span style='background-color: #FFFF00'>" + input_string + "</span>"
+
+            part_re_highlight_match = "|".join([re.escape(x) for x in highlight_list])
+            # case-insensitive (?i)
+            highlighted = re.sub("(?i)" + part_re_highlight_match, highlight, text)
+            return highlighted
+
+        def hsiht(text):
+            if highlight_in_text_sanitized:
+                return highlight_string_in_html_text(text, highlight_in_text_sanitized)
+            else:
+                return text
+
+        task_html_fragment_list = []
+
+        for list_of_task_line_details in self.list_of_list_of_task_line_details:
+            taskid = list_of_task_line_details[0].taskid
+            task_name = list_of_task_line_details[0].task_name
+
+            request_params_checkbox_save = urllib.parse.urlencode( {"action": "req_single_line_tasks_checkboxes_save", "taskid": taskid, "history_back_id": self.history_back_id})
+            task_html_fragment_list.append("""<form class="uk-form" action="/woolnote?""" + request_params_checkbox_save + """" method="post">""")
+            task_html_fragment_list.append("""<fieldset>""")
+            task_html_fragment_list.append("""<legend>{}""".format(ss(task_name)))
+            task_html_fragment_list.append("""<input type="submit" class="uk-button" value="Save checkboxes">""")
+            task_html_fragment_list.append("""</legend>""".format(ss(task_name)))
+            for task_line_details in list_of_task_line_details:
+                html_line_with_chkboxes = hsiht(mmcm(cms(task_line_details.line + "\n"), task_line_details.line + "\n", chkbox_naming=task_line_details.shasum))
+                task_html_fragment_list.append(html_line_with_chkboxes)
+                task_html_fragment_list.append("""<input type="hidden" name="line_{}_displayed" value="y">""".format(ss(task_line_details.shasum)))
+            # +TODO generate checkboxes, one generation per line, with line-specific hashes
+            # +TODO create the html box around with the task name with one form per box
+            # TODO create a request handler that generates all line shas for the taskid again, intersects them with shas from checkboxes, and edits the checkboxes for these lines
+            #
+
+            task_html_fragment_list.append("""<input type="hidden" name="post_action" value="req_single_line_tasks_checkboxes_save">""")  # prevent consuming requests missing POST data (page reload)
+            task_html_fragment_list.append("""</fieldset>""")
+            task_html_fragment_list.append("""</form><br>""")
+
+        page_main_body = """
+        """ + "\n".join(task_html_fragment_list) + """
+        """
+
+        return page_main_body

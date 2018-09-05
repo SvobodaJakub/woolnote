@@ -294,6 +294,9 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
                 elif self.last_request_get_dict["action"][0] == "page_search_notes":
                     page_content = web_ui.page_search_notes()
 
+                elif self.last_request_get_dict["action"][0] == "page_search_term_to_single_line_tasks":
+                    page_content = web_ui.page_search_term_to_single_line_tasks()  # TODO
+
                 elif self.last_request_get_dict["action"][0] == "page_list_trash":
                     page_content = web_ui.page_list_trash()
 
@@ -309,6 +312,11 @@ def get_WebInterfaceHandlerLocal(woolnote_config, task_store, web_ui, ui_auth):
                 elif self.last_request_get_dict["action"][0] == "req_note_checkboxes_save":
                     web_ui.req_note_checkboxes_save()
                     page_content = web_ui.page_display_note()
+
+                # TODO
+                elif self.last_request_get_dict["action"][0] == "req_single_line_tasks_checkboxes_save":
+                    web_ui.req_single_line_tasks_checkboxes_save()  # TODO new method
+                    page_content = web_ui.page_search_term_to_single_line_tasks()  # TODO decide which page to display and get it working
 
                 elif self.last_request_get_dict["action"][0] == "req_save_edited_note":
                     web_ui.req_save_edited_note()

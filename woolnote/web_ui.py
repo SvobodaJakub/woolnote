@@ -937,6 +937,9 @@ class WebUI():
         page_header_first_text = "search " + matching_virtual_folder + search_text
         page_header_link_button_name = "reset filter"
         page_header_link_request_dict = {"action": "show_list"}
+        page_header_2nd_link_button_name = "search single-line tasks"
+        page_header_2nd_link_request_dict = {"action": "page_search_term_to_single_line_tasks",
+                                             "search_text": search_text}
         page_header_list_of_warnings = None
 
         if self.error_msg_queue_list:
@@ -952,7 +955,49 @@ class WebUI():
                                         page_header_first_text=page_header_first_text,
                                         page_header_optional_link_button_name=page_header_link_button_name,
                                         page_header_optional_link_button_request_dict=page_header_link_request_dict,
+                                        page_header_optional_2nd_link_button_name=page_header_2nd_link_button_name,
+                                        page_header_optional_2nd_link_button_request_dict=page_header_2nd_link_request_dict,
                                         page_header_optional_list_of_warnings=page_header_list_of_warnings)
+
+
+    # TODO implement def req_single_line_tasks_checkboxes_save
+    # TODO @tests.integration_method("web_ui")
+    def page_search_term_to_single_line_tasks(self):
+        # TODO docstring
+        # TODO
+        search_text = self.last_request_get_dict["search_text"][0].lower()
+        # single_line_tasks - list[list[tuple]] - one nonempty list of tuples for each task, each tuple contains taskid, task_name, shasum, line
+        single_line_tasks, highlight_list = self.ui_backend.page_search_term_to_single_line_tasks(search_text)
+
+        matching_virtual_folder = ""
+        for _virtfldr, _searchstring in self.woolnote_config.virtual_folders.items():
+            if _searchstring.strip().lower() == search_text.strip().lower():
+                matching_virtual_folder = """virtual folder "{}" - """.format(_virtfldr)
+                break
+
+        history_id = self.save_history(["search_text", "action"])
+
+        # TODO insert session id to the checkboxes so that stale sessions cannot wreak havoc
+        title = "woolnote - search (single-line tasks) " + matching_virtual_folder + search_text
+
+        page_header_first_text = "search (single-line tasks) " + matching_virtual_folder + search_text
+        page_header_link_button_name = "reset filter"
+        page_header_link_request_dict = {"action": "show_list"}  # TODO should this be changed?
+        page_header_list_of_warnings = None
+
+        if self.error_msg_queue_list:
+            page_header_list_of_warnings = self.helper_convert_msg_queue_list_to_list_for_output()
+
+        # TODO make this page be reachable from the search results through a button "use this search to display matching single-line tasks"
+        return html_page_templates.page_list_singleline_tasks_template(single_line_tasks_desc=single_line_tasks,
+                                                            self_sess_action_auth=self.sess_action_auth, title=title,
+                                                            highlight_in_notes=highlight_list,
+                                                            history_back_id=history_id,
+                                                            page_header_first_text=page_header_first_text,
+                                                            page_header_optional_link_button_name=page_header_link_button_name,
+                                                            page_header_optional_link_button_request_dict=page_header_link_request_dict,
+                                                            page_header_optional_list_of_warnings=page_header_list_of_warnings)
+
 
     @tests.integration_method("web_ui")
     def page_list_folder(self):

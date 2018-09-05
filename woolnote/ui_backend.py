@@ -6,6 +6,7 @@ from woolnote import systemencoding
 import os
 import copy
 import zipfile
+import hashlib
 from woolnote import config
 from woolnote import util
 from woolnote.task_store import Task, TaskStore, MARKUP, PLAIN
@@ -443,3 +444,32 @@ class UIBackend():
                                                                    fulltext_search_strings=highlight_list)
 
         return list_taskid_desc, highlight_list
+
+    def page_search_term_to_single_line_tasks(self, search_query):
+        """
+        Generates identifiers that together uniquely identify a task line that contains at least one checkbox.
+
+        Args:
+            search_query (str): Search string in the language used by util.search_expression_tokenizer() and util.search_expression_build_ast().
+
+        Returns:
+            List[List[Tuple[str, str, str]]]: one nonempty list of tuples for each task, each tuple contains taskid, shasum, line.
+        """
+        # TODO test correctness of the code
+        results = []  # list[list[tuple]] - one nonempty list of tuples for each task, each tuple contains taskid, shasum, line
+        tasks, fulltext_search_strings = util.search_expression_get_task_lines(search_query, self.task_store)
+        for taskid, matching_lines in tasks:
+            task_name = self.task_store.store_dict_id[taskid].name
+            task_data = []
+            non_unique_line_detection = set()
+            for line in matching_lines:
+                if ("[ ]" in line) or ("[x]" in line) or line.startswith("-") or line.startswith("+"):
+                    shasum = hashlib.sha256((repr(taskid) + repr(line)).encode("utf-8")).hexdigest()
+                    if shasum in non_unique_line_detection:
+                        break  # skip that taskid altogether
+                    non_unique_line_detection.add(shasum)
+                    task_data.append((taskid, task_name, shasum, line))
+            else:  # https://docs.python.org/3/tutorial/controlflow.html#break-and-continue-statements-and-else-clauses-on-loops
+                if task_data:
+                    results.append(task_data)
+        return results, fulltext_search_strings
