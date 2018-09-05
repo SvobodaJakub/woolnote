@@ -2,6 +2,7 @@
 # Copyright (c) 2018, Jakub Svoboda.
 
 # TODO: docstring for the file
+from woolnote import systemencoding
 import re
 import os
 from woolnote import util
@@ -274,7 +275,7 @@ class TaskStore():
                 task = self.store_dict_id[taskid]
                 diffupdate_store.add_deserialized(task)
             if not testing_no_write:
-                with open(path_diff, "w", encoding="utf-8") as stored_file:
+                with open(path_diff, "w", encoding="utf-8", newline="\n") as stored_file:
                     stored_file.write(diffupdate_store.serialize())
 
         elif alt_path is None:
@@ -284,16 +285,16 @@ class TaskStore():
             self.taskids_touched_since_last_add_or_del.clear()  # going to save the full file
             self.taskids_touched_dict_cleared_since_last_save = False  # going to save the full file and begin with a clean slate again
             if not testing_no_write:
-                with open(self.filepath, "w", encoding="utf-8") as stored_file:
+                with open(self.filepath, "w", encoding="utf-8", newline="\n") as stored_file:
                     stored_file.write(self.serialize())
-                with open(path_diff, "w", encoding="utf-8") as stored_file:
+                with open(path_diff, "w", encoding="utf-8", newline="\n") as stored_file:
                     stored_file.write("")
 
         else:
             # alternative path, do not use differential files at all
 
             if not testing_no_write:
-                with open(alt_path, "w", encoding="utf-8") as stored_file:
+                with open(alt_path, "w", encoding="utf-8", newline="\n") as stored_file:
                     stored_file.write(self.serialize())
 
     def task_store_load(self, alt_path=None):
@@ -358,13 +359,13 @@ class TaskStore():
         path = self.filepath
         if alt_path is not None:
             path = alt_path
-        with open(path, "r", encoding="utf-8") as stored_file:
+        with open(path, "r", encoding="utf-8", newline="\n") as stored_file:
             deserialize(self, stored_file)
 
         path_diff = self.filepath + config.DIFFNEW_EXTENSION
         if alt_path is None and os.path.isfile(path_diff):
             # load is not from alternative path -> load differential file if it exists
-            with open(path_diff, "r", encoding="utf-8") as stored_file:
+            with open(path_diff, "r", encoding="utf-8", newline="\n") as stored_file:
                 list_of_diff_taskids = []
                 deserialize(self, stored_file, list_of_diff_taskids)
                 self.taskids_touched_since_last_add_or_del.update(list_of_diff_taskids)

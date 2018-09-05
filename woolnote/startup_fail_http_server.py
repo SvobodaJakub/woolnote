@@ -2,6 +2,7 @@
 # Copyright (c) 2017, Jakub Svoboda.
 
 # TODO: docstring for the file
+from woolnote import systemencoding
 from http.server import BaseHTTPRequestHandler
 import ssl
 

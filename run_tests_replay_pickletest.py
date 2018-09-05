@@ -1,6 +1,8 @@
 # University of Illinois/NCSA Open Source License
 # Copyright (c) 2018, Jakub Svoboda.
 
+from woolnote import systemencoding
+
 
 """
 Woolnote note-taking web app. You can start it by running this file. The interface is at the configured port.

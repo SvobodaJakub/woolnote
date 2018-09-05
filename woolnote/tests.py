@@ -1,6 +1,7 @@
 # University of Illinois/NCSA Open Source License
 # Copyright (c) 2018, Jakub Svoboda.
 
+from woolnote import systemencoding
 import functools
 import pickle
 
@@ -95,7 +96,7 @@ class WoolTest():
             def wrapper(*args, **kwargs):
                 if not TEST_FRAMEWORK_ENABLED or not PICKLETEST_ENABLED :
                     return func(*args, **kwargs)
-                with open(PICKLETEST_OUTFILE, 'a') as f:
+                with open(PICKLETEST_OUTFILE, 'a', encoding="utf-8", newline="\n") as f:
                     is_watched_instance = has_self and args[0] in {x[1] for x in self.instances}
                     is_interesting_for_logging = is_watched_instance or not has_self
                     instance_id = next((x[0] for x in self.instances if args[0] == x[1])) if is_watched_instance else None
@@ -161,8 +162,8 @@ class WoolTest():
             replay_chronology, _, _ = pickle.load(f)
         self.replaying_integration = True
         # recording replay status into two files so that it can be diffed nicely
-        with open(PICKLETEST_REPLAY_STATUS_EXPECTED, 'a') as fe:
-            with open(PICKLETEST_REPLAY_STATUS_OBSERVED, 'a') as fo:
+        with open(PICKLETEST_REPLAY_STATUS_EXPECTED, 'a', encoding="utf-8", newline="\n") as fe:
+            with open(PICKLETEST_REPLAY_STATUS_OBSERVED, 'a', encoding="utf-8", newline="\n") as fo:
                 for func_name, instance_id, has_self, pickle_args, pickle_kwargs, pickle_ret in replay_chronology:
                     args = list(pickle.loads(pickle_args))
                     kwargs = pickle.loads(pickle_kwargs)
@@ -201,7 +202,7 @@ class WoolTest():
                     fo.write("return value: {}\n".format(repr(ret)))
                     fe.write("return values match: {}\n".format(repr(True)))
                     fo.write("return values match: {}\n".format(repr(ret == expected_ret)))
-                    assert ret == expected_ret
+                    # assert ret == expected_ret  # TODO uncomment if you want it to crash at the first difference
         self.replaying_integration = replaying_integration_orig_value
 
 
@@ -300,7 +301,7 @@ class GenTest():
             def wrapper(*args, **kwargs):
                 if not TEST_FRAMEWORK_ENABLED or TEST_GEN_SERIALIZABLE_OUTFILE_REPLAY:
                     return func(*args, **kwargs)
-                with open(TEST_GEN_SERIALIZABLE_OUTFILE, 'a') as f:
+                with open(TEST_GEN_SERIALIZABLE_OUTFILE, 'a', encoding="utf-8", newline="\n") as f:
                     is_watched_instance = has_self and args[0] in {x[1] for x in self.instances}
                     is_interesting_for_logging = (is_watched_instance or not has_self) and not self.already_inside_execution
                     instance_id = next((x[0] for x in self.instances if args[0] == x[1])) if is_watched_instance else None
@@ -354,13 +355,13 @@ def gen_serializable_test_instance(instance_id, instance_ref):
 def gen_serializable_test_new_request():
     if not TEST_FRAMEWORK_ENABLED or TEST_GEN_SERIALIZABLE_OUTFILE_REPLAY:
         return
-    with open(TEST_GEN_SERIALIZABLE_OUTFILE, 'a') as f:
+    with open(TEST_GEN_SERIALIZABLE_OUTFILE, 'a', encoding="utf-8", newline="\n") as f:
         f.write("regenerate_WebInterfaceHandlerLocal()\n")
 
 def gen_serializable_test_beginning():
     if not TEST_FRAMEWORK_ENABLED or TEST_GEN_SERIALIZABLE_OUTFILE_REPLAY:
         return
-    with open(TEST_GEN_SERIALIZABLE_OUTFILE, 'a') as f:
+    with open(TEST_GEN_SERIALIZABLE_OUTFILE, 'a', encoding="utf-8", newline="\n") as f:
         beg = """
 # University of Illinois/NCSA Open Source License
 # Copyright (c) 2018, Jakub Svoboda.

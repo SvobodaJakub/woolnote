@@ -1,5 +1,9 @@
+# -*- coding: utf-8 -*-
+
 # University of Illinois/NCSA Open Source License
 # Copyright (c) 2018, Jakub Svoboda.
+
+from woolnote import systemencoding
 
 
 """

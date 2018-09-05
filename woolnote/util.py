@@ -2,6 +2,7 @@
 # Copyright (c) 2018, Jakub Svoboda.
 
 # TODO: docstring for the file
+from woolnote import systemencoding
 import random
 import html
 import time
@@ -387,7 +388,7 @@ def search_expression_build_ast(tokens):
 
 
 @tests.integration_function("util")
-def search_expression_execute_ast_node(ast_node, task_store, search_type=None, fulltext_search_strings=None):
+def search_expression_execute_ast_node(ast_node, task_store, search_type=None, fulltext_search_strings=None, fulltext_search_strings_excluded=None):
     # TODO: docstring
     # TODO doscstring about fulltext_search_strings changing the return value
     """
@@ -396,7 +397,8 @@ def search_expression_execute_ast_node(ast_node, task_store, search_type=None, f
         ast_node (woolnote.util.Search_AST_Node):
         task_store (woolnote.task_store.TaskStore):
         search_type (Union[None, str]):
-        fulltext_search_strings (List):
+        fulltext_search_strings (List): Fulltext strings to be highlighted in the text.
+        fulltext_search_strings_excluded (List): Fulltext strings to be highlighted in the text according to the partial search filter that has been negated.
 
     Returns:
         List[str]:
@@ -409,9 +411,13 @@ def search_expression_execute_ast_node(ast_node, task_store, search_type=None, f
     # CTRL_SEQ_OPERATOR
     # CTRL_SEQ_SEARCH_TYPE
     # CTRL_SEQ_CLOSED
+    if fulltext_search_strings is not None and fulltext_search_strings_excluded is None:
+        # so that if the caller is interested only in the first array, the internal logic of swapping on 'not' still works
+        fulltext_search_strings_excluded = []
     if ast_node.type == "EXEC_ROOT":
         unsorted_list = search_expression_execute_ast_node(ast_node.children[0], task_store,
-                                                           fulltext_search_strings=fulltext_search_strings)
+                                                           fulltext_search_strings=fulltext_search_strings,
+                                                           fulltext_search_strings_excluded=fulltext_search_strings_excluded)
         sorted_list = task_store.sort_taskid_list_descending_lamport_helper(list(set(unsorted_list)))
         return sorted_list
     elif ast_node.type == "SEARCH_STRING":
@@ -432,9 +438,11 @@ def search_expression_execute_ast_node(ast_node, task_store, search_type=None, f
     elif ast_node.type == "CTRL_SEQ_OPERATOR":
         if ast_node.content == "and":
             list1 = search_expression_execute_ast_node(ast_node.children[0], task_store, search_type=search_type,
-                                                       fulltext_search_strings=fulltext_search_strings)
+                                                       fulltext_search_strings=fulltext_search_strings,
+                                                       fulltext_search_strings_excluded=fulltext_search_strings_excluded)
             list2 = search_expression_execute_ast_node(ast_node.children[1], task_store, search_type=search_type,
-                                                       fulltext_search_strings=fulltext_search_strings)
+                                                       fulltext_search_strings=fulltext_search_strings,
+                                                       fulltext_search_strings_excluded=fulltext_search_strings_excluded)
             and_list = []
             for item in list1:
                 if item in list2:
@@ -443,24 +451,31 @@ def search_expression_execute_ast_node(ast_node, task_store, search_type=None, f
             return sorted_and_list
         elif ast_node.content == "or":
             list1 = search_expression_execute_ast_node(ast_node.children[0], task_store, search_type=search_type,
-                                                       fulltext_search_strings=fulltext_search_strings)
+                                                       fulltext_search_strings=fulltext_search_strings,
+                                                       fulltext_search_strings_excluded=fulltext_search_strings_excluded)
             list2 = search_expression_execute_ast_node(ast_node.children[1], task_store, search_type=search_type,
-                                                       fulltext_search_strings=fulltext_search_strings)
+                                                       fulltext_search_strings=fulltext_search_strings,
+                                                       fulltext_search_strings_excluded=fulltext_search_strings_excluded)
             or_list = list(set(list1 + list2))
             sorted_or_list = task_store.sort_taskid_list_descending_lamport_helper(or_list)
             return sorted_or_list
         elif ast_node.content == "not":
+            # On each 'not', the two array references for fulltext search strings are switched over - that way they are
+            # correctly added in even-numbered nested 'not's.
             list1 = search_expression_execute_ast_node(ast_node.children[0], task_store, search_type=search_type,
-                                                       fulltext_search_strings=fulltext_search_strings)
+                                                       fulltext_search_strings=fulltext_search_strings_excluded,
+                                                       fulltext_search_strings_excluded=fulltext_search_strings)
             list2 = task_store.sort_taskid_list_descending_lamport()
             sorted_not_list = [x for x in list2 if x not in list1]
             return sorted_not_list
     elif ast_node.type == "CTRL_SEQ_SEARCH_TYPE":
         return search_expression_execute_ast_node(ast_node.children[0], task_store, search_type=ast_node.content,
-                                                  fulltext_search_strings=fulltext_search_strings)
+                                                  fulltext_search_strings=fulltext_search_strings,
+                                                  fulltext_search_strings_excluded=fulltext_search_strings_excluded)
     elif ast_node.type == "CTRL_SEQ_CLOSED":
         return search_expression_execute_ast_node(ast_node.children[0], task_store, search_type=search_type,
-                                                  fulltext_search_strings=fulltext_search_strings)
+                                                  fulltext_search_strings=fulltext_search_strings,
+                                                  fulltext_search_strings_excluded=fulltext_search_strings_excluded)
     else:
         # bad input
         return None
@@ -969,20 +984,15 @@ def multiline_markup_checkbox_mapping(markup, plain, edit_chkbox_state=False, ch
     """
 
     Args:
-        markup (str):
-        plain (str):
-        edit_chkbox_state (bool):
-        chkbox_on_list (Union[None, List[str], None, None]):
-        disabled_checkboxes (bool):
+        markup (str): the html-converted sanitized markup text
+        plain (str): the plaintext source of the markup text
+        edit_chkbox_state (bool): if false, it returns html with html checkboxes, if true, it takes chkbox_on_list and makes those checked and the rest unchecked and returns the modified plain text
+        chkbox_on_list (Union[None, List[str]]): see docstring for edit_chkbox_state
+        disabled_checkboxes (bool): if the generated html checkboxes should be disabled for read-only display
 
     Returns:
         str:
     """
-    # """markup - the html-converted sanitized markup text
-    #    plain - the plaintext source of the markup text
-    #    edit_chkbox_state - if false, it returns html with html checkboxes, if true, it takes chkbox_on_list and makes those checked and the rest unchecked and returns the modified plain text
-    # """
-    # TODO: better docstring
     # TODO: this code is too crazy, think about how to do it differently
     if chkbox_on_list is None:
         chkbox_on_list = []
@@ -1053,11 +1063,13 @@ def multiline_markup_checkbox_mapping(markup, plain, edit_chkbox_state=False, ch
         component_markup, component_plain = component_pair
         component_markup_rest = component_markup[2:]
         component_plain_rest = component_plain[2:]
-        if checkbox_index == checkbox_index_begin_secondphase:
-            result_html_list.append(component_markup)
-            plain_edit_list.append(component_plain)
-            checkbox_index += 1
-            continue
+        # TODO remove this commented-out block after ensuring that it doesn't break anything
+        # (== remove it after september 2019 if it works)
+        #if checkbox_index == checkbox_index_begin_secondphase:
+        #    result_html_list.append(component_markup)
+        #    plain_edit_list.append(component_plain)
+        #    checkbox_index += 1
+        #    continue
         if component_markup.startswith("- "):
             result_html_list.append("\n" + chkbox_html(checkbox_index, False))
             result_html_list.append(component_markup_rest)

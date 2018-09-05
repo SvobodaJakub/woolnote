@@ -4,6 +4,7 @@
 # TODO: docstring for the file
 # woolnote config class
 #######################
+from woolnote import systemencoding
 from woolnote.task_store import Task
 from woolnote import tests
 

@@ -4,6 +4,7 @@
 # TODO: docstring for the file
 import hashlib
 import os
+from woolnote import systemencoding
 
 
 from woolnote import util

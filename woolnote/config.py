@@ -3,6 +3,7 @@
 
 # TODO: docstring for the file
 import os
+from woolnote import systemencoding
 
 # environment variables
 #######################

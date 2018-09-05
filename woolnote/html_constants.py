@@ -1,6 +1,8 @@
 # University of Illinois/NCSA Open Source License
 # Copyright (c) 2017, Jakub Svoboda.
 
+from woolnote import systemencoding
+
 # TODO: docstring for the file
 
 # constants for HTML contents

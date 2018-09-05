@@ -2,6 +2,7 @@
 # Copyright (c) 2017, Jakub Svoboda.
 
 # TODO: docstring for the file
+from woolnote import systemencoding
 from woolnote import util
 from woolnote import config
 from woolnote import tests

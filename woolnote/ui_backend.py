@@ -2,6 +2,7 @@
 # Copyright (c) 2018, Jakub Svoboda.
 
 # TODO: docstring for the file
+from woolnote import systemencoding
 import os
 import copy
 import zipfile

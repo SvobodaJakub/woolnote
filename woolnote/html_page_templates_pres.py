@@ -7,6 +7,7 @@
 # It is there so that there is only one file in the entire project that generates HTML and thus only one file that has
 # to be thoroughly checked for correct sanitization.
 
+from woolnote import systemencoding
 import urllib
 import re
 from woolnote import util

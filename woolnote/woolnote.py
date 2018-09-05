@@ -9,6 +9,7 @@
 # TODO: docstring for the file
 """TODO docstring"""
 
+from woolnote import systemencoding
 import argparse
 from http.server import HTTPServer
 import os

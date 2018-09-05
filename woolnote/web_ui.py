@@ -4,6 +4,7 @@
 # TODO: docstring for the file
 # TODO: think about moving functionality to backend
 
+from woolnote import systemencoding
 import hashlib
 
 from woolnote import util
@@ -919,15 +920,21 @@ class WebUI():
         search_text = self.last_request_get_dict["search_text"][0].lower()
         list_taskid_desc, highlight_list = self.ui_backend.search_notes(task_store_name, search_text)
 
+        matching_virtual_folder = ""
+        for _virtfldr, _searchstring in self.woolnote_config.virtual_folders.items():
+            if _searchstring.strip().lower() == search_text.strip().lower():
+                matching_virtual_folder = """virtual folder "{}" - """.format(_virtfldr)
+                break
+
         # in the rest of the function, the variable should be None if it is the default task store
         if task_store_name == "task_store":
             task_store_name = None
 
         history_id = self.save_history(["search_text", "action"], alt_task_store_name=alt_task_store_name)
 
-        title = "woolnote - search " + search_text
+        title = "woolnote - search " + matching_virtual_folder + search_text
 
-        page_header_first_text = "search " + search_text
+        page_header_first_text = "search " + matching_virtual_folder + search_text
         page_header_link_button_name = "reset filter"
         page_header_link_request_dict = {"action": "show_list"}
         page_header_list_of_warnings = None
